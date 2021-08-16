@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidenavComponent } from './sidenav.component';
-import {SharedAngularComponentsModule} from "../../components/shared-angular-components.module";
+import {SharedMaterialComponentsModule} from "../../components/shared-material-components.module";
 import {RouterModule} from "@angular/router";
 
 
@@ -12,7 +12,7 @@ import {RouterModule} from "@angular/router";
   ],
     imports: [
         CommonModule,
-        SharedAngularComponentsModule,
+        SharedMaterialComponentsModule,
         RouterModule
     ],
   exports: [SidenavComponent]

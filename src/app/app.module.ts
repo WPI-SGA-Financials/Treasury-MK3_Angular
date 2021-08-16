@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedAngularComponentsModule } from "./components/shared-angular-components.module";
-// import {SharedComponentsModule} from "./components/shared-components.module";
+import { SharedMaterialComponentsModule } from "./components/shared-material-components.module";
+import {SharedComponentsModule} from "./components/shared-components.module";
 import {SidenavModule} from "./modules/sidenav/sidenav.module";
 
 
@@ -19,8 +19,8 @@ import {SidenavModule} from "./modules/sidenav/sidenav.module";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedAngularComponentsModule,
-    // SharedComponentsModule,
+    SharedMaterialComponentsModule,
+    SharedComponentsModule,
     SidenavModule
   ],
   providers: [],

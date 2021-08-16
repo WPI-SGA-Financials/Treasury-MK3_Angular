@@ -6,6 +6,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatIconModule} from "@angular/material/icon";
+import {MatListModule} from "@angular/material/list";
 
 
 const material = [
@@ -14,7 +15,8 @@ const material = [
   MatTableModule,
   MatToolbarModule,
   MatSidenavModule,
-  MatIconModule
+  MatIconModule,
+  MatListModule
 ]
 
 
@@ -23,4 +25,4 @@ const material = [
   exports: material
 })
 
-export class SharedAngularComponentsModule { }
+export class SharedMaterialComponentsModule { }

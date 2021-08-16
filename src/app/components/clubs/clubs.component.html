@@ -1,0 +1,40 @@
+<!--<p>clubs works!</p>-->
+<div class="clubs">
+  <table mat-table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="classification">
+      <th mat-header-cell *matHeaderCellDef> Classification </th>
+      <td mat-cell *matCellDef="let club"> {{club.classification}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let club"> {{club.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="typeOfClub">
+      <th mat-header-cell *matHeaderCellDef> typeOfClub </th>
+      <td mat-cell *matCellDef="let club"> {{club.typeOfClub}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="acronym">
+      <th mat-header-cell *matHeaderCellDef> acronym </th>
+      <td mat-cell *matCellDef="let club"> {{club.acronym}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="inactive">
+      <th mat-header-cell *matHeaderCellDef> inactive </th>
+      <td mat-cell *matCellDef="let club"> {{club.inactive}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
