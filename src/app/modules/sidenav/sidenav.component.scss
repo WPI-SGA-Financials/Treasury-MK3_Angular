@@ -1,0 +1,41 @@
+mat-toolbar {
+  background: #004a9f;
+  color: white;
+}
+
+mat-sidenav {
+  width: 200px;
+  border-right: none;
+  background: #002b5c;
+  color: white;
+  padding: 16px;
+  text-align: center;
+}
+
+mat-toolbar {
+  align-self: flex-start;
+  justify-self: flex-start;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #303030;
+}
+
+mat-toolbar img {
+  width: auto;
+  height: 100%;
+}
+
+.spacing {
+  flex: 1 1 auto;
+}
+
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

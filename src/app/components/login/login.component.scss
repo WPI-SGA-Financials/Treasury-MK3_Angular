@@ -1,0 +1,21 @@
+.login {
+  color: white;
+  padding: 24px;
+  max-width: 550px;
+  //margin: 150px auto;
+  background-color: #424242;
+  text-align: center;
+  border-radius: 5px;
+
+  & .treasury_logo {
+    height: 50px;
+  }
+
+  & p {
+    text-align: justify;
+  }
+
+  & a {
+    color: white;
+  }
+}
