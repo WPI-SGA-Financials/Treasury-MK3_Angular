@@ -8,10 +8,10 @@ import {SharedMaterialComponentsModule} from "../shared-material-components.modu
 
 @NgModule({
   declarations: [ClubsComponent],
-  imports: [
-    CommonModule,
-    ClubsRoutingModule,
-    SharedMaterialComponentsModule
-  ]
+    imports: [
+        CommonModule,
+        ClubsRoutingModule,
+        SharedMaterialComponentsModule
+    ]
 })
 export class ClubsModule { }

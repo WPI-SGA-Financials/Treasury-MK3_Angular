@@ -19,22 +19,27 @@
 
     <!-- Weight Column -->
     <ng-container matColumnDef="typeOfClub">
-      <th mat-header-cell *matHeaderCellDef> typeOfClub </th>
+      <th mat-header-cell *matHeaderCellDef> Type of Club </th>
       <td mat-cell *matCellDef="let club"> {{club.typeOfClub}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="acronym">
-      <th mat-header-cell *matHeaderCellDef> acronym </th>
+      <th mat-header-cell *matHeaderCellDef> Club Acronym </th>
       <td mat-cell *matCellDef="let club"> {{club.acronym}} </td>
     </ng-container>
 
     <ng-container matColumnDef="inactive">
-      <th mat-header-cell *matHeaderCellDef> inactive </th>
+      <th mat-header-cell *matHeaderCellDef> Inactive? </th>
       <td mat-cell *matCellDef="let club"> {{club.inactive}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <mat-paginator #page [pageSizeOptions]="[10]"
+                 showFirstLastButtons
+                 aria-label="Select page of clubs">
+  </mat-paginator>
 </div>

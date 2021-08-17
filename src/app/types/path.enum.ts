@@ -4,5 +4,5 @@ export enum Path {
 }
 
 export enum Path_Api {
-  ORGANIZATIONS= "api/organizations",
+  ORGANIZATIONS= "organizations",
 }

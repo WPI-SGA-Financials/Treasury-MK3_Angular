@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedMaterialComponentsModule } from "./components/shared-material-components.module";
 import {SharedComponentsModule} from "./components/shared-components.module";
 import {SidenavModule} from "./modules/sidenav/sidenav.module";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {SidenavModule} from "./modules/sidenav/sidenav.module";
     BrowserAnimationsModule,
     SharedMaterialComponentsModule,
     SharedComponentsModule,
-    SidenavModule
+    SidenavModule,
+    HttpClientModule
   ],
   providers: [],
   exports: [
