@@ -8,6 +8,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSortModule} from "@angular/material/sort";
 
 
 const material = [
@@ -18,7 +19,8 @@ const material = [
   MatSidenavModule,
   MatIconModule,
   MatListModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatSortModule
 ]
 
 

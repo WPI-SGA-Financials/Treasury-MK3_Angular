@@ -1,13 +1,16 @@
 <div class="login">
-  <img class="treasury_logo" src="assets/images/treasury-logo.png"/>
-  <h2>Welcome to WPI Treasury</h2>
-  <p>Treasury provides access to detailed financials for student organizations on campus, and is restricted to active
-    members of the WPI community. For aggregated statistics and visualizations on the student life fee and student
-    organization budgets, visit <a href="https://sgaviz.cs.wpi.edu">sgaviz.cs.wpi.edu</a>
-  </p>
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="handleLogin()"
-  >{{"Sign in with WPI Account" | uppercase}}</button>
+  <div class="content">
+    <img class="treasury_logo" src="assets/images/treasury-logo.png"/>
+    <h2>Welcome to WPI Treasury</h2>
+    <p>Treasury provides access to detailed financials for student organizations on campus, and is restricted to active
+      members of the WPI community. For aggregated statistics and visualizations on the student life fee and student
+      organization budgets, visit <a href="https://sgaviz.cs.wpi.edu">sgaviz.cs.wpi.edu</a>
+    </p>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="handleLogin()"
+    >{{"Sign in with WPI Account" | uppercase}}</button>
+  </div>
+
 </div>
