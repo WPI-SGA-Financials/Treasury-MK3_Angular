@@ -1,5 +1,7 @@
 export enum Path {
   CLUBS="clubs",
+  FIVIZ="fiviz",
+  FINANCIALS="financials",
   LOGIN="login"
 }
 

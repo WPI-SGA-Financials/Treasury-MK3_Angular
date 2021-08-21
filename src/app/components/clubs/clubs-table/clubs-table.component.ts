@@ -4,16 +4,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {HttpService} from "../../../services/http.service";
 import {Path_Api} from "../../../types/path.enum";
-
-export interface Club {
-  name: string;
-  classification: string;
-  typeOfClub: string;
-  accountNumber: string | null;
-  acronym: string | null;
-  inactive: boolean;
-  timestamp: string
-}
+import {IClub} from "../../../types/iclub.interface";
 
 @Component({
   selector: 'app-clubs-table',
@@ -23,7 +14,7 @@ export interface Club {
 export class ClubsTableComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<any>([])
 
-  displayedColumns: string[] = ['name', 'classification', 'typeOfClub', 'acronym', "inactive"];
+  displayedColumns: string[] = ['name', 'classification', 'typeOfClub', 'acronym', "inactive", "timestamp"];
 
   @ViewChild(MatPaginator) paginator: any;
   @ViewChild(MatSort) sort: any;
@@ -31,12 +22,12 @@ export class ClubsTableComponent implements OnInit, AfterViewInit {
   constructor(private httpService:HttpService) { }
 
   ngOnInit(): void {
-    this.httpService.getRequest(Path_Api.ORGANIZATIONS).subscribe((response:Club[]) => {
+    this.httpService.getRequest(Path_Api.ORGANIZATIONS).subscribe((response:IClub[]) => {
       this.setData(response)
     })
   }
 
-  setData(data:Club[]): void {
+  setData(data:IClub[]): void {
     this.dataSource.data = data
   }
 

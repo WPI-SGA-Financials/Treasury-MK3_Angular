@@ -7,6 +7,10 @@ import {SharedMaterialComponentsModule} from "../shared-material-components.modu
 import { FilterMenuComponent } from './filter-menu/filter-menu.component';
 import { ClubsTableComponent } from './clubs-table/clubs-table.component';
 import {ClubNameModule} from "../filters/club-name/club-name.module";
+import {ClubClassificationModule} from "../filters/club-classification/club-classification.module";
+import {ClubTypeModule} from "../filters/club-type/club-type.module";
+import {ClubInactiveModule} from "../filters/club-inactive/club-inactive.module";
+import {CatNavModule} from "../cat-nav/cat-nav.module";
 
 
 @NgModule({
@@ -15,7 +19,11 @@ import {ClubNameModule} from "../filters/club-name/club-name.module";
         CommonModule,
         ClubsRoutingModule,
         SharedMaterialComponentsModule,
-        ClubNameModule
+        ClubNameModule,
+        ClubClassificationModule,
+        ClubTypeModule,
+        ClubInactiveModule,
+        CatNavModule
     ]
 })
 export class ClubsModule { }

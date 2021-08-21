@@ -21,6 +21,18 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: Path.FINANCIALS,
+    loadChildren: () =>
+      import("./components/financials/financials.module").then((m) => m.FinancialsModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: Path.FIVIZ,
+    loadChildren: () =>
+      import("./components/fiviz/fiviz.module").then((m) => m.FivizModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: "**",
     redirectTo: Path.CLUBS
   }

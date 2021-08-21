@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: #424242;
+  text-align: center;
+
+  & iframe {
+    margin: 24px;
+    display: block;
+    align-self: center;
+    height: 70vh;
+    width: 95%;
+  }
+}
