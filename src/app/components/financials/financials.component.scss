@@ -4,4 +4,9 @@
   color: white;
   background-color: #424242;
   text-align: center;
+
+  .financials {
+    display: flex;
+    flex-direction: row;
+  }
 }

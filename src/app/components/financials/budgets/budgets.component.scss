@@ -1,0 +1,23 @@
+:host {
+  padding: 24px 24px 24px 0;
+  flex: 1;
+}
+
+.budget-table {
+  margin-left: 2%;
+  text-align: left;
+  height: 100%;
+  & table {
+    width: 100%;
+
+    & .mat-row .mat-cell {
+      border-bottom: 1px solid transparent;
+      border-top: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    & .mat-row:hover .mat-cell {
+      border-color: currentColor;
+    }
+  }
+}

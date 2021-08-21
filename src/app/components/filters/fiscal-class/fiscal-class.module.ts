@@ -5,11 +5,14 @@ import { FiscalClassComponent } from './fiscal-class.component';
 
 
 @NgModule({
-  declarations: [
-    FiscalClassComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+    declarations: [
+        FiscalClassComponent
+    ],
+    exports: [
+        FiscalClassComponent
+    ],
+    imports: [
+        CommonModule
+    ]
 })
 export class FiscalClassModule { }

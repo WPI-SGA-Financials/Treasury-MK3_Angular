@@ -12,7 +12,7 @@ import {IClub} from "../../../types/iclub.interface";
   styleUrls: ['./clubs-table.component.scss']
 })
 export class ClubsTableComponent implements OnInit, AfterViewInit {
-  dataSource = new MatTableDataSource<any>([])
+  dataSource = new MatTableDataSource<IClub>([])
 
   displayedColumns: string[] = ['name', 'classification', 'typeOfClub', 'acronym', "inactive", "timestamp"];
 
