@@ -2,52 +2,43 @@
   <table mat-table matSort [dataSource]="dataSource">
     <!-- Classification Column -->
     <ng-container matColumnDef="classification">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Classification </th>
-      <td mat-cell *matCellDef="let club"> {{club.classification}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Classification</th>
+      <td mat-cell *matCellDef="let club">{{ club.classification }}</td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-      <td mat-cell *matCellDef="let club"> {{club.name}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let club">{{ club.name }}</td>
     </ng-container>
 
     <!-- Type of Club Column -->
     <ng-container matColumnDef="typeOfClub">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Type of Club </th>
-      <td mat-cell *matCellDef="let club"> {{club.typeOfClub}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type of Club</th>
+      <td mat-cell *matCellDef="let club">{{ club.typeOfClub }}</td>
     </ng-container>
 
     <!-- Club Acronym Column -->
     <ng-container matColumnDef="acronym">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Club Acronym </th>
-      <td mat-cell *matCellDef="let club"> {{club.acronym}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Club Acronym</th>
+      <td mat-cell *matCellDef="let club">{{ club.acronym }}</td>
     </ng-container>
 
     <!-- Inactive? Column -->
     <ng-container matColumnDef="inactive">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Inactive? </th>
-      <td mat-cell *matCellDef="let club"> {{club.inactive}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Inactive?</th>
+      <td mat-cell *matCellDef="let club">{{ club.inactive }}</td>
     </ng-container>
 
     <!-- Timestamp Column -->
     <ng-container matColumnDef="timestamp">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Modified </th>
-      <td mat-cell *matCellDef="let club"> {{club.timestamp | date}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Modified</th>
+      <td mat-cell *matCellDef="let club">{{ club.timestamp | date }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr
-      mat-row
-      (click)="onClickedRow(row)"
-      *matRowDef="let row; columns: displayedColumns;"
-    ></tr>
+    <tr mat-row (click)="onClickedRow(row)" *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[10]"
-                 showFirstLastButtons
-                 aria-label="Select page of clubs">
-  </mat-paginator>
-
+  <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons aria-label="Select page of clubs"> </mat-paginator>
 </div>
-

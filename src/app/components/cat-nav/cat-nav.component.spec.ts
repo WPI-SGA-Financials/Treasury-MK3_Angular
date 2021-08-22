@@ -8,9 +8,8 @@ describe('CatNavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CatNavComponent ]
-    })
-    .compileComponents();
+      declarations: [CatNavComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

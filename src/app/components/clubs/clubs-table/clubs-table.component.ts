@@ -1,10 +1,10 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
-import {HttpService} from "../../../services/http.service";
-import {Path_Api} from "../../../types/path.enum";
-import {IClub} from "../../../types/iclub.interface";
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { HttpService } from '../../../services/http.service';
+import { Path_Api } from '../../../types/path.enum';
+import { IClub } from '../../../types/iclub.interface';
 
 @Component({
   selector: 'app-clubs-table',
@@ -12,23 +12,23 @@ import {IClub} from "../../../types/iclub.interface";
   styleUrls: ['./clubs-table.component.scss']
 })
 export class ClubsTableComponent implements OnInit, AfterViewInit {
-  dataSource = new MatTableDataSource<IClub>([])
+  dataSource = new MatTableDataSource<IClub>([]);
 
-  displayedColumns: string[] = ['name', 'classification', 'typeOfClub', 'acronym', "inactive", "timestamp"];
+  displayedColumns: string[] = ['name', 'classification', 'typeOfClub', 'acronym', 'inactive', 'timestamp'];
 
   @ViewChild(MatPaginator) paginator: any;
   @ViewChild(MatSort) sort: any;
 
-  constructor(private httpService:HttpService) { }
+  constructor(private httpService: HttpService) {}
 
   ngOnInit(): void {
-    this.httpService.getRequest(Path_Api.ORGANIZATIONS).subscribe((response:IClub[]) => {
-      this.setData(response)
-    })
+    this.httpService.getRequest(Path_Api.ORGANIZATIONS).subscribe((response: IClub[]) => {
+      this.setData(response);
+    });
   }
 
-  setData(data:IClub[]): void {
-    this.dataSource.data = data
+  setData(data: IClub[]): void {
+    this.dataSource.data = data;
   }
 
   ngAfterViewInit(): void {
@@ -37,6 +37,6 @@ export class ClubsTableComponent implements OnInit, AfterViewInit {
   }
 
   onClickedRow(row: any) {
-    console.log(row)
+    console.log(row);
   }
 }

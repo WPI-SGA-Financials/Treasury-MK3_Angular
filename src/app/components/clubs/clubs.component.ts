@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-clubs',
@@ -6,8 +6,5 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
   styleUrls: ['./clubs.component.scss']
 })
 export class ClubsComponent implements OnInit {
-  ngOnInit(): void {
-  }
-
-
+  ngOnInit(): void {}
 }

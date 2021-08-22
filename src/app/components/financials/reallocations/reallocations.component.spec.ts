@@ -8,9 +8,8 @@ describe('ReallocationsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReallocationsComponent ]
-    })
-    .compileComponents();
+      declarations: [ReallocationsComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

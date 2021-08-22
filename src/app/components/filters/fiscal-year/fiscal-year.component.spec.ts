@@ -8,9 +8,8 @@ describe('FiscalYearComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FiscalYearComponent ]
-    })
-    .compileComponents();
+      declarations: [FiscalYearComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

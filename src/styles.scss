@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '~@angular/material' as mat;
@@ -9,70 +8,69 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-
 $md-wpiprimary: (
-  50 : #f5e6e7,
-  100 : #e6bfc3,
-  200 : #d6959b,
-  300 : #c56b73,
-  400 : #b84b55,
-  500 : #ac2b37,
-  600 : #a52631,
-  700 : #9b202a,
-  800 : #921a23,
-  900 : #821016,
-  A100 : #ffb5b8,
-  A200 : #ff8287,
-  A400 : #ff4f56,
-  A700 : #ff363d,
+  50: #f5e6e7,
+  100: #e6bfc3,
+  200: #d6959b,
+  300: #c56b73,
+  400: #b84b55,
+  500: #ac2b37,
+  600: #a52631,
+  700: #9b202a,
+  800: #921a23,
+  900: #821016,
+  A100: #ffb5b8,
+  A200: #ff8287,
+  A400: #ff4f56,
+  A700: #ff363d,
   contrast: (
-    50 : #000000,
-    100 : #000000,
-    200 : #000000,
-    300 : #000000,
-    400 : #ffffff,
-    500 : #ffffff,
-    600 : #ffffff,
-    700 : #ffffff,
-    800 : #ffffff,
-    900 : #ffffff,
-    A100 : #000000,
-    A200 : #000000,
-    A400 : #000000,
-    A700 : #ffffff,
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff
   )
 );
 
 $md-wpiaccent: (
-  50 : #f5f6f6,
-  100 : #e5e7e9,
-  200 : #d4d8db,
-  300 : #c3c8cd,
-  400 : #b6bcc2,
-  500 : #a9b0b7,
-  600 : #a2a9b0,
-  700 : #98a0a7,
-  800 : #8f979f,
-  900 : #7e8790,
-  A100 : #ffffff,
-  A200 : #e9f3fe,
-  A400 : #b5d8ff,
-  A700 : #9ccbff,
+  50: #f5f6f6,
+  100: #e5e7e9,
+  200: #d4d8db,
+  300: #c3c8cd,
+  400: #b6bcc2,
+  500: #a9b0b7,
+  600: #a2a9b0,
+  700: #98a0a7,
+  800: #8f979f,
+  900: #7e8790,
+  A100: #ffffff,
+  A200: #e9f3fe,
+  A400: #b5d8ff,
+  A700: #9ccbff,
   contrast: (
-    50 : #000000,
-    100 : #000000,
-    200 : #000000,
-    300 : #000000,
-    400 : #000000,
-    500 : #000000,
-    600 : #000000,
-    700 : #000000,
-    800 : #000000,
-    900 : #000000,
-    A100 : #000000,
-    A200 : #000000,
-    A400 : #000000,
-    A700 : #000000,
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
   )
 );
 
@@ -80,20 +78,22 @@ $md-wpiaccent: (
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $TreasuryMK3-angular-primary: mat.define-palette($md-wpiprimary);
-$TreasuryMK3-angular-accent: mat.define-palette($md-wpiaccent/*, A200, A100, A400*/);
+$TreasuryMK3-angular-accent: mat.define-palette($md-wpiaccent /*, A200, A100, A400*/);
 
 // The warn palette is optional (defaults to red).
 $TreasuryMK3-angular-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$TreasuryMK3-angular-theme: mat.define-light-theme((
-  color: (
-    primary: $TreasuryMK3-angular-primary,
-    accent: $TreasuryMK3-angular-accent,
-    warn: $TreasuryMK3-angular-warn,
+$TreasuryMK3-angular-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $TreasuryMK3-angular-primary,
+      accent: $TreasuryMK3-angular-accent,
+      warn: $TreasuryMK3-angular-warn
+    )
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -102,5 +102,12 @@ $TreasuryMK3-angular-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

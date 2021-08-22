@@ -5,5 +5,5 @@ export interface IClub {
   accountNumber: string | null;
   acronym: string | null;
   inactive: boolean;
-  timestamp: string
+  timestamp: string;
 }

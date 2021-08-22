@@ -8,9 +8,8 @@ describe('ClubTypeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClubTypeComponent ]
-    })
-    .compileComponents();
+      declarations: [ClubTypeComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

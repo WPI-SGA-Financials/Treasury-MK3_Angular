@@ -8,9 +8,8 @@ describe('FivizComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FivizComponent ]
-    })
-    .compileComponents();
+      declarations: [FivizComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

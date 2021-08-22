@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {LoginComponent} from "./components/login/login.component";
-import {Path} from "./types/path.enum";
-import {AuthGuard} from "./guards/auth.guard";
+import { LoginComponent } from './components/login/login.component';
+import { Path } from './types/path.enum';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: "",
-    pathMatch: "full",
+    path: '',
+    pathMatch: 'full',
     redirectTo: Path.LOGIN
   },
   {
@@ -16,24 +16,21 @@ const routes: Routes = [
   },
   {
     path: Path.CLUBS,
-    loadChildren: () =>
-      import("./components/clubs/clubs.module").then((m) => m.ClubsModule),
+    loadChildren: () => import('./components/clubs/clubs.module').then((m) => m.ClubsModule),
     canActivate: [AuthGuard]
   },
   {
     path: Path.FINANCIALS,
-    loadChildren: () =>
-      import("./components/financials/financials.module").then((m) => m.FinancialsModule),
+    loadChildren: () => import('./components/financials/financials.module').then((m) => m.FinancialsModule),
     canActivate: [AuthGuard]
   },
   {
     path: Path.FIVIZ,
-    loadChildren: () =>
-      import("./components/fiviz/fiviz.module").then((m) => m.FivizModule),
+    loadChildren: () => import('./components/fiviz/fiviz.module').then((m) => m.FivizModule),
     canActivate: [AuthGuard]
   },
   {
-    path: "**",
+    path: '**',
     redirectTo: Path.CLUBS
   }
 ];
@@ -42,4 +39,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

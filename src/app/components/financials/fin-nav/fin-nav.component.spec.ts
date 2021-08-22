@@ -8,9 +8,8 @@ describe('FinNavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FinNavComponent ]
-    })
-    .compileComponents();
+      declarations: [FinNavComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {
