@@ -8,5 +8,6 @@ export enum Path {
 export enum Path_Api {
   ORGANIZATIONS = 'organizations',
   BUDGETS = 'financials/budgets',
-  FUNDINGREQUESTS = 'financials/fr'
+  FUNDINGREQUESTS = 'financials/fr',
+  REALLOCATIONS = 'financials/realloc'
 }
