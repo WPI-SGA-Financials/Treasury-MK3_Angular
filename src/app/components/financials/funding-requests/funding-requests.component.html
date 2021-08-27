@@ -1,36 +1,36 @@
-<div class="fr-table">
+<!--<div class="fr-table">
   <table mat-table matSort [dataSource]="dataSource">
-    <!-- Name Column -->
+    &lt;!&ndash; Name Column &ndash;&gt;
     <ng-container matColumnDef="nameOfClub">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
       <td mat-cell *matCellDef="let fr">{{ fr.nameOfClub }}</td>
     </ng-container>
 
-    <!-- Fiscal Year Column -->
+    &lt;!&ndash; Fiscal Year Column &ndash;&gt;
     <ng-container matColumnDef="fiscalYear">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Fiscal Year</th>
       <td mat-cell *matCellDef="let fr">{{ fr.fiscalYear }}</td>
     </ng-container>
 
-    <!-- Hearing Date Column -->
+    &lt;!&ndash; Hearing Date Column &ndash;&gt;
     <ng-container matColumnDef="hearingDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Hearing Date</th>
       <td mat-cell *matCellDef="let fr">{{ fr.hearingDate | date }}</td>
     </ng-container>
 
-    <!-- Amount Requested Column -->
+    &lt;!&ndash; Amount Requested Column &ndash;&gt;
     <ng-container matColumnDef="amountRequested">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount Requested</th>
       <td mat-cell *matCellDef="let fr">{{ fr.amountRequested | currency }}</td>
     </ng-container>
 
-    <!-- Decision Column -->
+    &lt;!&ndash; Decision Column &ndash;&gt;
     <ng-container matColumnDef="decision">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Decision</th>
       <td mat-cell *matCellDef="let fr">{{ fr.decision }}</td>
     </ng-container>
 
-    <!-- Amount Approved Column -->
+    &lt;!&ndash; Amount Approved Column &ndash;&gt;
     <ng-container matColumnDef="amountApproved">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount Approved</th>
       <td mat-cell *matCellDef="let fr">{{ fr.amountApproved | currency }}</td>
@@ -41,4 +41,12 @@
   </table>
 
   <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons aria-label="Select page of frs"> </mat-paginator>
-</div>
+</div>-->
+
+<app-reusable-table
+  [tableData]='dataSource'
+  [tableColumns]='displayedColumns'
+  [isPageable]='true'
+  [isSortable]='true'
+  (rowAction)='onClickedRow($event)'
+></app-reusable-table>
