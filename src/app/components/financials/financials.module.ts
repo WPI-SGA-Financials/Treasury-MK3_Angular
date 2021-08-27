@@ -12,6 +12,7 @@ import { FilterMenuComponent } from './filter-menu/filter-menu.component';
 import { ClubNameModule } from '../filters/club-name/club-name.module';
 import { FiscalClassModule } from '../filters/fiscal-class/fiscal-class.module';
 import { FiscalYearModule } from '../filters/fiscal-year/fiscal-year.module';
+import { ReusableTableModule } from '../reusable-table/reusable-table.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FiscalYearModule } from '../filters/fiscal-year/fiscal-year.module';
     SharedMaterialComponentsModule,
     ClubNameModule,
     FiscalClassModule,
-    FiscalYearModule
+    FiscalYearModule,
+    ReusableTableModule
   ]
 })
 export class FinancialsModule {}
