@@ -30,6 +30,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: Path.ORGANIZATION + '/:id',
+    loadChildren: () => import('./components/organization/organization.module').then((m) => m.OrganizationModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: '**',
     redirectTo: Path.CLUBS
   }

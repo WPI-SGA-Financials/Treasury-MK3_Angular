@@ -3,6 +3,7 @@ import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
 import { IClub } from '../../../types/iclub.interface';
 import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clubs-table',
@@ -13,7 +14,7 @@ export class ClubsTableComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
   dataSource: IClub[] = [];
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService, private router: Router) {}
 
   ngOnInit(): void {
     this.initializeData();
@@ -61,7 +62,7 @@ export class ClubsTableComponent implements OnInit {
     ];
   }
 
-  onClickedRow(row: any) {
-    console.log(row);
+  onClickedRow(row: IClub) {
+    this.router.navigate([`${Path_Api.ORGANIZATION}/${row.name}`]);
   }
 }
