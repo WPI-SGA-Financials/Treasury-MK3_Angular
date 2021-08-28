@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { IBudget } from '../../../types/ibudget.interface';
 import { Path_Api } from '../../../types/path.enum';
-import { ITableColumn } from '../../../types/itable-column.interface';
+import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 
 @Component({
   selector: 'app-budgets',
@@ -47,15 +47,18 @@ export class BudgetsComponent implements OnInit {
       },
       {
         name: 'Amount Requested',
-        dataKey: 'amountRequested'
+        dataKey: 'amountRequested',
+        type: ColumnTypes.CURRENCY
       },
       {
         name: 'Amount Proposed',
-        dataKey: 'amountProposed'
+        dataKey: 'amountProposed',
+        type: ColumnTypes.CURRENCY
       },
       {
         name: 'Amount Approved',
-        dataKey: 'amountApproved'
+        dataKey: 'amountApproved',
+        type: ColumnTypes.CURRENCY
       }
     ];
   }

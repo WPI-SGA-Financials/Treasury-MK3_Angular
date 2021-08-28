@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
 import { IReallocation } from '../../../types/ireallocation.interface';
-import { IActiveSort, ITableColumn } from '../../../types/itable-column.interface';
+import { ColumnTypes, IActiveSort, ITableColumn } from '../../../types/itable-column.interface';
 
 @Component({
   selector: 'app-reallocations',
@@ -46,7 +46,8 @@ export class ReallocationsComponent implements OnInit {
       {
         name: 'Hearing Date',
         dataKey: 'hearingDate',
-        isSortable: true
+        isSortable: true,
+        type: ColumnTypes.DATE
       },
       {
         name: 'Fiscal Year',
@@ -54,7 +55,8 @@ export class ReallocationsComponent implements OnInit {
       },
       {
         name: 'Allocation Amount',
-        dataKey: 'allocationAmount'
+        dataKey: 'allocationAmount',
+        type: ColumnTypes.CURRENCY
       },
       {
         name: 'Decision',
@@ -62,7 +64,8 @@ export class ReallocationsComponent implements OnInit {
       },
       {
         name: 'Amount Approved',
-        dataKey: 'amountApproved'
+        dataKey: 'amountApproved',
+        type: ColumnTypes.CURRENCY
       }
     ];
   }

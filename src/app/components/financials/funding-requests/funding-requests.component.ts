@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
 import { IFundingRequest } from '../../../types/ifunding-request.interface';
-import { ITableColumn } from '../../../types/itable-column.interface';
+import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 
 @Component({
   selector: 'app-funding-requests',
@@ -39,7 +39,8 @@ export class FundingRequestsComponent implements OnInit {
       },
       {
         name: 'Hearing Date',
-        dataKey: 'hearingDate'
+        dataKey: 'hearingDate',
+        type: ColumnTypes.DATE
       },
       {
         name: 'Fiscal Year',
@@ -47,7 +48,8 @@ export class FundingRequestsComponent implements OnInit {
       },
       {
         name: 'Amount Requested',
-        dataKey: 'amountRequested'
+        dataKey: 'amountRequested',
+        type: ColumnTypes.CURRENCY
       },
       {
         name: 'Decision',
@@ -55,7 +57,8 @@ export class FundingRequestsComponent implements OnInit {
       },
       {
         name: 'Amount Approved',
-        dataKey: 'amountApproved'
+        dataKey: 'amountApproved',
+        type: ColumnTypes.CURRENCY
       }
     ];
   }

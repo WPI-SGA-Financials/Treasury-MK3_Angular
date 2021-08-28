@@ -13,7 +13,19 @@
         <th mat-header-cell *matHeaderCellDef>{{tableColumn.name}}</th>
       </ng-template>
 
-      <td mat-cell *matCellDef="let element">{{ element[tableColumn.dataKey] }}</td>
+      <ng-container [ngSwitch]="tableColumn.type">
+        <ng-template [ngSwitchCase]='DATE'>
+          <td mat-cell *matCellDef="let element">{{ element[tableColumn.dataKey] | date }}</td>
+        </ng-template>
+        <ng-template [ngSwitchCase]='CURRENCY'>
+          <td mat-cell *matCellDef="let element">{{ element[tableColumn.dataKey] | currency }}</td>
+        </ng-template>
+        <ng-template ngSwitchDefault>
+          <td mat-cell *matCellDef="let element">{{ element[tableColumn.dataKey] }}</td>
+        </ng-template>
+      </ng-container>
+
+
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
 import { IClub } from '../../../types/iclub.interface';
-import { ITableColumn } from '../../../types/itable-column.interface';
+import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 
 @Component({
   selector: 'app-clubs-table',
@@ -55,7 +55,8 @@ export class ClubsTableComponent implements OnInit {
       },
       {
         name: 'Last Modified',
-        dataKey: 'timestamp'
+        dataKey: 'timestamp',
+        type: ColumnTypes.DATE
       }
     ];
   }
