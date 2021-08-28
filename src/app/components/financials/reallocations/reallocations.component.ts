@@ -1,42 +1,73 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
 import { IReallocation } from '../../../types/ireallocation.interface';
+import { IActiveSort, ITableColumn } from '../../../types/itable-column.interface';
 
 @Component({
   selector: 'app-reallocations',
   templateUrl: './reallocations.component.html',
   styleUrls: ['./reallocations.component.scss']
 })
-export class ReallocationsComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['nameOfClub', 'hearingDate', 'fiscalYear', 'allocationAmount', 'decision', 'amountApproved'];
-  dataSource = new MatTableDataSource<IReallocation>([]);
+export class ReallocationsComponent implements OnInit {
+  displayedColumns: ITableColumn[] = [];
+  dataSource: IReallocation[] = [];
 
-  @ViewChild(MatPaginator) paginator: any;
-  @ViewChild(MatSort) sort: any;
+  activeSort: IActiveSort = {
+    isActive: false,
+    dataKey: 'hearingDate',
+    direction: 'desc'
+  };
 
   constructor(private http: HttpService) {}
 
   ngOnInit(): void {
+    this.initializeData();
+    this.initializeColumns();
+  }
+
+  private initializeData() {
     this.http.getRequest(Path_Api.REALLOCATIONS).subscribe((response: IReallocation[]) => {
       this.setData(response);
     });
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  private setData(data: IReallocation[]) {
+    this.dataSource = data;
+  }
+
+  private initializeColumns() {
+    this.displayedColumns = [
+      {
+        name: 'Name of Club',
+        dataKey: 'nameOfClub',
+        isSortable: true
+      },
+      {
+        name: 'Hearing Date',
+        dataKey: 'hearingDate',
+        isSortable: true
+      },
+      {
+        name: 'Fiscal Year',
+        dataKey: 'fiscalYear'
+      },
+      {
+        name: 'Allocation Amount',
+        dataKey: 'allocationAmount'
+      },
+      {
+        name: 'Decision',
+        dataKey: 'decision'
+      },
+      {
+        name: 'Amount Approved',
+        dataKey: 'amountApproved'
+      }
+    ];
   }
 
   onClickedRow(row: any) {
     console.log(row);
-  }
-
-  private setData(data: IReallocation[]) {
-    console.log(data);
-    this.dataSource.data = data;
   }
 }

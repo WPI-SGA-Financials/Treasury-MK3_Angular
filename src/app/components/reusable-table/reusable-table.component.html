@@ -1,0 +1,28 @@
+<ng-container>
+  <!-- Table -->
+  <table mat-table matSort [matSortActive]='activeSort.dataKey' [matSortDirection]='activeSort.direction' [dataSource]='dataSource'>
+    <!-- Column Creator -->
+    <ng-container *ngFor='let tableColumn of tableColumns' [matColumnDef]='tableColumn.name'>
+      <!-- Sortable Columns-->
+      <ng-container *ngIf="tableColumn.isSortable; else notSortable">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header='{{tableColumn.dataKey}}'>{{tableColumn.name}}</th>
+      </ng-container>
+
+      <!-- Else -->
+      <ng-template #notSortable>
+        <th mat-header-cell *matHeaderCellDef>{{tableColumn.name}}</th>
+      </ng-template>
+
+      <td mat-cell *matCellDef="let element">{{ element[tableColumn.dataKey] }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row (click)="emitRowAction(row)" *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator *ngIf="isPageable"
+                 [pageSizeOptions]="paginationSizes"
+                 [pageSize]="defaultPageSize"
+                 showFirstLastButtons>
+  </mat-paginator>
+</ng-container>

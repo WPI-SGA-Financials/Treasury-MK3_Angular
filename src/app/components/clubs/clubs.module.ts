@@ -11,6 +11,7 @@ import { ClubClassificationModule } from '../filters/club-classification/club-cl
 import { ClubTypeModule } from '../filters/club-type/club-type.module';
 import { ClubInactiveModule } from '../filters/club-inactive/club-inactive.module';
 import { CatNavModule } from '../cat-nav/cat-nav.module';
+import { ReusableTableModule } from '../reusable-table/reusable-table.module';
 
 @NgModule({
   declarations: [ClubsComponent, FilterMenuComponent, ClubsTableComponent],
@@ -22,7 +23,8 @@ import { CatNavModule } from '../cat-nav/cat-nav.module';
     ClubClassificationModule,
     ClubTypeModule,
     ClubInactiveModule,
-    CatNavModule
+    CatNavModule,
+    ReusableTableModule
   ]
 })
 export class ClubsModule {}
