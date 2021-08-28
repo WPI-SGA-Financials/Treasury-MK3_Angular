@@ -1,6 +1,6 @@
 <ng-container>
   <!-- Table -->
-  <table mat-table matSort [dataSource]='dataSource'>
+  <table mat-table matSort [matSortActive]='activeSort.dataKey' [matSortDirection]='activeSort.direction' [dataSource]='dataSource'>
     <!-- Column Creator -->
     <ng-container *ngFor='let tableColumn of tableColumns' [matColumnDef]='tableColumn.name'>
       <!-- Sortable Columns-->

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
 import { IReallocation } from '../../../types/ireallocation.interface';
-import { ITableColumn } from '../../../types/itable-column.interface';
+import { IActiveSort, ITableColumn } from '../../../types/itable-column.interface';
 
 @Component({
   selector: 'app-reallocations',
@@ -12,6 +12,12 @@ import { ITableColumn } from '../../../types/itable-column.interface';
 export class ReallocationsComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
   dataSource: IReallocation[] = [];
+
+  activeSort: IActiveSort = {
+    isActive: false,
+    dataKey: 'hearingDate',
+    direction: 'desc'
+  };
 
   constructor(private http: HttpService) {}
 
@@ -39,7 +45,8 @@ export class ReallocationsComponent implements OnInit {
       },
       {
         name: 'Hearing Date',
-        dataKey: 'hearingDate'
+        dataKey: 'hearingDate',
+        isSortable: true
       },
       {
         name: 'Fiscal Year',

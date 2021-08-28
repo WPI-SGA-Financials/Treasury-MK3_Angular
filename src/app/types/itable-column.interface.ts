@@ -4,3 +4,9 @@ export interface ITableColumn {
   position?: 'right' | 'left';
   isSortable?: boolean;
 }
+
+export interface IActiveSort {
+  isActive: boolean;
+  dataKey: string;
+  direction: 'asc' | 'desc';
+}

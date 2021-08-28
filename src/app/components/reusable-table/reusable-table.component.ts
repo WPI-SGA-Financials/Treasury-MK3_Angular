@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { ITableColumn } from '../../types/itable-column.interface';
+import { IActiveSort, ITableColumn } from '../../types/itable-column.interface';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -22,6 +22,7 @@ export class ReusableTableComponent implements OnInit, AfterViewInit {
   @Input() tableColumns: ITableColumn[] = [];
   @Input() paginationSizes: number[] = [10];
   @Input() defaultPageSize = 10;
+  @Input() activeSort: IActiveSort = { isActive: false, dataKey: '', direction: 'desc' };
 
   @Output() rowAction: EventEmitter<any> = new EventEmitter<any>();
 
@@ -39,7 +40,6 @@ export class ReusableTableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
   }
 
   emitRowAction(row: any) {
