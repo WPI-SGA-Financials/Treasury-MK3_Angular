@@ -1,39 +1,63 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
 import { IClub } from '../../../types/iclub.interface';
+import { ITableColumn } from '../../../types/itable-column.interface';
 
 @Component({
   selector: 'app-clubs-table',
   templateUrl: './clubs-table.component.html',
   styleUrls: ['./clubs-table.component.scss']
 })
-export class ClubsTableComponent implements OnInit, AfterViewInit {
-  dataSource = new MatTableDataSource<IClub>([]);
+export class ClubsTableComponent implements OnInit {
+  displayedColumns: ITableColumn[] = [];
+  dataSource: IClub[] = [];
 
-  displayedColumns: string[] = ['name', 'classification', 'typeOfClub', 'acronym', 'inactive', 'timestamp'];
-
-  @ViewChild(MatPaginator) paginator: any;
-  @ViewChild(MatSort) sort: any;
-
-  constructor(private httpService: HttpService) {}
+  constructor(private http: HttpService) {}
 
   ngOnInit(): void {
-    this.httpService.getRequest(Path_Api.ORGANIZATIONS).subscribe((response: IClub[]) => {
+    this.initializeData();
+    this.initializeColumns();
+  }
+
+  private initializeData() {
+    this.http.getRequest(Path_Api.ORGANIZATIONS).subscribe((response: IClub[]) => {
       this.setData(response);
     });
   }
 
-  setData(data: IClub[]): void {
-    this.dataSource.data = data;
+  private setData(data: IClub[]) {
+    this.dataSource = data;
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  private initializeColumns() {
+    this.displayedColumns = [
+      {
+        name: 'Name of Club',
+        dataKey: 'name',
+        isSortable: true
+      },
+      {
+        name: 'Classification',
+        dataKey: 'classification'
+      },
+      {
+        name: 'Type of Club',
+        dataKey: 'typeOfClub'
+      },
+      {
+        name: 'Club Acronym',
+        dataKey: 'acronym'
+      },
+      {
+        name: 'Inactive?',
+        dataKey: 'inactive'
+      },
+      {
+        name: 'Last Modified',
+        dataKey: 'timestamp'
+      }
+    ];
   }
 
   onClickedRow(row: any) {

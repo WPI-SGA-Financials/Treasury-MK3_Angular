@@ -6,7 +6,7 @@ import { Path } from '../types/path.enum';
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedIn = false;
+  private loggedIn = true;
 
   constructor(private router: Router) {}
 
