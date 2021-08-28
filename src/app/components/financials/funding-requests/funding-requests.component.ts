@@ -9,13 +9,9 @@ import { ITableColumn } from '../../../types/itable-column.interface';
   templateUrl: './funding-requests.component.html',
   styleUrls: ['./funding-requests.component.scss']
 })
-export class FundingRequestsComponent implements OnInit /*, AfterViewInit*/ {
-  displayedColumns: ITableColumn[] = []; /*['nameOfClub', 'hearingDate', 'fiscalYear', 'amountRequested', 'decision', 'amountApproved'];*/
-  // dataSource = new MatTableDataSource<IFundingRequest>([]);
+export class FundingRequestsComponent implements OnInit {
+  displayedColumns: ITableColumn[] = [];
   dataSource: IFundingRequest[] = [];
-
-  /*  @ViewChild(MatPaginator) paginator: any;
-  @ViewChild(MatSort) sort: any;*/
 
   constructor(private http: HttpService) {}
 
@@ -30,12 +26,7 @@ export class FundingRequestsComponent implements OnInit /*, AfterViewInit*/ {
     });
   }
 
-  // ngAfterViewInit(): void {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
   private setData(data: IFundingRequest[]) {
-    console.log(data);
     this.dataSource = data;
   }
 
