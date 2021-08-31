@@ -38,13 +38,17 @@ export class FundingRequestsComponent implements OnInit {
         isSortable: true
       },
       {
+        name: 'Fiscal Year',
+        dataKey: 'fiscalYear'
+      },
+      {
         name: 'Hearing Date',
         dataKey: 'hearingDate',
         type: ColumnTypes.DATE
       },
       {
-        name: 'Fiscal Year',
-        dataKey: 'fiscalYear'
+        name: 'Dot Number',
+        dataKey: 'dotNumber'
       },
       {
         name: 'Amount Requested',
