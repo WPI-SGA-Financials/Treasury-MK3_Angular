@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { SharedMaterialComponentsModule } from './shared-material-components.module';
-import { ClubsModule } from './clubs/clubs.module';
-import { FivizModule } from './fiviz/fiviz.module';
-import { FinancialsModule } from './financials/financials.module';
+import { ClubsModule } from '../modules/clubs/clubs.module';
+import { FivizModule } from '../modules/fiviz/fiviz.module';
+import { FinancialsModule } from '../modules/financials/financials.module';
 
 @NgModule({
   imports: [SharedMaterialComponentsModule, ClubsModule, FivizModule, FinancialsModule],

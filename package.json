@@ -22,6 +22,8 @@
     "@angular/router": "~12.2.0",
     "@azure/msal-angular": "^2.0.2",
     "@azure/msal-browser": "^2.16.1",
+    "chart.js": "^3.5.1",
+    "ng2-charts": "^2.4.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

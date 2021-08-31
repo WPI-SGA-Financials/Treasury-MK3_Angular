@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FivizComponent } from './fiviz.component';
-import { CatNavModule } from '../cat-nav/cat-nav.module';
+import { CatNavModule } from '../../components/cat-nav/cat-nav.module';
 import { FivizRoutingModule } from './fiviz-routing.module';
 
 @NgModule({

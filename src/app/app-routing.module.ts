@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './modules/login/login.component';
 import { Path } from './types/path.enum';
 import { AuthGuard } from './guards/auth.guard';
 
@@ -16,22 +16,22 @@ const routes: Routes = [
   },
   {
     path: Path.CLUBS,
-    loadChildren: () => import('./components/clubs/clubs.module').then((m) => m.ClubsModule),
+    loadChildren: () => import('./modules/clubs/clubs.module').then((m) => m.ClubsModule),
     canActivate: [AuthGuard]
   },
   {
     path: Path.FINANCIALS,
-    loadChildren: () => import('./components/financials/financials.module').then((m) => m.FinancialsModule),
+    loadChildren: () => import('./modules/financials/financials.module').then((m) => m.FinancialsModule),
     canActivate: [AuthGuard]
   },
   {
     path: Path.FIVIZ,
-    loadChildren: () => import('./components/fiviz/fiviz.module').then((m) => m.FivizModule),
+    loadChildren: () => import('./modules/fiviz/fiviz.module').then((m) => m.FivizModule),
     canActivate: [AuthGuard]
   },
   {
     path: Path.ORGANIZATION + '/:id',
-    loadChildren: () => import('./components/organization/organization.module').then((m) => m.OrganizationModule),
+    loadChildren: () => import('./modules/organization/organization.module').then((m) => m.OrganizationModule),
     canActivate: [AuthGuard]
   },
   {

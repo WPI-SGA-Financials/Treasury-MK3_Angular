@@ -32,7 +32,7 @@ export class OrganizationComponent implements OnInit {
   }
 
   private setClubData(res: IClub) {
-    console.log(res);
+    // console.log(res);
     this.club = res;
   }
 }

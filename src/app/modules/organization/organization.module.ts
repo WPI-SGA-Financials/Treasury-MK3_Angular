@@ -8,8 +8,8 @@ import { TabsComponent } from './tabs/tabs.component';
 import { BudgetsComponent } from './budgets/budgets.component';
 import { FundingRequestsComponent } from './funding-requests/funding-requests.component';
 import { ReallocationsComponent } from './reallocations/reallocations.component';
-import { SharedMaterialComponentsModule } from '../shared-material-components.module';
-import { ReusableTableModule } from '../reusable-table/reusable-table.module';
+import { SharedMaterialComponentsModule } from '../../components/shared-material-components.module';
+import { ReusableTableModule } from '../../components/reusable-table/reusable-table.module';
 
 @NgModule({
   declarations: [OrganizationComponent, InfoComponent, TabsComponent, BudgetsComponent, FundingRequestsComponent, ReallocationsComponent],
