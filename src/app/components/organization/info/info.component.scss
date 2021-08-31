@@ -1,0 +1,10 @@
+.basic-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & .club-name {
+    max-width: 50%;
+    word-wrap: break-word;
+  }
+}

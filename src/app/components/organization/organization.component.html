@@ -1,1 +1,30 @@
-<p>{{club.name}}</p>
+<div class='organization'>
+
+  <div class='content'>
+    <button mat-raised-button color='primary' routerLink='/clubs'>
+      <mat-icon>arrow_back</mat-icon>
+      Back to Organizations
+    </button>
+
+    <app-org-info
+      [orgData]='club'
+    ></app-org-info>
+
+    <app-org-tabs
+      [orgName]='club.name'
+    ></app-org-tabs>
+
+    <div class='router-outlet'>
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+

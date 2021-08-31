@@ -1,0 +1,10 @@
+<app-reusable-table
+  [tableData]='dataSource'
+  [tableColumns]='displayedColumns'
+  [isPageable]='true'
+  [paginationSizes]='[6]'
+  [defaultPageSize]='6'
+  [isSortable]='true'
+  [activeSort]='activeSort'
+  (rowAction)='onClickedRow($event)'
+></app-reusable-table>

@@ -1,7 +1,26 @@
-:host {
+.organization {
   display: flex;
-  flex-direction: column;
-  color: white;
-  background-color: #424242;
-  text-align: center;
+  justify-content: center;
+
+  & .content {
+    color: white;
+    text-align: center;
+    padding: 24px;
+    background-color: #424242;
+    border-radius: 10px;
+    min-width: 85%;
+
+    & button {
+      margin-bottom: 2%;
+    }
+
+    & app-org-info {
+      text-align: left;
+    }
+
+    & .router-outlet {
+      padding-top: 20px;
+    }
+  }
+
 }

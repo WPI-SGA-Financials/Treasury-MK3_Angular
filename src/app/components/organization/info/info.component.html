@@ -1,0 +1,18 @@
+<!--<h1>Student Organization Overview</h1>-->
+
+<div class='basic-info'>
+  <div class='club-name'>
+    <ng-container *ngIf='orgData.acronym !== "";else justName'>
+      <h2>{{orgData.acronym + ' | ' + orgData.name}}</h2>
+    </ng-container>
+    <ng-template #justName>
+      <h2>{{orgData.name}}</h2>
+    </ng-template>
+  </div>
+  <div>
+    <h3>Classification: {{orgData.classification}}</h3>
+    <ng-container *ngIf='orgData.typeOfClub !== ""'>
+      <h3>Type of Club: {{orgData.typeOfClub}}</h3>
+    </ng-container>
+  </div>
+</div>

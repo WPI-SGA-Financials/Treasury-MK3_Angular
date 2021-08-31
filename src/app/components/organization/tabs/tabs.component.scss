@@ -1,0 +1,17 @@
+.first {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.middle {
+  border-radius: 0;
+}
+
+.last {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+:host {
+  padding-top: 10px;
+}
