@@ -3,11 +3,11 @@ mat-toolbar {
 }
 
 mat-sidenav {
-  width: 200px;
+  width: 250px;
   border-right: none;
   color: white;
-  //padding: 16px;
-  text-align: center;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 mat-toolbar {
