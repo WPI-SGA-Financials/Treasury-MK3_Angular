@@ -1,0 +1,27 @@
+<mat-list-item>
+  <button mat-button (click)="closeNav(false)" class="btn-sidebar btn-close">
+    <mat-icon>close</mat-icon>
+    Close Menu
+  </button>
+</mat-list-item>
+
+<ng-container *ngIf="!authService.isLoggedIn; else loggedInMenu">
+  <button mat-button class="btn-sidebar" (click)="closeNav(false); authService.login()">WPI Sign In</button>
+</ng-container>
+<ng-template #loggedInMenu>
+  <ng-container *ngFor="let navItem of standardNavItems">
+    <button mat-button class="btn-sidebar" (click)="closeNav(false)" routerLink="{{ '/' + navItem.path }}">
+      <mat-icon>{{ navItem.icon }}</mat-icon>
+      {{ navItem.title }}
+    </button>
+    <ng-container *ngIf="navItem?.children">
+      <ng-container *ngFor="let child of navItem.children">
+        <button mat-button class="btn-sidebar-child" (click)="closeNav(false)" routerLink="{{ '/' + navItem.path + child.path }}">
+          {{ child.title }}
+        </button>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<button mat-button class="btn-sidebar">Help</button>

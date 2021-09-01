@@ -111,3 +111,7 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.primary-darker {
+  background-color: mat.get-color-from-palette($TreasuryMK3-angular-primary, 'darker');
+}

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,7 +8,11 @@ import { AuthService } from '../../services/auth.service';
 export class SidenavComponent implements OnInit {
   opened = false;
 
-  constructor(public authService: AuthService) {}
+  constructor() {}
 
   ngOnInit(): void {}
+
+  toggleSidenav(status: boolean) {
+    this.opened = status;
+  }
 }
