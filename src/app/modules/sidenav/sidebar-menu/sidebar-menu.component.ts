@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { INavigationItem } from '../../../types/navigation.interface';
 import { Path } from '../../../types/path.enum';
+import { MatDialog } from '@angular/material/dialog';
+import { AboutDialogComponent } from '../about-dialog/about-dialog.component';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -11,7 +13,7 @@ import { Path } from '../../../types/path.enum';
 export class SidebarMenuComponent implements OnInit {
   @Output() toggleNav = new EventEmitter<boolean>();
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -50,4 +52,8 @@ export class SidebarMenuComponent implements OnInit {
       icon: 'assessment'
     }
   ];
+
+  openDialog() {
+    this.dialog.open(AboutDialogComponent, { maxWidth: '40%' });
+  }
 }
