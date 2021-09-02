@@ -1,0 +1,43 @@
+.nav-item {
+  text-decoration: none;
+  color: white;
+}
+
+.btn-sidebar {
+  text-align: left;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2em;
+
+  & mat-icon {
+    font-size: 1.25em;
+  }
+}
+
+.img-profile {
+  border-radius: 50%;
+  width: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user {
+  text-align: center;
+  font-size: 1.2em;
+  padding-bottom: 10px;
+}
+
+.btn-sidebar-child {
+  text-align: left;
+  width: 77%;
+  padding-left: 13%;
+  font-size: 1em;
+}
+
+.btn-close {
+  text-align: center;
+}

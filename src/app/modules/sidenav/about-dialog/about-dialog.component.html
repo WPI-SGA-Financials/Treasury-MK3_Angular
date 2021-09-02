@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>About this Project</h2>
+<mat-dialog-content class='mat-typography'>
+  <p>
+    WPI SGA's Treasury is an application that accesses all of the financial data that SGA stores and both makes it
+    available to the WPI community and allows for SGA Senators to be able to enter data both new and old.
+  </p>
+  <h3>Previous Iterations</h3>
+  <h4>Before Unified Treasury (Treasury Legacy)</h4>
+  <p>
+    Before there was a unified Treasury system, financial data was stored in a multitude of Google Sheets separated by
+    fiscal year, access restrictions, and request types. Not only did this lead to duplicate data, it was not easily
+    searchable. Additionally, with each new Treasurer, the format of the master restricted sheet would be changed
+    to either add, delete, or rename columns of data. This way was not a sustainable system and not a system that
+    could be shared with the WPI Community
+  </p>
+  <h4>Microsoft Access Treasury (Treasury MK1)</h4>
+  <p>
+    At the end of 2018, a position was created in SGA called Accountant. The purpose of the Accountant was to figure
+    out a more sustainable way of storing and accessing all of the financial data we had while allowing for an
+    easy way to it.
+    <br/>
+    <br/>
+    The Accountant at the time, Kevin Bimonte, created a Microsoft Access database, later transferred
+    to a MySQL back-end, was created with forms that allowed both input and viewing of the data. While this program is
+    still in use for the time-being (current as of late 2021), it suffers from not being transparent with the WPI
+    community and the requirement of creating database access keys for each user that needs to access the database.
+  </p>
+  <h4>Treasury Web (Treasury MK2)</h4>
+  <p>
+    Created by Mikel Matticoli and Sam Talpey as part of a Major Qualifying Project, Treasury Web was intended to
+    succeed the Microsoft Access version of Treasury. However, due to a not easily expandable React based code-base,
+    the project was ultimately replaced.
+    <br/>
+    <br/>
+    An archived copy of their project can be found here:
+    <a target="_blank" href="https://github.com/WPI-SGA-Financials/treasury-web">Treasury Web</a>
+  </p>
+  <h3>Current Implementation (Treasury MK3)</h3>
+  <p>
+    Much like how Google scrapped Angular.JS to create Angular2, this project takes inspiration from Treasury MK2
+    MQP but with a complete re-write. Built from the ground up, Treasury MK3 utilizes DotNet Core 5 for the API layer
+    and Angular 12 with Angular Material for the front end to provide an easily expandable application.
+  </p>
+  <h3>Credits</h3>
+  <p>
+    This project was created by Kevin Bimonte as a gift for both SGA and the WPI Community. This project's source
+    code is made freely available in the following two repositories so future teams can improve and expand upon this.
+    <br/>
+    <br/>
+    <a target="_blank" href="https://github.com/WPI-SGA-Financials/Treasury-MK3_Angular">Treasury MK3 - Angular</a>
+    <br/>
+    <a target="_blank" href="https://github.com/WPI-SGA-Financials/Treasury-MK3_API">Treasury MK3 - API</a>
+  </p>
+  <h3>Support</h3>
+  <p>
+    For support, either reach out the <a href="mailto:sgaaccountant@wpi.edu">SGA Accountant</a> or open an issue in
+    the appropriate repository above.
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

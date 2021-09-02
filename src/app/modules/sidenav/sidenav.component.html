@@ -1,16 +1,12 @@
 <mat-sidenav-container>
-  <mat-sidenav opened mode="over" [(opened)]="opened" [fixedInViewport]="true">
-    Sidebar
-    <ng-container *ngIf="!authService.isLoggedIn; else loggedInMenu">
-      <a mat-list-item routerLink="/login">LOGIN</a>
-    </ng-container>
-    <ng-template #loggedInMenu>
-      <a mat-list-item routerLink="/clubs">CLUBS</a>
-    </ng-template>
+  <mat-sidenav class='primary-darker' [(opened)]="opened" opened mode="over" [fixedInViewport]="true">
+    <app-sidebar-menu
+      (toggleNav)='toggleSidenav($event)'
+    ></app-sidebar-menu>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button mat-icon-button (click)="opened = !opened">
+      <button mat-icon-button (click)="toggleSidenav(true)">
         <mat-icon>menu</mat-icon>
       </button>
       <span class="spacing"></span>
