@@ -1,4 +1,5 @@
 export interface IBudget {
+  id: number;
   nameOfClub: string;
   fiscalYear: string;
   numOfItems: number;
