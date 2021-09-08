@@ -39,7 +39,14 @@ export interface IBudgetDate {
   styleUrls: ['./budget-popup.component.scss']
 })
 export class BudgetPopupComponent implements OnInit {
-  constructor() {}
+  extendedBudget: IExtendedBudget | null = null
 
-  ngOnInit(): void {}
+  constructor(private http: HttpService, @Inject(MAT_DIALOG_DATA) public injectedData: IBudgetDate) {}
+
+  ngOnInit(): void {
+    this.http.getRequest(`${Path_Api.SPECIFIC_BUDGET}/${this.injectedData.id}`).subscribe((res: IExtendedBudget) => {
+      console.log(res);
+      this.extendedBudget = res;
+    })
+  }
 }
