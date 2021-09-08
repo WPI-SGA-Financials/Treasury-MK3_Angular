@@ -1,1 +1,10 @@
 <p>budget works!</p>
+<mat-dialog-content class='mat-typography'>
+
+  <ng-container *ngIf='extendedBudget?.budgetSections?.length; else noSections'>
+    <h2>Contains Budget Sections</h2>
+  </ng-container>
+  <ng-template #noSections>
+    <h2>Contains no Budget Sections</h2>
+  </ng-template>
+</mat-dialog-content>
