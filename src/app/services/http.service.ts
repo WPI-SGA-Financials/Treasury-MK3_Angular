@@ -2,17 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-const API_URL: string = 'https://localhost:5001/api/';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
-  constructor(private http: HttpClient) {}
+  API_URL: string = environment.apiURL + '/api/';
+
+  constructor(private http: HttpClient) { }
 
   getRequest(path: string): Observable<any> {
-    return this.http.get(API_URL + path).pipe(catchError(this.handleError));
+    return this.http.get(this.API_URL + path).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
