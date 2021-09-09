@@ -30,8 +30,8 @@ export interface IBudgetSections {
   amountSpent: number;
 }
 
-export interface IBudgetDate {
-  id: number
+export interface IBudgetData {
+  id: number;
 }
 
 @Component({
@@ -40,15 +40,14 @@ export interface IBudgetDate {
   styleUrls: ['./budget-popup.component.scss']
 })
 export class BudgetPopupComponent implements OnInit {
-  extendedBudget: IExtendedBudget | null = null
+  extendedBudget: IExtendedBudget | null = null;
   @ViewChild(MatAccordion) accordion: any;
 
-  constructor(private http: HttpService, @Inject(MAT_DIALOG_DATA) public injectedData: IBudgetDate) {}
+  constructor(private http: HttpService, @Inject(MAT_DIALOG_DATA) public injectedData: IBudgetData) {}
 
   ngOnInit(): void {
     this.http.getRequest(`${Path_Api.SPECIFIC_BUDGET}/${this.injectedData.id}`).subscribe((res: IExtendedBudget) => {
-      console.log(res);
       this.extendedBudget = res;
-    })
+    });
   }
 }
