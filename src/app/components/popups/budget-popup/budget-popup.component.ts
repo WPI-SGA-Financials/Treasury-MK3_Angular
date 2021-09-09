@@ -30,10 +30,6 @@ export interface IBudgetSections {
   amountSpent: number;
 }
 
-export interface IBudgetData {
-  id: number;
-}
-
 @Component({
   selector: 'app-budget-popup',
   templateUrl: './budget-popup.component.html',
@@ -43,7 +39,7 @@ export class BudgetPopupComponent implements OnInit {
   extendedBudget: IExtendedBudget | null = null;
   @ViewChild(MatAccordion) accordion: any;
 
-  constructor(private http: HttpService, @Inject(MAT_DIALOG_DATA) public injectedData: IBudgetData) {}
+  constructor(private http: HttpService, @Inject(MAT_DIALOG_DATA) public injectedData: { id: number }) {}
 
   ngOnInit(): void {
     this.http.getRequest(`${Path_Api.SPECIFIC_BUDGET}/${this.injectedData.id}`).subscribe((res: IExtendedBudget) => {
