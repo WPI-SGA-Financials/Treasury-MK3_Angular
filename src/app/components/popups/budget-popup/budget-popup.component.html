@@ -1,10 +1,30 @@
-<p>budget works!</p>
+<h2>Budget Detailed View</h2>
 <mat-dialog-content class='mat-typography'>
+  <h3>Overview</h3>
+  <p><span class='label'>Name:</span> {{extendedBudget?.nameOfClub}}</p>
+  <p><span class='label'>Fiscal Year:</span> {{extendedBudget?.fiscalYear}}</p>
+  <p><span class='label'>Total Amount Approved:</span> {{extendedBudget?.amountApproved | currency}}</p>
 
-  <ng-container *ngIf='extendedBudget?.budgetSections?.length; else noSections'>
-    <h2>Contains Budget Sections</h2>
+  <hr />
+
+  <h3>Detailed</h3>
+  <p><span class='label'>Amount Requested:</span> {{extendedBudget?.amountRequested | currency}}</p>
+  <p><span class='label'>Amount Proposed:</span> {{extendedBudget?.amountProposed | currency}}</p>
+  <p><span class='label'>Appealed?:</span> tbd</p>
+  <ng-container *ngIf='true'> <!--TODO: Add appealed? and requested appeal to Budget Model-->
+    <p><span class='label'>Requested Appeal:</span> tbd</p>
+    <p><span class='label'>Approved Appeal:</span> {{extendedBudget?.approvedAppeal | currency}}</p>
   </ng-container>
-  <ng-template #noSections>
-    <h2>Contains no Budget Sections</h2>
-  </ng-template>
+
+  <ng-container *ngIf='extendedBudget?.budgetSections?.length'>
+    <hr />
+    <h3>Sections</h3>
+    <br />
+    <ng-container>
+
+    </ng-container>
+  </ng-container>
 </mat-dialog-content>
+<mat-dialog-actions align='end'>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
