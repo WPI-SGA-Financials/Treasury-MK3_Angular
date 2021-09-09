@@ -19,10 +19,37 @@
   <ng-container *ngIf='extendedBudget?.budgetSections?.length'>
     <hr />
     <h3>Sections</h3>
-    <br />
-    <ng-container>
+    <div class='buttons'>
+      <button mat-raised-button (click)='accordion.openAll()' color='primary'>Expand All</button>
+      <button mat-raised-button (click)="accordion.closeAll()" color='primary'>Collapse All</button>
+    </div>
 
-    </ng-container>
+    <div class='accordion'>
+      <mat-accordion multi>
+        <ng-container *ngFor='let section of extendedBudget?.budgetSections'>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{section.sectionName}}
+              </mat-panel-title>
+              <mat-panel-description>
+                Items: {{section.numOfItems}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <p><span class='label'>Amount Requested:</span> {{section?.amountRequested | currency}}</p>
+            <p><span class='label'>Amount Proposed:</span> {{section?.amountProposed | currency}}</p>
+            <p><span class='label'>Appealed?:</span> tbd</p>
+            <ng-container *ngIf='true'> <!--TODO: Add appealed? and requested appeal to Budget Model-->
+              <p><span class='label'>Requested Appeal:</span> tbd</p>
+              <p><span class='label'>Approved Appeal:</span> {{section?.approvedAppeal | currency}}</p>
+            </ng-container>
+            <p><span class='label'>Amount Approved:</span> {{section?.amountApproved | currency}}</p>
+
+          </mat-expansion-panel>
+        </ng-container>
+      </mat-accordion>
+    </div>
   </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions align='end'>

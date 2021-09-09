@@ -70,6 +70,8 @@ export class BudgetsComponent implements OnInit {
       data: {
         id: row.id
       },
-      maxWidth: '40%' });
+      maxWidth: '40%',
+      minWidth: '30%'
+    });
   }
 }

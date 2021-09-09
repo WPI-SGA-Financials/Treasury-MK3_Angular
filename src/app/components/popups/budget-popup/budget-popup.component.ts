@@ -1,7 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatAccordion } from '@angular/material/expansion';
 
 export interface IExtendedBudget {
   id: number;
@@ -40,6 +41,7 @@ export interface IBudgetDate {
 })
 export class BudgetPopupComponent implements OnInit {
   extendedBudget: IExtendedBudget | null = null
+  @ViewChild(MatAccordion) accordion: any;
 
   constructor(private http: HttpService, @Inject(MAT_DIALOG_DATA) public injectedData: IBudgetDate) {}
 
