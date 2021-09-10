@@ -15,7 +15,6 @@ export interface IExtendedBudget {
   requestedAppeal: number;
   approvedAppeal: number;
   amountApproved: number;
-  amountSpent: number;
   budgetSections: IBudgetSections[];
 }
 
@@ -31,7 +30,6 @@ export interface IBudgetSections {
   requestedAppeal: number;
   approvedAppeal: number;
   amountApproved: number;
-  amountSpent: number;
 }
 
 @Component({
