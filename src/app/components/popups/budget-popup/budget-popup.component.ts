@@ -11,6 +11,8 @@ export interface IExtendedBudget {
   numOfItems: number;
   amountRequested: number;
   amountProposed: number;
+  appealed: boolean;
+  requestedAppeal: number;
   approvedAppeal: number;
   amountApproved: number;
   amountSpent: number;
@@ -25,6 +27,8 @@ export interface IBudgetSections {
   numOfItems: number;
   amountRequested: number;
   amountProposed: number;
+  appealed: boolean;
+  requestedAppeal: number;
   approvedAppeal: number;
   amountApproved: number;
   amountSpent: number;
@@ -39,7 +43,7 @@ export class BudgetPopupComponent implements OnInit {
   extendedBudget: IExtendedBudget | null = null;
   @ViewChild(MatAccordion) accordion: any;
 
-  constructor(private http: HttpService, @Inject(MAT_DIALOG_DATA) public injectedData: { id: number }) {}
+  constructor(private http: HttpService, @Inject(MAT_DIALOG_DATA) public injectedData: { id: number }) {} // fromOrgView: boolean
 
   ngOnInit(): void {
     this.http.getRequest(`${Path_Api.SPECIFIC_BUDGET}/${this.injectedData.id}`).subscribe((res: IExtendedBudget) => {
