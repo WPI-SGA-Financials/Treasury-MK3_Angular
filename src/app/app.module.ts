@@ -8,9 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedMaterialComponentsModule } from './components/shared-material-components.module';
 import { SidenavModule } from './modules/sidenav/sidenav.module';
 import { HttpClientModule } from '@angular/common/http';
+import { BudgetPopupComponent } from './components/popups/budget-popup/budget-popup.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, BudgetPopupComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, SharedMaterialComponentsModule, SidenavModule, HttpClientModule],
   providers: [],
   exports: [LoginComponent],

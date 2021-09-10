@@ -4,6 +4,8 @@ import { IBudget } from '../../../types/ibudget.interface';
 import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
 import { OrgDataService } from '../../../services/org-data.service';
+import { BudgetPopupComponent } from '../../../components/popups/budget-popup/budget-popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-org-budgets',
@@ -21,7 +23,7 @@ export class BudgetsComponent implements OnInit {
     direction: 'desc'
   };
 
-  constructor(private http: HttpService, private orgDataService: OrgDataService) {
+  constructor(private http: HttpService, private orgDataService: OrgDataService, private dialog: MatDialog) {
     this._clubName = this.orgDataService.getOrgName();
   }
 
@@ -70,6 +72,13 @@ export class BudgetsComponent implements OnInit {
   }
 
   onClickedRow(row: any) {
-    console.log(row);
+    this.dialog.open(BudgetPopupComponent, {
+      data: {
+        id: row.id,
+        fromOrgView: true
+      },
+      maxWidth: '40%',
+      minWidth: '30%'
+    });
   }
 }

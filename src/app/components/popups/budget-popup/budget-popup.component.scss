@@ -1,0 +1,38 @@
+.label {
+  font-weight: 550;
+}
+
+.accordion {
+  padding-bottom: 20px;
+  padding-top: 20px;
+
+  & .mat-expansion-panel-header {
+    display: flex;
+
+    & .mat-expansion-panel-header-description {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.buttons {
+  & > button:first-child {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  & > button:last-child {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+}
+
+.dialog-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & > button {
+    height: 80%;
+  }
+}
