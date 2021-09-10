@@ -26,3 +26,13 @@
     border-top-left-radius: 0;
   }
 }
+
+.dialog-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & > button {
+    height: 80%;
+  }
+}

@@ -68,7 +68,8 @@ export class BudgetsComponent implements OnInit {
   onClickedRow(row: any) {
     this.dialog.open(BudgetPopupComponent, {
       data: {
-        id: row.id
+        id: row.id,
+        fromOrgView: false
       },
       maxWidth: '40%',
       minWidth: '30%'
