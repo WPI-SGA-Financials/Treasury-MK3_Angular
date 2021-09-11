@@ -1,0 +1,68 @@
+<div class='dialog-header'>
+  <h2>Budget Detailed View</h2>
+  <ng-container *ngIf='!injectedData.fromOrgView'>
+    <button
+      mat-raised-button
+      color='primary'
+      (click)='toOrgPage()'
+    >View Organization</button>
+  </ng-container>
+</div>
+
+
+<mat-dialog-content class='mat-typography'>
+  <h3>Overview</h3>
+  <p><span class='label'>Name:</span> {{extendedBudget?.nameOfClub}}</p>
+  <p><span class='label'>Fiscal Year:</span> {{extendedBudget?.fiscalYear}}</p>
+  <p><span class='label'>Total Amount Approved:</span> {{extendedBudget?.amountApproved | currency}}</p>
+
+  <hr />
+
+  <h3>Detailed</h3>
+  <p><span class='label'>Amount Requested:</span> {{extendedBudget?.amountRequested | currency}}</p>
+  <p><span class='label'>Amount Proposed:</span> {{extendedBudget?.amountProposed | currency}}</p>
+  <p><span class='label'>Appealed?:</span> {{extendedBudget?.appealed ? 'Yes' : 'No'}}</p>
+  <ng-container *ngIf='extendedBudget?.appealed'>
+    <p><span class='label'>Requested Appeal:</span> {{extendedBudget?.requestedAppeal | currency}}</p>
+    <p><span class='label'>Approved Appeal:</span> {{extendedBudget?.approvedAppeal | currency}}</p>
+  </ng-container>
+
+  <ng-container *ngIf='extendedBudget?.budgetSections?.length'>
+    <hr />
+    <h3>Sections</h3>
+    <div class='buttons'>
+      <button mat-raised-button (click)='accordion.openAll()' color='primary'>Expand All</button>
+      <button mat-raised-button (click)="accordion.closeAll()" color='primary'>Collapse All</button>
+    </div>
+
+    <div class='accordion'>
+      <mat-accordion multi>
+        <ng-container *ngFor='let section of extendedBudget?.budgetSections'>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{section.sectionName}}
+              </mat-panel-title>
+              <mat-panel-description>
+                Items: {{section.numOfItems}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <p><span class='label'>Amount Requested:</span> {{section?.amountRequested | currency}}</p>
+            <p><span class='label'>Amount Proposed:</span> {{section?.amountProposed | currency}}</p>
+            <p><span class='label'>Appealed?:</span> {{section?.appealed ? 'Yes' : 'No'}}</p>
+            <ng-container *ngIf='section?.appealed'>
+              <p><span class='label'>Requested Appeal:</span> {{section?.requestedAppeal | currency}}</p>
+              <p><span class='label'>Approved Appeal:</span> {{section?.approvedAppeal | currency}}</p>
+            </ng-container>
+            <p><span class='label'>Amount Approved:</span> {{section?.amountApproved | currency}}</p>
+
+          </mat-expansion-panel>
+        </ng-container>
+      </mat-accordion>
+    </div>
+  </ng-container>
+</mat-dialog-content>
+<mat-dialog-actions align='end'>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

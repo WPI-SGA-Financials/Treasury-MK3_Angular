@@ -3,6 +3,8 @@ import { HttpService } from '../../../services/http.service';
 import { IBudget } from '../../../types/ibudget.interface';
 import { Path_Api } from '../../../types/path.enum';
 import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
+import { MatDialog } from '@angular/material/dialog';
+import { BudgetPopupComponent } from '../../../components/popups/budget-popup/budget-popup.component';
 
 @Component({
   selector: 'app-budgets',
@@ -13,7 +15,7 @@ export class BudgetsComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
   dataSource: IBudget[] = [];
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initializeData();
@@ -64,6 +66,13 @@ export class BudgetsComponent implements OnInit {
   }
 
   onClickedRow(row: any) {
-    console.log(row);
+    this.dialog.open(BudgetPopupComponent, {
+      data: {
+        id: row.id,
+        fromOrgView: false
+      },
+      maxWidth: '40%',
+      minWidth: '30%'
+    });
   }
 }

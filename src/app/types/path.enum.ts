@@ -11,5 +11,6 @@ export enum Path_Api {
   BUDGETS = 'financials/budgets',
   FUNDINGREQUESTS = 'financials/fr',
   REALLOCATIONS = 'financials/realloc',
-  ORGANIZATION = 'organization'
+  ORGANIZATION = 'organization',
+  SPECIFIC_BUDGET = 'financials/budget',
 }
