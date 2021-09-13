@@ -15,7 +15,24 @@ interface IExtendedFR extends IFundingRequest{
   styleUrls: ['./funding-request-popup.component.scss']
 })
 export class FundingRequestPopupComponent implements OnInit {
-  constructor() {}
+  extendedFundingRequest: IExtendedFR | null = null;
+  @ViewChild(MatAccordion) accordion: any;
+  public routerPath: string = "";
 
-  ngOnInit(): void {}
+  constructor(
+    private http: HttpService,
+    public dialogRef: MatDialogRef<FundingRequestPopupComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    public injectedData: {
+      id: number;
+      fromOrgView: boolean;
+    }
+  ) {}
+
+  ngOnInit(): void {
+    this.http.getRequest(`${Path_Api.SPECIFIC_FR}/${this.injectedData.id}`).subscribe((res: IExtendedFR) => {
+      this.extendedFundingRequest = res;
+      this.routerPath = Path.ORGANIZATION + "/" + this.extendedFundingRequest?.nameOfClub + "/funding-request"
+    });
+  }
 }
