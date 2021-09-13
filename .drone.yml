@@ -1,0 +1,33 @@
+kind: pipeline
+type: docker
+name: default
+
+trigger:
+  branch:
+    - master
+
+clone:
+  disable: true
+
+steps:
+  - name: clone
+    image: drone/git
+    commands:
+      - git clone http://192.168.1.101:3000/kcbimonte/Treasury-MK3_Angular.git .
+
+  - name: build
+    image: node:14-alpine
+    commands:
+      - npm install
+      - npm run ng build
+
+  - name: publish
+    image: plugins/docker
+    settings:
+      tags: [ "${DRONE_COMMIT_SHA:0:7}","latest" ]
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      repo: kbimonte/treasury-web
+      dockerfile: Dockerfile
