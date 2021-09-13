@@ -19,7 +19,7 @@ steps:
     image: node:14-alpine
     commands:
       - npm install
-      - ng build
+      - npm run build
 
   - name: test
     image: node:14-alpine
