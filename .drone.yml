@@ -16,13 +16,13 @@ steps:
       - git clone http://192.168.1.101:3000/kcbimonte/Treasury-MK3_Angular.git .
 
   - name: build
-    image: 14-alpine
+    image: node:14-alpine
     commands:
       - npm install
       - ng build
 
   - name: test
-    image: 14-alpine
+    image: node:14-alpine
     commands:
       - npm install
       - npm run build
