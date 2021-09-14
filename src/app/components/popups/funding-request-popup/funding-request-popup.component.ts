@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Path, Path_Api } from '../../../types/path.enum';
 import { IFundingRequest } from '../../../types/ifunding-request.interface';
 
-interface IExtendedFR extends IFundingRequest{
+interface IExtendedFR extends IFundingRequest {
 
 }
 
@@ -32,7 +32,7 @@ export class FundingRequestPopupComponent implements OnInit {
   ngOnInit(): void {
     this.http.getRequest(`${Path_Api.SPECIFIC_FR}/${this.injectedData.id}`).subscribe((res: IExtendedFR) => {
       this.extendedFundingRequest = res;
-      this.routerPath = Path.ORGANIZATION + "/" + this.extendedFundingRequest?.nameOfClub + "/funding-request"
+      this.routerPath = Path.ORGANIZATION + "/" + this.extendedFundingRequest?.nameOfClub + "/funding-requests"
     });
   }
 }

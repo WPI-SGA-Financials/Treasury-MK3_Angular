@@ -4,3 +4,17 @@
   [routerPath]='routerPath'
   [fromOrgView]='injectedData.fromOrgView'
 ></app-reusable-header>
+<mat-dialog-content class='mat-typography'>
+  <h3>Overview</h3>
+  <p><span class='label'>Name:</span> {{extendedFundingRequest?.nameOfClub}}</p>
+  <p><span class='label'>Fiscal Year:</span> {{extendedFundingRequest?.fiscalYear}}</p>
+  <p><span class='label'>Dot Number:</span> {{extendedFundingRequest?.dotNumber}}</p>
+  <p><span class='label'>Total Amount Approved:</span> {{extendedFundingRequest?.amountApproved | currency}}</p>
+
+  <hr />
+
+  <h3>Detailed</h3>
+</mat-dialog-content>
+<mat-dialog-actions align='end'>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
