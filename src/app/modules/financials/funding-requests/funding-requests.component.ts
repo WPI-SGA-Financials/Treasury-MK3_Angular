@@ -3,6 +3,8 @@ import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
 import { IFundingRequest } from '../../../types/ifunding-request.interface';
 import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
+import { MatDialog } from '@angular/material/dialog';
+import { FundingRequestPopupComponent } from '../../../components/popups/funding-request-popup/funding-request-popup.component';
 
 @Component({
   selector: 'app-funding-requests',
@@ -13,7 +15,7 @@ export class FundingRequestsComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
   dataSource: IFundingRequest[] = [];
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initializeData();
@@ -68,6 +70,13 @@ export class FundingRequestsComponent implements OnInit {
   }
 
   onClickedRow(row: any) {
-    console.log(row);
+    this.dialog.open(FundingRequestPopupComponent, {
+      data: {
+        id: row.id,
+        fromOrgView: false
+      },
+      maxWidth: '40%',
+      minWidth: '30%'
+    });
   }
 }

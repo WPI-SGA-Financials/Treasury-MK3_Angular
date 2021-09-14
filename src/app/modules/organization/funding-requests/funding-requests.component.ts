@@ -4,6 +4,8 @@ import { HttpService } from '../../../services/http.service';
 import { OrgDataService } from '../../../services/org-data.service';
 import { Path_Api } from '../../../types/path.enum';
 import { IFundingRequest } from '../../../types/ifunding-request.interface';
+import { FundingRequestPopupComponent } from '../../../components/popups/funding-request-popup/funding-request-popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-org-funding-requests',
@@ -21,7 +23,7 @@ export class FundingRequestsComponent implements OnInit {
     direction: 'desc'
   };
 
-  constructor(private http: HttpService, private orgDataService: OrgDataService) {
+  constructor(private http: HttpService, private orgDataService: OrgDataService, private dialog: MatDialog) {
     this._clubName = this.orgDataService.getOrgName();
   }
 
@@ -37,7 +39,6 @@ export class FundingRequestsComponent implements OnInit {
   }
 
   private setData(data: IFundingRequest[]) {
-    console.log(data);
     this.dataSource = data;
   }
 
@@ -78,6 +79,13 @@ export class FundingRequestsComponent implements OnInit {
   }
 
   onClickedRow(row: any) {
-    console.log(row);
+    this.dialog.open(FundingRequestPopupComponent, {
+      data: {
+        id: row.id,
+        fromOrgView: true
+      },
+      maxWidth: '40%',
+      minWidth: '30%'
+    });
   }
 }
