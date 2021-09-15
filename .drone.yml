@@ -4,7 +4,7 @@ name: default
 
 trigger:
   branch:
-    - master
+  - master
 
 clone:
   disable: true
@@ -24,7 +24,7 @@ steps:
   - name: publish
     image: plugins/docker
     settings:
-      tags: [ "${DRONE_COMMIT_SHA:0:7}","latest" ]
+      tags: ['${DRONE_COMMIT_SHA:0:7}', 'latest']
       username:
         from_secret: docker_username
       password:
