@@ -3,7 +3,7 @@ import { MatAccordion } from '@angular/material/expansion';
 import { HttpService } from '../../../services/http.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Path, Path_Api } from '../../../types/path.enum';
-import { IExtendedFR } from '../../../types/ifunding-request.interface';
+import { IFundingRequest } from '../../../types/ifunding-request.interface';
 
 @Component({
   selector: 'app-funding-request-popup',
@@ -11,7 +11,7 @@ import { IExtendedFR } from '../../../types/ifunding-request.interface';
   styleUrls: ['./funding-request-popup.component.scss']
 })
 export class FundingRequestPopupComponent implements OnInit {
-  extendedFundingRequest: IExtendedFR | null = null;
+  extendedFundingRequest: IFundingRequest | null = null;
   @ViewChild(MatAccordion) accordion: any;
   public routerPath: string = "";
 
@@ -26,7 +26,7 @@ export class FundingRequestPopupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.http.getRequest(`${Path_Api.SPECIFIC_FR}/${this.injectedData.id}`).subscribe((res: IExtendedFR) => {
+    this.http.getRequest(`${Path_Api.SPECIFIC_FR}/${this.injectedData.id}`).subscribe((res: IFundingRequest) => {
       this.extendedFundingRequest = res;
       this.routerPath = Path.ORGANIZATION + "/" + this.extendedFundingRequest?.nameOfClub + "/funding-requests"
     });

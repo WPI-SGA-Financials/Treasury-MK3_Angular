@@ -8,8 +8,10 @@ export interface IFundingRequest {
   amountRequested: number;
   decision: string;
   amountApproved: number;
-}
-
-export interface IExtendedFR extends IFundingRequest {
-
+  eventDate: string;
+  appealed: string;
+  requestedAppeal: number;
+  appealDecision: string;
+  approvedAppeal: number;
+  appealMinutes: string;
 }
