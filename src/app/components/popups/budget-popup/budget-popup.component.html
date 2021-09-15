@@ -1,13 +1,9 @@
-<div class='dialog-header'>
-  <h2>Budget Detailed View</h2>
-  <ng-container *ngIf='!injectedData.fromOrgView'>
-    <button
-      mat-raised-button
-      color='primary'
-      (click)='toOrgPage()'
-    >View Organization</button>
-  </ng-container>
-</div>
+<app-reusable-header
+  [dialogRef]='dialogRef'
+  [headerTitle]="'Budget Detailed View'"
+  [routerPath]='routerPath'
+  [fromOrgView]='injectedData.fromOrgView'
+></app-reusable-header>
 
 
 <mat-dialog-content class='mat-typography'>

@@ -9,8 +9,9 @@ export enum Path {
 export enum Path_Api {
   ORGANIZATIONS = 'organizations',
   BUDGETS = 'financials/budgets',
-  FUNDINGREQUESTS = 'financials/fr',
+  FUNDINGREQUESTS = 'financials/frs',
   REALLOCATIONS = 'financials/realloc',
   ORGANIZATION = 'organization',
   SPECIFIC_BUDGET = 'financials/budget',
+  SPECIFIC_FR = `financials/fr`
 }

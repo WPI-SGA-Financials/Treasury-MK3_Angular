@@ -41,11 +41,11 @@ export interface IBudgetSections {
 export class BudgetPopupComponent implements OnInit {
   extendedBudget: IExtendedBudget | null = null;
   @ViewChild(MatAccordion) accordion: any;
+  public routerPath: string = "";
 
   constructor(
     private http: HttpService,
-    private router: Router,
-    private dialogRef: MatDialogRef<BudgetPopupComponent>,
+    public dialogRef: MatDialogRef<BudgetPopupComponent>,
     @Inject(MAT_DIALOG_DATA)
     public injectedData: {
       id: number;
@@ -56,10 +56,11 @@ export class BudgetPopupComponent implements OnInit {
   ngOnInit(): void {
     this.http.getRequest(`${Path_Api.SPECIFIC_BUDGET}/${this.injectedData.id}`).subscribe((res: IExtendedBudget) => {
       this.extendedBudget = res;
+      this.routerPath = Path.ORGANIZATION + "/" + this.extendedBudget?.nameOfClub + "/budgets"
     });
   }
 
-  toOrgPage() {
+/*  toOrgPage() {
     this.router.navigate([`${Path.ORGANIZATION}/${this.extendedBudget?.nameOfClub}`]).then(() => this.dialogRef.close());
-  }
+  }*/
 }

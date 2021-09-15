@@ -1,0 +1,10 @@
+.dialog-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & > button {
+    height: 80%;
+    margin-left: 10px;
+  }
+}

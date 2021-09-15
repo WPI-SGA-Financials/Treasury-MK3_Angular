@@ -1,0 +1,10 @@
+<div class='dialog-header'>
+  <h2>{{headerTitle}}</h2>
+  <ng-container *ngIf='!fromOrgView'>
+    <button
+      mat-raised-button
+      color='primary'
+      (click)='toOrgPage()'
+    >View Organization</button>
+  </ng-container>
+</div>
