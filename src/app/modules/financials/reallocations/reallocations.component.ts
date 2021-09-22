@@ -3,6 +3,8 @@ import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
 import { IReallocation } from '../../../types/ireallocation.interface';
 import { ColumnTypes, IActiveSort, ITableColumn } from '../../../types/itable-column.interface';
+import { ReallocationRequestPopupComponent } from '../../../components/popups/reallocation-request-popup/reallocation-request-popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-reallocations',
@@ -19,7 +21,7 @@ export class ReallocationsComponent implements OnInit {
     direction: 'desc'
   };
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initializeData();
@@ -71,6 +73,13 @@ export class ReallocationsComponent implements OnInit {
   }
 
   onClickedRow(row: any) {
-    console.log(row);
+    this.dialog.open(ReallocationRequestPopupComponent, {
+      data: {
+        id: row.id,
+        fromOrgView: false
+      },
+      maxWidth: '40%',
+      minWidth: '30%'
+    });
   }
 }

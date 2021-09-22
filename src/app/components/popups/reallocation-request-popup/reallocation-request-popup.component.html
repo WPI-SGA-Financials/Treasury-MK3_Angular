@@ -1,0 +1,39 @@
+<app-reusable-header
+  [dialogRef]='dialogRef'
+  [headerTitle]="'Reallocation Request Detailed View'"
+  [routerPath]='routerPath'
+  [fromOrgView]='injectedData.fromOrgView'
+></app-reusable-header>
+<mat-dialog-content class='mat-typography'>
+  <h3>Overview</h3>
+  <p><span class='label'>Name:</span> {{extendedReallocation?.nameOfClub}}</p>
+  <p><span class='label'>Hearing Date:</span> {{extendedReallocation?.hearingDate | date}}</p>
+  <p><span class='label'>Dot Number:</span> {{extendedReallocation?.dotNumber}}</p>
+
+  <hr />
+
+  <h3>Detailed</h3>
+  <p><span class='label'>Request Description:</span> {{extendedReallocation?.description}}</p>
+  <ng-container *ngIf='extendedReallocation?.allocatedFrom !== null'>
+    <p><span class='label'>Allocated From:</span> {{extendedReallocation?.allocatedFrom}}</p>
+  </ng-container>
+  <ng-container *ngIf='extendedReallocation?.allocatedTo !== null'>
+    <p><span class='label'>Allocated To:</span> {{extendedReallocation?.allocatedTo}}</p>
+  </ng-container>
+  <p><span class='label'>Amount Requested:</span> {{extendedReallocation?.allocationAmount | currency}}</p>
+  <p><span class='label'>Decision:</span> {{extendedReallocation?.decision}}</p>
+  <p><span class='label'>Amount Approved:</span> {{extendedReallocation?.amountApproved | currency}}</p>
+
+
+  <ng-container *ngIf='true'>
+    <hr />
+
+    <app-meeting-details
+      [extendedReallocation]='extendedReallocation'
+    ></app-meeting-details>
+
+  </ng-container>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

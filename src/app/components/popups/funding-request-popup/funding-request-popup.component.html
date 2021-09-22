@@ -24,7 +24,7 @@
 
   <ng-container *ngIf='extendedFundingRequest?.appealed === "Yes"'>
     <p><span class='label'>Requested Appeal:</span> {{extendedFundingRequest?.requestedAppeal | currency}}</p>
-    <p><span class='label'>Appeal Decision:</span> {{extendedFundingRequest?.decision}}</p>
+    <p><span class='label'>Appeal Decision:</span> {{extendedFundingRequest?.appealDecision}}</p>
     <p><span class='label'>Approved Appeal:</span> {{extendedFundingRequest?.approvedAppeal | currency}}</p>
     <p><span class='label'>Appeals Minutes: </span> <a href="{{extendedFundingRequest?.appealMinutes}}" target="_blank">Link to Minutes</a></p>
   </ng-container>
