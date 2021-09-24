@@ -4,6 +4,8 @@ import { HttpService } from '../../../services/http.service';
 import { OrgDataService } from '../../../services/org-data.service';
 import { Path_Api } from '../../../types/path.enum';
 import { IReallocation } from '../../../types/ireallocation.interface';
+import { ReallocationRequestPopupComponent } from '../../../components/popups/reallocation-request-popup/reallocation-request-popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-org-reallocations',
@@ -21,7 +23,7 @@ export class ReallocationsComponent implements OnInit {
     direction: 'desc'
   };
 
-  constructor(private http: HttpService, private orgDataService: OrgDataService) {
+  constructor(private http: HttpService, private orgDataService: OrgDataService, private dialog: MatDialog) {
     this._clubName = this.orgDataService.getOrgName();
   }
 
@@ -78,6 +80,13 @@ export class ReallocationsComponent implements OnInit {
   }
 
   onClickedRow(row: any) {
-    console.log(row);
+    this.dialog.open(ReallocationRequestPopupComponent, {
+      data: {
+        id: row.id,
+        fromOrgView: true
+      },
+      maxWidth: '40%',
+      minWidth: '30%'
+    });
   }
 }

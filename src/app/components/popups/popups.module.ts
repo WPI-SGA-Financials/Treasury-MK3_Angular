@@ -5,14 +5,16 @@ import { FundingRequestPopupComponent } from './funding-request-popup/funding-re
 import { ReusableHeaderComponent } from './reusable-header/reusable-header.component';
 import { SharedMaterialComponentsModule } from '../shared-material-components.module';
 import { MeetingDetailsComponent } from './meeting-details/meeting-details.component';
-
-
+import { ReallocationRequestPopupComponent } from './reallocation-request-popup/reallocation-request-popup.component';
 
 @NgModule({
-  declarations: [BudgetPopupComponent, FundingRequestPopupComponent, ReusableHeaderComponent, MeetingDetailsComponent],
-  imports: [
-    CommonModule,
-    SharedMaterialComponentsModule
-  ]
+  declarations: [
+    BudgetPopupComponent,
+    FundingRequestPopupComponent,
+    ReusableHeaderComponent,
+    MeetingDetailsComponent,
+    ReallocationRequestPopupComponent
+  ],
+  imports: [CommonModule, SharedMaterialComponentsModule]
 })
-export class PopupsModule { }
+export class PopupsModule {}

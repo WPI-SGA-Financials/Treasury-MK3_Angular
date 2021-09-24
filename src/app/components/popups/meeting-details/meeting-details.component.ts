@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IFundingRequest } from '../../../types/ifunding-request.interface';
+import { IReallocation } from '../../../types/ireallocation.interface';
 
 @Component({
   selector: 'app-meeting-details',
@@ -7,13 +8,24 @@ import { IFundingRequest } from '../../../types/ifunding-request.interface';
   styleUrls: ['./meeting-details.component.scss']
 })
 export class MeetingDetailsComponent implements OnInit {
-  // TODO Change Input to meeting ID and FR ID in order to call meeting details
+  // TODO Change to some sort of interface
+  /*
+  {
+    meetingID: number,
+    requestType: {
+      type: ...,
+      id: ...
+    }
+  }*/
+
+  // Temporary Input
   @Input() extendedFundingRequest: IFundingRequest | null = null;
+  @Input() extendedReallocation: IReallocation | null = null;
 
   // TODO Inject httpservice for getting meeting details
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }
