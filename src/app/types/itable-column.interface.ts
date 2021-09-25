@@ -1,6 +1,7 @@
 export enum ColumnTypes {
   DATE = 'date',
-  CURRENCY = 'currency'
+  CURRENCY = 'currency',
+  INACTIVE = 'inactive'
 }
 
 export interface ITableColumn {
