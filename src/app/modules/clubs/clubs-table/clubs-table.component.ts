@@ -51,8 +51,9 @@ export class ClubsTableComponent implements OnInit {
         dataKey: 'acronym'
       },
       {
-        name: 'Inactive?',
-        dataKey: 'inactive'
+        name: 'Active?',
+        dataKey: 'inactive',
+        type: ColumnTypes.INACTIVE
       },
       {
         name: 'Last Modified',
