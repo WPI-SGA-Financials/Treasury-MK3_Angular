@@ -9,6 +9,7 @@ import { SharedMaterialComponentsModule } from './components/shared-material-com
 import { SidenavModule } from './modules/sidenav/sidenav.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedAngularComponentsModule } from './components/shared-angular-components.module';
+import { SharedPipesModule } from './pipes/shared-pipes.module';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -19,7 +20,8 @@ import { SharedAngularComponentsModule } from './components/shared-angular-compo
     SharedMaterialComponentsModule,
     SharedAngularComponentsModule,
     SidenavModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedPipesModule
   ],
   providers: [],
   exports: [LoginComponent],

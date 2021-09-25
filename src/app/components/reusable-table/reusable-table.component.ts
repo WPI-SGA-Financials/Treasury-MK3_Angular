@@ -34,6 +34,7 @@ export class ReusableTableComponent implements OnInit, AfterViewInit {
 
   DATE = ColumnTypes.DATE;
   CURRENCY = ColumnTypes.CURRENCY;
+  INACTIVE = ColumnTypes.INACTIVE;
 
   constructor() {}
 
