@@ -20,13 +20,13 @@
   <p><span class='label'>Amount Requested:</span> {{extendedFundingRequest?.amountRequested | currency}}</p>
   <p><span class='label'>Decision:</span> {{extendedFundingRequest?.decision}}</p>
   <p><span class='label'>Amount Approved:</span> {{extendedFundingRequest?.amountApproved | currency}}</p>
-  <p><span class='label'>Appealed?:</span> {{extendedFundingRequest?.frappeal !== null ? 'Yes' : 'No'}}</p>
+  <p><span class='label'>Appealed?:</span> {{extendedFundingRequest?.frAppeal !== null ? 'Yes' : 'No'}}</p>
 
-  <ng-container *ngIf='extendedFundingRequest?.frappeal'>
-    <p><span class='label'>Requested Appeal:</span> {{extendedFundingRequest?.frappeal?.appealAmount | currency}}</p>
-    <p><span class='label'>Appeal Decision:</span> {{extendedFundingRequest?.frappeal?.decision }}</p>
-    <p><span class='label'>Approved Appeal:</span> {{extendedFundingRequest?.frappeal?.approvedAppeal | currency}}</p>
-    <p><span class='label'>Appeals Minutes: </span> <a href="{{extendedFundingRequest?.frappeal?.minutesLink }}" target="_blank">Link to Minutes</a></p>
+  <ng-container *ngIf='extendedFundingRequest?.frAppeal'>
+    <p><span class='label'>Requested Appeal:</span> {{extendedFundingRequest?.frAppeal?.appealAmount | currency}}</p>
+    <p><span class='label'>Appeal Decision:</span> {{extendedFundingRequest?.frAppeal?.decision }}</p>
+    <p><span class='label'>Approved Appeal:</span> {{extendedFundingRequest?.frAppeal?.approvedAppeal | currency}}</p>
+    <p><span class='label'>Appeals Minutes: </span> <a href="{{extendedFundingRequest?.frAppeal?.minutesLink }}" target="_blank">Link to Minutes</a></p>
   </ng-container>
 
   <ng-container *ngIf='true'>

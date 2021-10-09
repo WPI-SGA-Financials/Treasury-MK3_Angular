@@ -12,7 +12,7 @@ export interface IFundingRequest {
 
 export interface IExtendedFundingRequest extends IFundingRequest {
   dateOfEvent: string;
-  frappeal: IFundingRequestAppeal;
+  frAppeal: IFundingRequestAppeal;
 }
 
 interface IFundingRequestAppeal {
