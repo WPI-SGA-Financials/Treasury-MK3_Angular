@@ -33,7 +33,7 @@ export class BudgetsComponent implements OnInit {
   }
 
   private initializeData() {
-    this.http.getRequest(`${Path_Api.ORGANIZATION}/${this._clubName}/budget`).subscribe((response: IBudget[]) => {
+    this.http.getRequest(`${Path_Api.ORGANIZATION}/${this._clubName}/budgets`).subscribe((response: IBudget[]) => {
       this.setData(response);
     });
   }

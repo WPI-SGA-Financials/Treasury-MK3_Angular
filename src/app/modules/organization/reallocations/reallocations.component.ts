@@ -33,7 +33,7 @@ export class ReallocationsComponent implements OnInit {
   }
 
   private initializeData() {
-    this.http.getRequest(`${Path_Api.ORGANIZATION}/${this._clubName}/realloc`).subscribe((response: IReallocation[]) => {
+    this.http.getRequest(`${Path_Api.ORGANIZATION}/${this._clubName}/reallocs`).subscribe((response: IReallocation[]) => {
       this.setData(response);
     });
   }

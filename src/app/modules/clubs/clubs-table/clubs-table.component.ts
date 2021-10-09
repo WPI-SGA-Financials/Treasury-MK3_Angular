@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
-import { IClub } from '../../../types/iclub.interface';
+import { IOrganization } from '../../../types/iorganization.interface';
 import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ClubsTableComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
-  dataSource: IClub[] = [];
+  dataSource: IOrganization[] = [];
 
   constructor(private http: HttpService, private router: Router) {}
 
@@ -22,12 +22,12 @@ export class ClubsTableComponent implements OnInit {
   }
 
   private initializeData() {
-    this.http.getRequest(Path_Api.ORGANIZATIONS).subscribe((response: IClub[]) => {
+    this.http.getRequest(Path_Api.ORGANIZATIONS).subscribe((response: IOrganization[]) => {
       this.setData(response);
     });
   }
 
-  private setData(data: IClub[]) {
+  private setData(data: IOrganization[]) {
     this.dataSource = data;
   }
 
@@ -35,7 +35,7 @@ export class ClubsTableComponent implements OnInit {
     this.displayedColumns = [
       {
         name: 'Name of Club',
-        dataKey: 'name',
+        dataKey: 'nameOfClub',
         isSortable: true
       },
       {
@@ -63,7 +63,7 @@ export class ClubsTableComponent implements OnInit {
     ];
   }
 
-  onClickedRow(row: IClub) {
-    this.router.navigate([`${Path_Api.ORGANIZATION}/${row.name}`]);
+  onClickedRow(row: IOrganization) {
+    this.router.navigate([`${Path_Api.ORGANIZATION}/${row.nameOfClub}`]);
   }
 }

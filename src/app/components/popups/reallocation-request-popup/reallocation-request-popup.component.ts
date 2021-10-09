@@ -3,8 +3,7 @@ import { MatAccordion } from '@angular/material/expansion';
 import { HttpService } from '../../../services/http.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Path, Path_Api } from '../../../types/path.enum';
-import { IFundingRequest } from '../../../types/ifunding-request.interface';
-import { IReallocation } from '../../../types/ireallocation.interface';
+import { IExtendedReallocation } from '../../../types/ireallocation.interface';
 
 @Component({
   selector: 'app-reallocation-request-popup',
@@ -12,9 +11,9 @@ import { IReallocation } from '../../../types/ireallocation.interface';
   styleUrls: ['./reallocation-request-popup.component.scss']
 })
 export class ReallocationRequestPopupComponent implements OnInit {
-  extendedReallocation: IReallocation | null = null;
+  extendedReallocation: IExtendedReallocation | null = null;
   @ViewChild(MatAccordion) accordion: any;
-  public routerPath: string = "";
+  public routerPath: string = '';
 
   constructor(
     private http: HttpService,
@@ -27,9 +26,9 @@ export class ReallocationRequestPopupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.http.getRequest(`${Path_Api.SPECIFIC_REALLOC}/${this.injectedData.id}`).subscribe((res: IReallocation) => {
+    this.http.getRequest(`${Path_Api.SPECIFIC_REALLOC}/${this.injectedData.id}`).subscribe((res: IExtendedReallocation) => {
       this.extendedReallocation = res;
-      this.routerPath = Path.ORGANIZATION + "/" + this.extendedReallocation?.nameOfClub + "/reallocations"
+      this.routerPath = Path.ORGANIZATION + '/' + this.extendedReallocation?.nameOfClub + '/reallocations';
     });
   }
 }

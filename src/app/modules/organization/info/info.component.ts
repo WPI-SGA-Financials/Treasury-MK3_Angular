@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IClub } from '../../../types/iclub.interface';
+import { IOrganization } from '../../../types/iorganization.interface';
 
 @Component({
   selector: 'app-org-info',
@@ -7,7 +7,7 @@ import { IClub } from '../../../types/iclub.interface';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit {
-  @Input() orgData: IClub = <IClub>{};
+  @Input() orgData: IOrganization = <IOrganization>{};
 
   constructor() {}
 

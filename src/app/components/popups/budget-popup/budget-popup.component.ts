@@ -3,35 +3,7 @@ import { HttpService } from '../../../services/http.service';
 import { Path, Path_Api } from '../../../types/path.enum';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
-import { Router } from '@angular/router';
-
-export interface IExtendedBudget {
-  id: number;
-  nameOfClub: string;
-  fiscalYear: string;
-  numOfItems: number;
-  amountRequested: number;
-  amountProposed: number;
-  appealed: boolean;
-  requestedAppeal: number;
-  approvedAppeal: number;
-  amountApproved: number;
-  budgetSections: IBudgetSections[];
-}
-
-export interface IBudgetSections {
-  budgetID: number;
-  nameOfClub: string;
-  fiscalYear: string;
-  sectionName: string;
-  numOfItems: number;
-  amountRequested: number;
-  amountProposed: number;
-  appealed: boolean;
-  requestedAppeal: number;
-  approvedAppeal: number;
-  amountApproved: number;
-}
+import { IExtendedBudget } from '../../../types/ibudget.interface';
 
 @Component({
   selector: 'app-budget-popup',
@@ -41,7 +13,7 @@ export interface IBudgetSections {
 export class BudgetPopupComponent implements OnInit {
   extendedBudget: IExtendedBudget | null = null;
   @ViewChild(MatAccordion) accordion: any;
-  public routerPath: string = "";
+  public routerPath: string = '';
 
   constructor(
     private http: HttpService,
@@ -56,11 +28,7 @@ export class BudgetPopupComponent implements OnInit {
   ngOnInit(): void {
     this.http.getRequest(`${Path_Api.SPECIFIC_BUDGET}/${this.injectedData.id}`).subscribe((res: IExtendedBudget) => {
       this.extendedBudget = res;
-      this.routerPath = Path.ORGANIZATION + "/" + this.extendedBudget?.nameOfClub + "/budgets"
+      this.routerPath = Path.ORGANIZATION + '/' + this.extendedBudget?.nameOfClub + '/budgets';
     });
   }
-
-/*  toOrgPage() {
-    this.router.navigate([`${Path.ORGANIZATION}/${this.extendedBudget?.nameOfClub}`]).then(() => this.dialogRef.close());
-  }*/
 }

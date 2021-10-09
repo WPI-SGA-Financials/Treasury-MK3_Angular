@@ -19,11 +19,11 @@
   <p><span class='label'>Amount Proposed:</span> {{extendedBudget?.amountProposed | currency}}</p>
   <p><span class='label'>Appealed?:</span> {{extendedBudget?.appealed ? 'Yes' : 'No'}}</p>
   <ng-container *ngIf='extendedBudget?.appealed'>
-    <p><span class='label'>Requested Appeal:</span> {{extendedBudget?.requestedAppeal | currency}}</p>
+    <p><span class='label'>Requested Appeal:</span> {{extendedBudget?.appealAmount | currency}}</p>
     <p><span class='label'>Approved Appeal:</span> {{extendedBudget?.approvedAppeal | currency}}</p>
   </ng-container>
 
-  <ng-container *ngIf='extendedBudget?.budgetSections?.length'>
+  <ng-container *ngIf='extendedBudget?.sections?.length'>
     <hr />
     <h3>Sections</h3>
     <div class='buttons'>
@@ -33,11 +33,11 @@
 
     <div class='accordion'>
       <mat-accordion multi>
-        <ng-container *ngFor='let section of extendedBudget?.budgetSections'>
+        <ng-container *ngFor='let section of extendedBudget?.sections'>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                {{section.sectionName}}
+                {{section.name}}
               </mat-panel-title>
               <mat-panel-description>
                 Items: {{section.numOfItems}}
@@ -59,6 +59,6 @@
     </div>
   </ng-container>
 </mat-dialog-content>
-<mat-dialog-actions align='end'>
+<mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>
