@@ -5,10 +5,13 @@ export interface IReallocation {
   hearingDate: string;
   fiscalYear: string;
   dotNumber: string;
-  allocatedFrom: string | null;
-  allocatedTo: string | null;
   allocationAmount: number;
   decision: string;
   amountApproved: number;
+}
+
+export interface IExtendedReallocation extends IReallocation {
+  allocatedFrom: string | null;
+  allocatedTo: string | null;
   timestamp: string;
 }

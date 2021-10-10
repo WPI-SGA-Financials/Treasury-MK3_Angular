@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { Path_Api } from '../../../types/path.enum';
 import { IReallocation } from '../../../types/ireallocation.interface';
-import { ColumnTypes, IActiveSort, ITableColumn } from '../../../types/itable-column.interface';
+import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { ReallocationRequestPopupComponent } from '../../../components/popups/reallocation-request-popup/reallocation-request-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -14,12 +14,6 @@ import { MatDialog } from '@angular/material/dialog';
 export class ReallocationsComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
   dataSource: IReallocation[] = [];
-
-  activeSort: IActiveSort = {
-    isActive: false,
-    dataKey: 'hearingDate',
-    direction: 'desc'
-  };
 
   constructor(private http: HttpService, private dialog: MatDialog) {}
 

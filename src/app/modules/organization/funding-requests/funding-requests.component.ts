@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ColumnTypes, IActiveSort, ITableColumn } from '../../../types/itable-column.interface';
+import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { HttpService } from '../../../services/http.service';
 import { OrgDataService } from '../../../services/org-data.service';
 import { Path_Api } from '../../../types/path.enum';
@@ -17,12 +17,6 @@ export class FundingRequestsComponent implements OnInit {
   dataSource: IFundingRequest[] = [];
   private _clubName: string = '';
 
-  activeSort: IActiveSort = {
-    isActive: false,
-    dataKey: 'hearingDate',
-    direction: 'desc'
-  };
-
   constructor(private http: HttpService, private orgDataService: OrgDataService, private dialog: MatDialog) {
     this._clubName = this.orgDataService.getOrgName();
   }
@@ -33,12 +27,13 @@ export class FundingRequestsComponent implements OnInit {
   }
 
   private initializeData() {
-    this.http.getRequest(`${Path_Api.ORGANIZATION}/${this._clubName}/fr`).subscribe((response: IFundingRequest[]) => {
+    this.http.getRequest(`${Path_Api.ORGANIZATION}/${this._clubName}/frs`).subscribe((response: IFundingRequest[]) => {
       this.setData(response);
     });
   }
 
   private setData(data: IFundingRequest[]) {
+    console.log(data);
     this.dataSource = data;
   }
 

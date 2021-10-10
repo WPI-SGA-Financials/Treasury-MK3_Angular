@@ -8,10 +8,20 @@ export interface IFundingRequest {
   amountRequested: number;
   decision: string;
   amountApproved: number;
-  eventDate: string;
-  appealed: string;
-  requestedAppeal: number;
-  appealDecision: string;
+}
+
+export interface IExtendedFundingRequest extends IFundingRequest {
+  dateOfEvent: string;
+  frAppeal: IFundingRequestAppeal;
+}
+
+interface IFundingRequestAppeal {
+  id: number;
+  newDotNumber: number;
+  appealDate: number;
+  description: string;
+  appealAmount: number;
+  decision: string;
   approvedAppeal: number;
-  appealMinutes: string;
+  minutesLink: string;
 }

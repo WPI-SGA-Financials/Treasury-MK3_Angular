@@ -3,10 +3,10 @@
 <div class='basic-info'>
   <div class='club-name'>
     <ng-container *ngIf='orgData.acronym !== "";else justName'>
-      <h2>{{orgData.acronym + ' | ' + orgData.name}}</h2>
+      <h2>{{orgData.acronym + ' | ' + orgData.nameOfClub}}</h2>
     </ng-container>
     <ng-template #justName>
-      <h2>{{orgData.name}}</h2>
+      <h2>{{orgData.nameOfClub}}</h2>
     </ng-template>
   </div>
   <div>

@@ -14,19 +14,19 @@
 
   <h3>Detailed</h3>
   <p><span class='label'>Request Description:</span> {{extendedFundingRequest?.description}}</p>
-  <ng-container *ngIf='extendedFundingRequest?.eventDate !== "" && extendedFundingRequest?.eventDate !== null'>
-    <p><span class='label'>Event Date:</span> {{extendedFundingRequest?.eventDate | date}}</p>
+  <ng-container *ngIf='extendedFundingRequest?.dateOfEvent !== "" && extendedFundingRequest?.dateOfEvent !== null'>
+    <p><span class='label'>Event Date:</span> {{extendedFundingRequest?.dateOfEvent | date}}</p>
   </ng-container>
   <p><span class='label'>Amount Requested:</span> {{extendedFundingRequest?.amountRequested | currency}}</p>
   <p><span class='label'>Decision:</span> {{extendedFundingRequest?.decision}}</p>
   <p><span class='label'>Amount Approved:</span> {{extendedFundingRequest?.amountApproved | currency}}</p>
-  <p><span class='label'>Appealed?:</span> {{extendedFundingRequest?.appealed}}</p>
+  <p><span class='label'>Appealed?:</span> {{extendedFundingRequest?.frAppeal !== null ? 'Yes' : 'No'}}</p>
 
-  <ng-container *ngIf='extendedFundingRequest?.appealed === "Yes"'>
-    <p><span class='label'>Requested Appeal:</span> {{extendedFundingRequest?.requestedAppeal | currency}}</p>
-    <p><span class='label'>Appeal Decision:</span> {{extendedFundingRequest?.appealDecision}}</p>
-    <p><span class='label'>Approved Appeal:</span> {{extendedFundingRequest?.approvedAppeal | currency}}</p>
-    <p><span class='label'>Appeals Minutes: </span> <a href="{{extendedFundingRequest?.appealMinutes}}" target="_blank">Link to Minutes</a></p>
+  <ng-container *ngIf='extendedFundingRequest?.frAppeal'>
+    <p><span class='label'>Requested Appeal:</span> {{extendedFundingRequest?.frAppeal?.appealAmount | currency}}</p>
+    <p><span class='label'>Appeal Decision:</span> {{extendedFundingRequest?.frAppeal?.decision }}</p>
+    <p><span class='label'>Approved Appeal:</span> {{extendedFundingRequest?.frAppeal?.approvedAppeal | currency}}</p>
+    <p><span class='label'>Appeals Minutes: </span> <a href="{{extendedFundingRequest?.frAppeal?.minutesLink }}" target="_blank">Link to Minutes</a></p>
   </ng-container>
 
   <ng-container *ngIf='true'>
