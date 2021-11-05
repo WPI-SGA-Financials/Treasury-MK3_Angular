@@ -1,4 +1,4 @@
-export interface IBudget {
+export interface Budget {
   id: number;
   nameOfClub: string;
   fiscalYear: string;
@@ -8,15 +8,15 @@ export interface IBudget {
   amountApproved: number;
 }
 
-export interface IExtendedBudget extends IBudget {
+export interface ExtendedBudget extends Budget {
   appealed: boolean;
   appealAmount: number;
   appealDecision: string;
   approvedAppeal: number;
-  sections: IBudgetSections[];
+  sections: BudgetSection[];
 }
 
-export interface IBudgetSections {
+export interface BudgetSection {
   id: number;
   name: string;
   numOfItems: number;

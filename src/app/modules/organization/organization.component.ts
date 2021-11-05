@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../services/http.service';
-import { Path_Api } from '../../types/path.enum';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IOrganizationExtended } from '../../types/iorganization.interface';
+import { ExtendedOrganization } from '../../types/organization.model';
 import { OrgDataService } from '../../services/org-data.service';
+import { OrganizationService } from '../../services/api-services/organization.service';
+import { ResponseModel } from '../../types/response.model';
 
 @Component({
   selector: 'app-organization',
@@ -12,9 +12,9 @@ import { OrgDataService } from '../../services/org-data.service';
 })
 export class OrganizationComponent implements OnInit {
   private _clubName: string = '';
-  club: IOrganizationExtended = <IOrganizationExtended>{};
+  club: ExtendedOrganization = <ExtendedOrganization>{};
 
-  constructor(private http: HttpService, private route: ActivatedRoute, private router: Router, private orgDataService: OrgDataService) {
+  constructor(private orgService: OrganizationService, private route: ActivatedRoute, private router: Router, private orgDataService: OrgDataService) {
     this.route.params.subscribe((params) => {
       this._clubName = params.id;
       this.orgDataService.setOrgName(this._clubName);
@@ -22,16 +22,16 @@ export class OrganizationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.getRequest(`${Path_Api.ORGANIZATION}/${this._clubName}`).subscribe((res: IOrganizationExtended) => {
-      if (res === null) {
+    this.orgService.getOrganization(this._clubName).subscribe((response: ResponseModel<ExtendedOrganization>) => {
+      if(response.data === null) {
         this.router.navigate(['/clubs']);
       } else {
-        this.setClubData(res);
+        this.setClubData(response.data)
       }
-    });
+    })
   }
 
-  private setClubData(res: IOrganizationExtended) {
+  private setClubData(res: ExtendedOrganization) {
     this.club = res;
   }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../services/http.service';
-import { IBudget } from '../../../types/ibudget.interface';
-import { Path_Api } from '../../../types/path.enum';
+import { Budget } from '../../../types/budget.model';
 import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { BudgetPopupComponent } from '../../../components/popups/budget-popup/budget-popup.component';
+import { BudgetService } from '../../../services/api-services/budget.service';
+import { PagedResponseModel } from '../../../types/paged-response.model';
 
 @Component({
   selector: 'app-budgets',
@@ -13,9 +13,9 @@ import { BudgetPopupComponent } from '../../../components/popups/budget-popup/bu
 })
 export class BudgetsComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
-  dataSource: IBudget[] = [];
+  dataSource: Budget[] = [];
 
-  constructor(private http: HttpService, private dialog: MatDialog) {}
+  constructor(private budgetService: BudgetService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initializeData();
@@ -23,12 +23,12 @@ export class BudgetsComponent implements OnInit {
   }
 
   private initializeData() {
-    this.http.getRequest(Path_Api.BUDGETS).subscribe((response: IBudget[]) => {
-      this.setData(response);
-    });
+    this.budgetService.getBudgets().subscribe((response: PagedResponseModel<Budget>) => {
+      this.setData(response.data)
+    })
   }
 
-  private setData(data: IBudget[]) {
+  private setData(data: Budget[]) {
     this.dataSource = data;
   }
 

@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { HttpService } from '../../../services/http.service';
-import { Path, Path_Api } from '../../../types/path.enum';
+import { Path } from '../../../types/path.enum';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
-import { IExtendedBudget } from '../../../types/ibudget.interface';
+import { ExtendedBudget } from '../../../types/budget.model';
+import { BudgetService } from '../../../services/api-services/budget.service';
+import { ResponseModel } from '../../../types/response.model';
 
 @Component({
   selector: 'app-budget-popup',
@@ -11,12 +12,12 @@ import { IExtendedBudget } from '../../../types/ibudget.interface';
   styleUrls: ['./budget-popup.component.scss']
 })
 export class BudgetPopupComponent implements OnInit {
-  extendedBudget: IExtendedBudget | null = null;
+  extendedBudget: ExtendedBudget | null = null;
   @ViewChild(MatAccordion) accordion: any;
   public routerPath: string = '';
 
   constructor(
-    private http: HttpService,
+    private budgetService: BudgetService,
     public dialogRef: MatDialogRef<BudgetPopupComponent>,
     @Inject(MAT_DIALOG_DATA)
     public injectedData: {
@@ -26,9 +27,9 @@ export class BudgetPopupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.http.getRequest(`${Path_Api.SPECIFIC_BUDGET}/${this.injectedData.id}`).subscribe((res: IExtendedBudget) => {
-      this.extendedBudget = res;
-      this.routerPath = Path.ORGANIZATION + '/' + this.extendedBudget?.nameOfClub + '/budgets';
-    });
+    this.budgetService.getBudget(this.injectedData.id).subscribe((response: ResponseModel<ExtendedBudget>) => {
+      this.extendedBudget = response.data;
+      this.routerPath = `${Path.ORGANIZATION}/${this.extendedBudget?.nameOfClub}/budgets`
+    })
   }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../services/http.service';
-import { Path_Api } from '../../../types/path.enum';
-import { IReallocation } from '../../../types/ireallocation.interface';
+import { Reallocation } from '../../../types/reallocation.model';
 import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { ReallocationRequestPopupComponent } from '../../../components/popups/reallocation-request-popup/reallocation-request-popup.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ReallocationRequestService } from '../../../services/api-services/reallocation-request.service';
+import { PagedResponseModel } from '../../../types/paged-response.model';
 
 @Component({
   selector: 'app-reallocations',
@@ -13,9 +13,9 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ReallocationsComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
-  dataSource: IReallocation[] = [];
+  dataSource: Reallocation[] = [];
 
-  constructor(private http: HttpService, private dialog: MatDialog) {}
+  constructor(private reallocService: ReallocationRequestService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initializeData();
@@ -23,12 +23,12 @@ export class ReallocationsComponent implements OnInit {
   }
 
   private initializeData() {
-    this.http.getRequest(Path_Api.REALLOCATIONS).subscribe((response: IReallocation[]) => {
-      this.setData(response);
-    });
+    this.reallocService.getReallocations().subscribe((response: PagedResponseModel<Reallocation>) => {
+      this.setData(response.data)
+    })
   }
 
-  private setData(data: IReallocation[]) {
+  private setData(data: Reallocation[]) {
     this.dataSource = data;
   }
 

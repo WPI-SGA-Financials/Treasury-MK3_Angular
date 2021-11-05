@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IFundingRequest } from '../../../types/ifunding-request.interface';
-import { IReallocation } from '../../../types/ireallocation.interface';
+import { FundingRequest } from '../../../types/funding-request.model';
+import { Reallocation } from '../../../types/reallocation.model';
 
 @Component({
   selector: 'app-meeting-details',
@@ -19,8 +19,8 @@ export class MeetingDetailsComponent implements OnInit {
   }*/
 
   // Temporary Input
-  @Input() extendedFundingRequest: IFundingRequest | null = null;
-  @Input() extendedReallocation: IReallocation | null = null;
+  @Input() extendedFundingRequest: FundingRequest | null = null;
+  @Input() extendedReallocation: Reallocation | null = null;
 
   // TODO Inject httpservice for getting meeting details
   constructor() {

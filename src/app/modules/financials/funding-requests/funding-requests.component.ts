@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../services/http.service';
-import { Path_Api } from '../../../types/path.enum';
-import { IFundingRequest } from '../../../types/ifunding-request.interface';
+import { FundingRequest } from '../../../types/funding-request.model';
 import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { FundingRequestPopupComponent } from '../../../components/popups/funding-request-popup/funding-request-popup.component';
+import { FundingRequestService } from '../../../services/api-services/funding-request.service';
+import { PagedResponseModel } from '../../../types/paged-response.model';
 
 @Component({
   selector: 'app-funding-requests',
@@ -13,9 +13,9 @@ import { FundingRequestPopupComponent } from '../../../components/popups/funding
 })
 export class FundingRequestsComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
-  dataSource: IFundingRequest[] = [];
+  dataSource: FundingRequest[] = [];
 
-  constructor(private http: HttpService, private dialog: MatDialog) {}
+  constructor(private frService: FundingRequestService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initializeData();
@@ -23,12 +23,12 @@ export class FundingRequestsComponent implements OnInit {
   }
 
   private initializeData() {
-    this.http.getRequest(Path_Api.FUNDINGREQUESTS).subscribe((response: IFundingRequest[]) => {
-      this.setData(response);
-    });
+    this.frService.getFundingRequests().subscribe((response: PagedResponseModel<FundingRequest>) => {
+      this.setData(response.data)
+    })
   }
 
-  private setData(data: IFundingRequest[]) {
+  private setData(data: FundingRequest[]) {
     this.dataSource = data;
   }
 

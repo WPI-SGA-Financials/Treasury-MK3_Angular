@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ColumnTypes, IActiveSort, ITableColumn } from '../../../types/itable-column.interface';
-import { IBudget } from '../../../types/ibudget.interface';
-import { HttpService } from '../../../services/http.service';
-import { Path_Api } from '../../../types/path.enum';
+import { Budget } from '../../../types/budget.model';
 import { OrgDataService } from '../../../services/org-data.service';
 import { BudgetPopupComponent } from '../../../components/popups/budget-popup/budget-popup.component';
 import { MatDialog } from '@angular/material/dialog';
+import { BudgetService } from '../../../services/api-services/budget.service';
+import { ResponseModel } from '../../../types/response.model';
 
 @Component({
   selector: 'app-org-budgets',
@@ -14,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class BudgetsComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
-  dataSource: IBudget[] = [];
+  dataSource: Budget[] = [];
   private _clubName: string = '';
 
   activeSort: IActiveSort = {
@@ -23,7 +23,7 @@ export class BudgetsComponent implements OnInit {
     direction: 'desc'
   };
 
-  constructor(private http: HttpService, private orgDataService: OrgDataService, private dialog: MatDialog) {
+  constructor(private budgetService: BudgetService, private orgDataService: OrgDataService, private dialog: MatDialog) {
     this._clubName = this.orgDataService.getOrgName();
   }
 
@@ -33,12 +33,12 @@ export class BudgetsComponent implements OnInit {
   }
 
   private initializeData() {
-    this.http.getRequest(`${Path_Api.ORGANIZATION}/${this._clubName}/budgets`).subscribe((response: IBudget[]) => {
-      this.setData(response);
-    });
+    this.budgetService.getOrganizationBudgets(this._clubName).subscribe((response: ResponseModel<Budget[]>) => {
+      this.setData(response.data)
+    })
   }
 
-  private setData(data: IBudget[]) {
+  private setData(data: Budget[]) {
     console.log(data);
     this.dataSource = data;
   }

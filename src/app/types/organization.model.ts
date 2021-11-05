@@ -1,4 +1,4 @@
-export interface IOrganization {
+export interface Organization {
   nameOfClub: string;
   classification: string;
   typeOfClub: string;
@@ -8,7 +8,7 @@ export interface IOrganization {
   timestamp: string;
 }
 
-export interface IOrganizationExtended extends IOrganization {
+export interface ExtendedOrganization extends Organization {
   fiVizClubClassification: string;
   techsyncName: string;
 }

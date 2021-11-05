@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../services/http.service';
+import { OrganizationService } from '../../../services/api-services/organization.service';
 import { Path_Api } from '../../../types/path.enum';
-import { IOrganization } from '../../../types/iorganization.interface';
+import { Organization } from '../../../types/organization.model';
 import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { Router } from '@angular/router';
+import { PagedResponseModel } from '../../../types/paged-response.model';
 
 @Component({
   selector: 'app-clubs-table',
@@ -12,9 +13,9 @@ import { Router } from '@angular/router';
 })
 export class ClubsTableComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
-  dataSource: IOrganization[] = [];
+  dataSource: Organization[] = [];
 
-  constructor(private http: HttpService, private router: Router) {}
+  constructor(private router: Router, private orgService: OrganizationService) {}
 
   ngOnInit(): void {
     this.initializeData();
@@ -22,12 +23,16 @@ export class ClubsTableComponent implements OnInit {
   }
 
   private initializeData() {
-    this.http.getRequest(Path_Api.ORGANIZATIONS).subscribe((response: IOrganization[]) => {
+    this.orgService.getOrganizations().subscribe((response :PagedResponseModel<Organization>) => {
+      this.setData(response.data)
+    })
+
+    /*this.http.getRequest(Path_Api.ORGANIZATIONS).subscribe((response: IOrganization[]) => {
       this.setData(response);
-    });
+    });*/
   }
 
-  private setData(data: IOrganization[]) {
+  private setData(data: Organization[]) {
     this.dataSource = data;
   }
 
@@ -63,7 +68,7 @@ export class ClubsTableComponent implements OnInit {
     ];
   }
 
-  onClickedRow(row: IOrganization) {
+  onClickedRow(row: Organization) {
     this.router.navigate([`${Path_Api.ORGANIZATION}/${row.nameOfClub}`]);
   }
 }
