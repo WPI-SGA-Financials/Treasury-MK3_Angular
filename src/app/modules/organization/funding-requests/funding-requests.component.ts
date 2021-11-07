@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
-import { HttpService } from '../../../services/http.service';
 import { OrgDataService } from '../../../services/org-data.service';
-import { Path_Api } from '../../../types/path.enum';
-import { IFundingRequest } from '../../../types/ifunding-request.interface';
+import { FundingRequest } from '../../../types/funding-request.model';
 import { FundingRequestPopupComponent } from '../../../components/popups/funding-request-popup/funding-request-popup.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FundingRequestService } from '../../../services/api-services/funding-request.service';
+import { ResponseModel } from '../../../types/response.model';
 
 @Component({
   selector: 'app-org-funding-requests',
@@ -14,10 +14,10 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class FundingRequestsComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
-  dataSource: IFundingRequest[] = [];
+  dataSource: FundingRequest[] = [];
   private _clubName: string = '';
 
-  constructor(private http: HttpService, private orgDataService: OrgDataService, private dialog: MatDialog) {
+  constructor(private frService: FundingRequestService, private orgDataService: OrgDataService, private dialog: MatDialog) {
     this._clubName = this.orgDataService.getOrgName();
   }
 
@@ -27,13 +27,12 @@ export class FundingRequestsComponent implements OnInit {
   }
 
   private initializeData() {
-    this.http.getRequest(`${Path_Api.ORGANIZATION}/${this._clubName}/frs`).subscribe((response: IFundingRequest[]) => {
-      this.setData(response);
-    });
+    this.frService.getOrganizationFundingRequests(this._clubName).subscribe((response: ResponseModel<FundingRequest[]>) => {
+      this.setData(response.data)
+    })
   }
 
-  private setData(data: IFundingRequest[]) {
-    console.log(data);
+  private setData(data: FundingRequest[]) {
     this.dataSource = data;
   }
 

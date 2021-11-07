@@ -12,7 +12,7 @@ import { FilterMenuComponent } from './filter-menu/filter-menu.component';
 import { ClubNameModule } from '../../components/filters/club-name/club-name.module';
 import { FiscalClassModule } from '../../components/filters/fiscal-class/fiscal-class.module';
 import { FiscalYearModule } from '../../components/filters/fiscal-year/fiscal-year.module';
-import { ReusableTableModule } from '../../components/reusable-table/reusable-table.module';
+import { ReusableTableModule } from '../../components/tables/reusable-table.module';
 
 @NgModule({
   declarations: [

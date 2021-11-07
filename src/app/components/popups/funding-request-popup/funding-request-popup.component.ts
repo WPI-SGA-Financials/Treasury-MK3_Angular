@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
-import { HttpService } from '../../../services/http.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Path, Path_Api } from '../../../types/path.enum';
-import { IExtendedFundingRequest } from '../../../types/ifunding-request.interface';
+import { Path } from '../../../types/path.enum';
+import { ExtendedFundingRequest } from '../../../types/funding-request.model';
+import { FundingRequestService } from '../../../services/api-services/funding-request.service';
+import { ResponseModel } from '../../../types/response.model';
 
 @Component({
   selector: 'app-funding-request-popup',
@@ -11,12 +12,12 @@ import { IExtendedFundingRequest } from '../../../types/ifunding-request.interfa
   styleUrls: ['./funding-request-popup.component.scss']
 })
 export class FundingRequestPopupComponent implements OnInit {
-  extendedFundingRequest: IExtendedFundingRequest | null = null;
+  extendedFundingRequest: ExtendedFundingRequest | null = null;
   @ViewChild(MatAccordion) accordion: any;
   public routerPath: string = '';
 
   constructor(
-    private http: HttpService,
+    private frService: FundingRequestService,
     public dialogRef: MatDialogRef<FundingRequestPopupComponent>,
     @Inject(MAT_DIALOG_DATA)
     public injectedData: {
@@ -26,9 +27,9 @@ export class FundingRequestPopupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.http.getRequest(`${Path_Api.SPECIFIC_FR}/${this.injectedData.id}`).subscribe((res: IExtendedFundingRequest) => {
-      this.extendedFundingRequest = res;
-      this.routerPath = Path.ORGANIZATION + '/' + this.extendedFundingRequest?.nameOfClub + '/funding-requests';
-    });
+    this.frService.getFundingRequest(this.injectedData.id).subscribe((response: ResponseModel<ExtendedFundingRequest>) => {
+      this.extendedFundingRequest = response.data
+      this.routerPath = `${Path.ORGANIZATION}/${this.extendedFundingRequest?.nameOfClub}/funding-requests`
+    })
   }
 }

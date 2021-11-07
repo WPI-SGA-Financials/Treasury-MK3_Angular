@@ -1,4 +1,4 @@
-export interface IFundingRequest {
+export interface FundingRequest {
   id: number;
   nameOfClub: string;
   dotNumber: string;
@@ -10,12 +10,12 @@ export interface IFundingRequest {
   amountApproved: number;
 }
 
-export interface IExtendedFundingRequest extends IFundingRequest {
+export interface ExtendedFundingRequest extends FundingRequest {
   dateOfEvent: string;
-  frAppeal: IFundingRequestAppeal;
+  frAppeal: FundingRequestAppeal;
 }
 
-interface IFundingRequestAppeal {
+interface FundingRequestAppeal {
   id: number;
   newDotNumber: number;
   appealDate: number;

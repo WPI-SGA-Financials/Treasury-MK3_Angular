@@ -14,5 +14,6 @@ export enum Path_Api {
   ORGANIZATION = 'organization',
   SPECIFIC_BUDGET = 'financials/budget',
   SPECIFIC_FR = 'financials/fr',
-  SPECIFIC_REALLOC = 'financials/realloc'
+  SPECIFIC_REALLOC = 'financials/realloc',
+  STUDENT_LIFE_FEE = 'financials/slf',
 }

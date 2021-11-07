@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ColumnTypes, IActiveSort, ITableColumn } from '../../../types/itable-column.interface';
-import { HttpService } from '../../../services/http.service';
 import { OrgDataService } from '../../../services/org-data.service';
-import { Path_Api } from '../../../types/path.enum';
-import { IReallocation } from '../../../types/ireallocation.interface';
+import { Reallocation } from '../../../types/reallocation.model';
 import { ReallocationRequestPopupComponent } from '../../../components/popups/reallocation-request-popup/reallocation-request-popup.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ReallocationRequestService } from '../../../services/api-services/reallocation-request.service';
+import { ResponseModel } from '../../../types/response.model';
 
 @Component({
   selector: 'app-org-reallocations',
@@ -14,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ReallocationsComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
-  dataSource: IReallocation[] = [];
+  dataSource: Reallocation[] = [];
   private _clubName: string = '';
 
   activeSort: IActiveSort = {
@@ -23,7 +23,7 @@ export class ReallocationsComponent implements OnInit {
     direction: 'desc'
   };
 
-  constructor(private http: HttpService, private orgDataService: OrgDataService, private dialog: MatDialog) {
+  constructor(private reallocService: ReallocationRequestService, private orgDataService: OrgDataService, private dialog: MatDialog) {
     this._clubName = this.orgDataService.getOrgName();
   }
 
@@ -33,13 +33,12 @@ export class ReallocationsComponent implements OnInit {
   }
 
   private initializeData() {
-    this.http.getRequest(`${Path_Api.ORGANIZATION}/${this._clubName}/reallocs`).subscribe((response: IReallocation[]) => {
-      this.setData(response);
-    });
+    this.reallocService.getOrganizationReallocationRequests(this._clubName).subscribe((response: ResponseModel<Reallocation[]>) => {
+      this.setData(response.data)
+    })
   }
 
-  private setData(data: IReallocation[]) {
-    console.log(data);
+  private setData(data: Reallocation[]) {
     this.dataSource = data;
   }
 

@@ -8,12 +8,15 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class HttpService {
-  API_URL: string = environment.apiURL + '/api/';
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getRequest(path: string): Observable<any> {
-    return this.http.get(this.API_URL + path).pipe(catchError(this.handleError));
+    return this.http.get(environment.apiURL + path).pipe(catchError(this.handleError));
+  }
+
+  postRequest(path: string, body: object): Observable<any> {
+    return this.http.post<any>(environment.apiURL + path, body).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

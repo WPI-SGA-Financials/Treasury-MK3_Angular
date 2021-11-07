@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../services/http.service';
-import { Path_Api } from '../../../types/path.enum';
-import { IFundingRequest } from '../../../types/ifunding-request.interface';
+import { FundingRequest } from '../../../types/funding-request.model';
 import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { FundingRequestPopupComponent } from '../../../components/popups/funding-request-popup/funding-request-popup.component';
+import { FundingRequestService } from '../../../services/api-services/funding-request.service';
+import { PagedResponseModel } from '../../../types/paged-response.model';
 
 @Component({
   selector: 'app-funding-requests',
@@ -12,61 +12,53 @@ import { FundingRequestPopupComponent } from '../../../components/popups/funding
   styleUrls: ['./funding-requests.component.scss']
 })
 export class FundingRequestsComponent implements OnInit {
-  displayedColumns: ITableColumn[] = [];
-  dataSource: IFundingRequest[] = [];
+  displayedColumns: ITableColumn[] = [
+    {
+      name: 'Name of Club',
+      dataKey: 'nameOfClub',
+      isSortable: false
+    },
+    {
+      name: 'Fiscal Year',
+      dataKey: 'fiscalYear'
+    },
+    {
+      name: 'Hearing Date',
+      dataKey: 'hearingDate',
+      type: ColumnTypes.DATE
+    },
+    {
+      name: 'Dot Number',
+      dataKey: 'dotNumber'
+    },
+    {
+      name: 'Amount Requested',
+      dataKey: 'amountRequested',
+      type: ColumnTypes.CURRENCY
+    },
+    {
+      name: 'Decision',
+      dataKey: 'decision'
+    },
+    {
+      name: 'Amount Approved',
+      dataKey: 'amountApproved',
+      type: ColumnTypes.CURRENCY
+    }
+  ];
+  dataSource: PagedResponseModel<FundingRequest> = {} as PagedResponseModel<FundingRequest>;
+  isLoading: boolean = false;
 
-  constructor(private http: HttpService, private dialog: MatDialog) {}
+  constructor(private frService: FundingRequestService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initializeData();
-    this.initializeColumns();
   }
 
   private initializeData() {
-    this.http.getRequest(Path_Api.FUNDINGREQUESTS).subscribe((response: IFundingRequest[]) => {
-      this.setData(response);
-    });
-  }
-
-  private setData(data: IFundingRequest[]) {
-    this.dataSource = data;
-  }
-
-  private initializeColumns() {
-    this.displayedColumns = [
-      {
-        name: 'Name of Club',
-        dataKey: 'nameOfClub',
-        isSortable: true
-      },
-      {
-        name: 'Fiscal Year',
-        dataKey: 'fiscalYear'
-      },
-      {
-        name: 'Hearing Date',
-        dataKey: 'hearingDate',
-        type: ColumnTypes.DATE
-      },
-      {
-        name: 'Dot Number',
-        dataKey: 'dotNumber'
-      },
-      {
-        name: 'Amount Requested',
-        dataKey: 'amountRequested',
-        type: ColumnTypes.CURRENCY
-      },
-      {
-        name: 'Decision',
-        dataKey: 'decision'
-      },
-      {
-        name: 'Amount Approved',
-        dataKey: 'amountApproved',
-        type: ColumnTypes.CURRENCY
-      }
-    ];
+    this.frService.getFundingRequests().subscribe((response: PagedResponseModel<FundingRequest>) => {
+      this.dataSource = response;
+    })
   }
 
   onClickedRow(row: any) {
@@ -78,5 +70,15 @@ export class FundingRequestsComponent implements OnInit {
       maxWidth: '40%',
       minWidth: '30%'
     });
+  }
+
+  onTableEvent($event: any) {
+    if($event.type === 'PageChange') {
+      this.isLoading = true;
+      this.frService.getFundingRequests({page: $event.data.pageIndex + 1, rpp: 10}).subscribe((response: PagedResponseModel<FundingRequest>) => {
+        this.isLoading = false;
+        this.dataSource = response;
+      })
+    }
   }
 }

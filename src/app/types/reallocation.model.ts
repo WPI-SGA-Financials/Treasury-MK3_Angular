@@ -1,4 +1,4 @@
-export interface IReallocation {
+export interface Reallocation {
   id: number;
   nameOfClub: string;
   description: string;
@@ -10,7 +10,7 @@ export interface IReallocation {
   amountApproved: number;
 }
 
-export interface IExtendedReallocation extends IReallocation {
+export interface ExtendedReallocation extends Reallocation {
   allocatedFrom: string | null;
   allocatedTo: string | null;
   timestamp: string;
