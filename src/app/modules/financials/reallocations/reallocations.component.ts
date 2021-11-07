@@ -16,12 +16,12 @@ export class ReallocationsComponent implements OnInit {
     {
       name: 'Name of Club',
       dataKey: 'nameOfClub',
-      isSortable: true
+      isSortable: false
     },
     {
       name: 'Hearing Date',
       dataKey: 'hearingDate',
-      isSortable: true,
+      isSortable: false,
       type: ColumnTypes.DATE
     },
     {
