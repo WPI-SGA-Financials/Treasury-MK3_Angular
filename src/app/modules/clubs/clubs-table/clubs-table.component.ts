@@ -12,63 +12,62 @@ import { PagedResponseModel } from '../../../types/paged-response.model';
   styleUrls: ['./clubs-table.component.scss']
 })
 export class ClubsTableComponent implements OnInit {
-  displayedColumns: ITableColumn[] = [];
-  dataSource: Organization[] = [];
+  displayedColumns: ITableColumn[] = [
+    {
+      name: 'Name of Club',
+      dataKey: 'nameOfClub',
+      isSortable: false
+    },
+    {
+      name: 'Classification',
+      dataKey: 'classification'
+    },
+    {
+      name: 'Type of Club',
+      dataKey: 'typeOfClub'
+    },
+    {
+      name: 'Club Acronym',
+      dataKey: 'acronym'
+    },
+    {
+      name: 'Active?',
+      dataKey: 'inactive',
+      type: ColumnTypes.INACTIVE
+    },
+    {
+      name: 'Last Modified',
+      dataKey: 'timestamp',
+      type: ColumnTypes.DATE
+    }
+  ];
+  dataSource: PagedResponseModel<Organization> = {} as PagedResponseModel<any>;
+  isLoading: boolean = false;
 
   constructor(private router: Router, private orgService: OrganizationService) {}
 
   ngOnInit(): void {
     this.initializeData();
-    this.initializeColumns();
   }
 
   private initializeData() {
-    this.orgService.getOrganizations().subscribe((response :PagedResponseModel<Organization>) => {
-      this.setData(response.data)
+    this.orgService.getOrganizations().subscribe((response: PagedResponseModel<Organization>) => {
+      this.dataSource = response;
     })
-
-    /*this.http.getRequest(Path_Api.ORGANIZATIONS).subscribe((response: IOrganization[]) => {
-      this.setData(response);
-    });*/
-  }
-
-  private setData(data: Organization[]) {
-    this.dataSource = data;
-  }
-
-  private initializeColumns() {
-    this.displayedColumns = [
-      {
-        name: 'Name of Club',
-        dataKey: 'nameOfClub',
-        isSortable: true
-      },
-      {
-        name: 'Classification',
-        dataKey: 'classification'
-      },
-      {
-        name: 'Type of Club',
-        dataKey: 'typeOfClub'
-      },
-      {
-        name: 'Club Acronym',
-        dataKey: 'acronym'
-      },
-      {
-        name: 'Active?',
-        dataKey: 'inactive',
-        type: ColumnTypes.INACTIVE
-      },
-      {
-        name: 'Last Modified',
-        dataKey: 'timestamp',
-        type: ColumnTypes.DATE
-      }
-    ];
   }
 
   onClickedRow(row: Organization) {
     this.router.navigate([`${Path_Api.ORGANIZATION}/${row.nameOfClub}`]);
+  }
+
+  onTableEvent($event: any) {
+    console.log($event);
+    if($event.type === 'PageChange') {
+      this.isLoading = true;
+      this.orgService.getOrganizations({page: $event.data.pageIndex + 1, rpp: 10}).subscribe((response: PagedResponseModel<Organization>) => {
+        this.isLoading = false;
+        this.dataSource = response;
+      })
+    }
   }
 }

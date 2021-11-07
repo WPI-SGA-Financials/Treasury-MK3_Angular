@@ -1,1 +1,58 @@
-<p>http-pageable-table works!</p>
+<ng-container>
+  <div *ngIf='isLoadingResults' class='loader'>
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <ng-container>
+      <!-- Table -->
+      <table mat-table matSort [matSortActive]='activeSort.dataKey' [matSortDirection]='activeSort.direction'
+             [dataSource]='tableData.data'>
+        <!-- Column Creator -->
+        <ng-container *ngFor='let tableColumn of tableColumns' [matColumnDef]='tableColumn.name'>
+          <!-- Sortable Columns-->
+          <ng-container *ngIf='tableColumn.isSortable; else notSortable'>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header='{{tableColumn.dataKey}}'>{{tableColumn.name}}</th>
+          </ng-container>
+
+          <!-- Else -->
+          <ng-template #notSortable>
+            <th mat-header-cell *matHeaderCellDef>{{tableColumn.name}}</th>
+          </ng-template>
+
+          <ng-container [ngSwitch]='tableColumn.type'>
+            <ng-template [ngSwitchCase]='DATE'>
+              <td mat-cell *matCellDef='let element'>{{ element[tableColumn.dataKey] | date }}</td>
+            </ng-template>
+            <ng-template [ngSwitchCase]='CURRENCY'>
+              <td mat-cell *matCellDef='let element'>{{ element[tableColumn.dataKey] | currency }}</td>
+            </ng-template>
+            <ng-template [ngSwitchCase]='INACTIVE'>
+              <td mat-cell *matCellDef='let element'>
+                <mat-icon
+                  [ngClass]="{'activeClub': !element[tableColumn.dataKey],
+                          'inactiveClub': element[tableColumn.dataKey]}">
+                  {{ element[tableColumn.dataKey] | activeClub }}</mat-icon>
+              </td>
+            </ng-template>
+            <ng-template ngSwitchDefault>
+              <td mat-cell *matCellDef='let element'>{{ element[tableColumn.dataKey] }}</td>
+            </ng-template>
+          </ng-container>
+
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+        <tr mat-row (click)='emitRowAction(row)' *matRowDef='let row; columns: displayedColumns'></tr>
+      </table>
+
+      <mat-paginator [length]='tableData.maxResults'
+                     [pageIndex]='tableData.pageNumber-1'
+                     [pageSizeOptions]='paginationSizes'
+                     [pageSize]='defaultPageSize'
+                     showFirstLastButtons>
+      </mat-paginator>
+
+  </ng-container>
+</ng-container>
+

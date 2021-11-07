@@ -7,7 +7,7 @@ import { HttpPageableTableComponent } from './http-pageable-table/http-pageable-
 
 @NgModule({
   declarations: [ReusableTableComponent, HttpPageableTableComponent],
-  exports: [ReusableTableComponent],
+  exports: [ReusableTableComponent, HttpPageableTableComponent],
   imports: [CommonModule, SharedMaterialComponentsModule, SharedPipesModule]
 })
 export class ReusableTableModule {}
