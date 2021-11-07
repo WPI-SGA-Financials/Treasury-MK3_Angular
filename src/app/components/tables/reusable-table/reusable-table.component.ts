@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { IActiveSort, ITableColumn, ColumnTypes } from '../../types/itable-column.interface';
+import { IActiveSort, ITableColumn, ColumnTypes } from '../../../types/itable-column.interface';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({

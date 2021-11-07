@@ -9,7 +9,7 @@ import { BudgetsComponent } from './budgets/budgets.component';
 import { FundingRequestsComponent } from './funding-requests/funding-requests.component';
 import { ReallocationsComponent } from './reallocations/reallocations.component';
 import { SharedMaterialComponentsModule } from '../../components/shared-material-components.module';
-import { ReusableTableModule } from '../../components/reusable-table/reusable-table.module';
+import { ReusableTableModule } from '../../components/tables/reusable-table.module';
 
 @NgModule({
   declarations: [OrganizationComponent, InfoComponent, TabsComponent, BudgetsComponent, FundingRequestsComponent, ReallocationsComponent],
