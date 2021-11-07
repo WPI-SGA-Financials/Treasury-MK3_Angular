@@ -1,7 +1,7 @@
-<app-reusable-table
+<app-http-pageable-table
   [tableData]='dataSource'
   [tableColumns]='displayedColumns'
-  [isPageable]='true'
-  [isSortable]='true'
+  [isLoadingResults]='isLoading'
   (rowAction)='onClickedRow($event)'
-></app-reusable-table>
+  (tableEvent)='onTableEvent($event)'
+></app-http-pageable-table>

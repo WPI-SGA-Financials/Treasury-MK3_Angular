@@ -41,7 +41,7 @@ export class ClubsTableComponent implements OnInit {
       type: ColumnTypes.DATE
     }
   ];
-  dataSource: PagedResponseModel<Organization> = {} as PagedResponseModel<any>;
+  dataSource: PagedResponseModel<Organization> = {} as PagedResponseModel<Organization>;
   isLoading: boolean = false;
 
   constructor(private router: Router, private orgService: OrganizationService) {}
@@ -61,7 +61,6 @@ export class ClubsTableComponent implements OnInit {
   }
 
   onTableEvent($event: any) {
-    console.log($event);
     if($event.type === 'PageChange') {
       this.isLoading = true;
       this.orgService.getOrganizations({page: $event.data.pageIndex + 1, rpp: 10}).subscribe((response: PagedResponseModel<Organization>) => {

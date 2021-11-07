@@ -12,58 +12,50 @@ import { PagedResponseModel } from '../../../types/paged-response.model';
   styleUrls: ['./reallocations.component.scss']
 })
 export class ReallocationsComponent implements OnInit {
-  displayedColumns: ITableColumn[] = [];
-  dataSource: Reallocation[] = [];
+  displayedColumns: ITableColumn[] = [
+    {
+      name: 'Name of Club',
+      dataKey: 'nameOfClub',
+      isSortable: true
+    },
+    {
+      name: 'Hearing Date',
+      dataKey: 'hearingDate',
+      isSortable: true,
+      type: ColumnTypes.DATE
+    },
+    {
+      name: 'Fiscal Year',
+      dataKey: 'fiscalYear'
+    },
+    {
+      name: 'Allocation Amount',
+      dataKey: 'allocationAmount',
+      type: ColumnTypes.CURRENCY
+    },
+    {
+      name: 'Decision',
+      dataKey: 'decision'
+    },
+    {
+      name: 'Amount Approved',
+      dataKey: 'amountApproved',
+      type: ColumnTypes.CURRENCY
+    }
+  ];
+  dataSource: PagedResponseModel<Reallocation> = {} as PagedResponseModel<Reallocation>
+  isLoading: boolean = false;
 
   constructor(private reallocService: ReallocationRequestService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initializeData();
-    this.initializeColumns();
   }
 
   private initializeData() {
     this.reallocService.getReallocations().subscribe((response: PagedResponseModel<Reallocation>) => {
-      this.setData(response.data)
+      this.dataSource = response;
     })
-  }
-
-  private setData(data: Reallocation[]) {
-    this.dataSource = data;
-  }
-
-  private initializeColumns() {
-    this.displayedColumns = [
-      {
-        name: 'Name of Club',
-        dataKey: 'nameOfClub',
-        isSortable: true
-      },
-      {
-        name: 'Hearing Date',
-        dataKey: 'hearingDate',
-        isSortable: true,
-        type: ColumnTypes.DATE
-      },
-      {
-        name: 'Fiscal Year',
-        dataKey: 'fiscalYear'
-      },
-      {
-        name: 'Allocation Amount',
-        dataKey: 'allocationAmount',
-        type: ColumnTypes.CURRENCY
-      },
-      {
-        name: 'Decision',
-        dataKey: 'decision'
-      },
-      {
-        name: 'Amount Approved',
-        dataKey: 'amountApproved',
-        type: ColumnTypes.CURRENCY
-      }
-    ];
   }
 
   onClickedRow(row: any) {
@@ -75,5 +67,15 @@ export class ReallocationsComponent implements OnInit {
       maxWidth: '40%',
       minWidth: '30%'
     });
+  }
+
+  onTableEvent($event: any) {
+    if($event.type === 'PageChange') {
+      this.isLoading = true;
+      this.reallocService.getReallocations({page: $event.data.pageIndex + 1, rpp: 10}).subscribe((response: PagedResponseModel<Reallocation>) => {
+        this.isLoading = false;
+        this.dataSource = response;
+      })
+    }
   }
 }

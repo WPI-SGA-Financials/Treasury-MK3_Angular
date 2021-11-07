@@ -12,57 +12,48 @@ import { PagedResponseModel } from '../../../types/paged-response.model';
   styleUrls: ['./budgets.component.scss']
 })
 export class BudgetsComponent implements OnInit {
-  displayedColumns: ITableColumn[] = [];
-  dataSource: Budget[] = [];
+  displayedColumns: ITableColumn[] = [
+    {
+      name: 'Name of Club',
+      dataKey: 'nameOfClub',
+    },
+    {
+      name: 'Fiscal Year',
+      dataKey: 'fiscalYear'
+    },
+    {
+      name: 'Number of Items',
+      dataKey: 'numOfItems'
+    },
+    {
+      name: 'Amount Requested',
+      dataKey: 'amountRequested',
+      type: ColumnTypes.CURRENCY
+    },
+    {
+      name: 'Amount Proposed',
+      dataKey: 'amountProposed',
+      type: ColumnTypes.CURRENCY
+    },
+    {
+      name: 'Amount Approved',
+      dataKey: 'amountApproved',
+      type: ColumnTypes.CURRENCY
+    }
+  ];
+  dataSource: PagedResponseModel<Budget> = {} as PagedResponseModel<Budget>
+  isLoading: boolean = false;
 
   constructor(private budgetService: BudgetService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initializeData();
-    this.initializeColumns();
   }
 
   private initializeData() {
     this.budgetService.getBudgets().subscribe((response: PagedResponseModel<Budget>) => {
-      this.setData(response.data)
+      this.dataSource = response
     })
-  }
-
-  private setData(data: Budget[]) {
-    this.dataSource = data;
-  }
-
-  private initializeColumns() {
-    this.displayedColumns = [
-      {
-        name: 'Name of Club',
-        dataKey: 'nameOfClub',
-        isSortable: true
-      },
-      {
-        name: 'Fiscal Year',
-        dataKey: 'fiscalYear'
-      },
-      {
-        name: 'Number of Items',
-        dataKey: 'numOfItems'
-      },
-      {
-        name: 'Amount Requested',
-        dataKey: 'amountRequested',
-        type: ColumnTypes.CURRENCY
-      },
-      {
-        name: 'Amount Proposed',
-        dataKey: 'amountProposed',
-        type: ColumnTypes.CURRENCY
-      },
-      {
-        name: 'Amount Approved',
-        dataKey: 'amountApproved',
-        type: ColumnTypes.CURRENCY
-      }
-    ];
   }
 
   onClickedRow(row: any) {
@@ -74,5 +65,15 @@ export class BudgetsComponent implements OnInit {
       maxWidth: '40%',
       minWidth: '30%'
     });
+  }
+
+  onTableEvent($event: any) {
+    if($event.type === 'PageChange') {
+      this.isLoading = true;
+      this.budgetService.getBudgets({page: $event.data.pageIndex + 1, rpp: 10}).subscribe((response: PagedResponseModel<Budget>) => {
+        this.isLoading = false;
+        this.dataSource = response;
+      })
+    }
   }
 }
