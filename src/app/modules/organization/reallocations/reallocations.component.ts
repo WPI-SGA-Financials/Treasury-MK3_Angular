@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ColumnTypes, IActiveSort, ITableColumn } from '../../../types/itable-column.interface';
 import { OrgDataService } from '../../../services/org-data.service';
 import { Reallocation } from '../../../types/reallocation.model';
 import { ReallocationRequestPopupComponent } from '../../../components/popups/reallocation-request-popup/reallocation-request-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ReallocationRequestService } from '../../../services/api-services/reallocation-request.service';
 import { ResponseModel } from '../../../types/response.model';
+import { IActiveSort, ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ColumnTypes } from '../../../components/tables/types/table-enums';
 
 @Component({
   selector: 'app-org-reallocations',
@@ -18,7 +19,6 @@ export class ReallocationsComponent implements OnInit {
   private _clubName: string = '';
 
   activeSort: IActiveSort = {
-    isActive: false,
     dataKey: 'hearingDate',
     direction: 'desc'
   };

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { OrgDataService } from '../../../services/org-data.service';
 import { FundingRequest } from '../../../types/funding-request.model';
 import { FundingRequestPopupComponent } from '../../../components/popups/funding-request-popup/funding-request-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FundingRequestService } from '../../../services/api-services/funding-request.service';
 import { ResponseModel } from '../../../types/response.model';
+import { ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ColumnTypes } from '../../../components/tables/types/table-enums';
 
 @Component({
   selector: 'app-org-funding-requests',

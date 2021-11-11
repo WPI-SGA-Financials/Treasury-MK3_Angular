@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Reallocation } from '../../../types/reallocation.model';
-import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { ReallocationRequestPopupComponent } from '../../../components/popups/reallocation-request-popup/reallocation-request-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ReallocationRequestService } from '../../../services/api-services/reallocation-request.service';
 import { PagedResponseModel } from '../../../types/paged-response.model';
+import { ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ColumnTypes } from '../../../components/tables/types/table-enums';
 
 @Component({
   selector: 'app-reallocations',

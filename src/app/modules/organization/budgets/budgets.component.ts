@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ColumnTypes, IActiveSort, ITableColumn } from '../../../types/itable-column.interface';
 import { Budget } from '../../../types/budget.model';
 import { OrgDataService } from '../../../services/org-data.service';
 import { BudgetPopupComponent } from '../../../components/popups/budget-popup/budget-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { BudgetService } from '../../../services/api-services/budget.service';
 import { ResponseModel } from '../../../types/response.model';
+import { IActiveSort, ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ColumnTypes } from '../../../components/tables/types/table-enums';
 
 @Component({
   selector: 'app-org-budgets',
@@ -18,7 +19,6 @@ export class BudgetsComponent implements OnInit {
   private _clubName: string = '';
 
   activeSort: IActiveSort = {
-    isActive: false,
     dataKey: 'fiscalYear',
     direction: 'desc'
   };

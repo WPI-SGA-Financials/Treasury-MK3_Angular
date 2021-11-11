@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Budget } from '../../../types/budget.model';
-import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { BudgetPopupComponent } from '../../../components/popups/budget-popup/budget-popup.component';
 import { BudgetService } from '../../../services/api-services/budget.service';
 import { PagedResponseModel } from '../../../types/paged-response.model';
+import { ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ColumnTypes } from '../../../components/tables/types/table-enums';
 
 @Component({
   selector: 'app-budgets',

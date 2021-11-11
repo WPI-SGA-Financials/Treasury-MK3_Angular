@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FundingRequest } from '../../../types/funding-request.model';
-import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { FundingRequestPopupComponent } from '../../../components/popups/funding-request-popup/funding-request-popup.component';
 import { FundingRequestService } from '../../../services/api-services/funding-request.service';
 import { PagedResponseModel } from '../../../types/paged-response.model';
+import { ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ColumnTypes } from '../../../components/tables/types/table-enums';
 
 @Component({
   selector: 'app-funding-requests',

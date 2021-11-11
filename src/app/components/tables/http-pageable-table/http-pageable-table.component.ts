@@ -2,8 +2,9 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChil
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { ColumnTypes, IActiveSort, ITableColumn } from '../../../types/itable-column.interface';
 import { PagedResponseModel } from '../../../types/paged-response.model';
+import { IActiveSort, ITableColumn } from '../types/table-interfaces';
+import { ColumnTypes } from '../types/table-enums';
 
 @Component({
   selector: 'app-http-pageable-table',
@@ -22,7 +23,7 @@ export class HttpPageableTableComponent implements OnInit, AfterViewInit {
   @Input() tableColumns: ITableColumn[] = [];
   @Input() paginationSizes: number[] = [10];
   @Input() defaultPageSize = 10;
-  @Input() activeSort: IActiveSort = { isActive: false, dataKey: '', direction: 'desc' };
+  @Input() activeSort: IActiveSort = { dataKey: '', direction: 'desc' };
   // Pass down pageable response and handle setting index and such
   @Input() tableData: PagedResponseModel<any> = {} as PagedResponseModel<any>;
 

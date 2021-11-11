@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { OrganizationService } from '../../../services/api-services/organization.service';
 import { Path_Api } from '../../../types/path.enum';
 import { Organization } from '../../../types/organization.model';
-import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { Router } from '@angular/router';
 import { PagedResponseModel } from '../../../types/paged-response.model';
+import { ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ColumnTypes } from '../../../components/tables/types/table-enums';
 
 @Component({
   selector: 'app-clubs-table',
