@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Budget } from '../../../types/budget.model';
-import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { BudgetPopupComponent } from '../../../components/popups/budget-popup/budget-popup.component';
 import { BudgetService } from '../../../services/api-services/budget.service';
 import { PagedResponseModel } from '../../../types/paged-response.model';
+import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
 
 @Component({
   selector: 'app-budgets',
@@ -43,6 +44,12 @@ export class BudgetsComponent implements OnInit {
   ];
   dataSource: PagedResponseModel<Budget> = {} as PagedResponseModel<Budget>
   isLoading: boolean = false;
+  actionItems: IActions[] = [
+    {
+      displayName: 'View',
+      actionType: ActionButtonType.VIEW
+    }
+  ];
 
   constructor(private budgetService: BudgetService, private dialog: MatDialog) {}
 
@@ -56,15 +63,17 @@ export class BudgetsComponent implements OnInit {
     })
   }
 
-  onClickedRow(row: any) {
-    this.dialog.open(BudgetPopupComponent, {
-      data: {
-        id: row.id,
-        fromOrgView: false
-      },
-      maxWidth: '40%',
-      minWidth: '30%'
-    });
+  onButtonClicked($event: IActionEvent<Budget>) {
+    if($event.type === ActionButtonType.VIEW) {
+      this.dialog.open(BudgetPopupComponent, {
+        data: {
+          id: $event.data.id,
+          fromOrgView: false
+        },
+        maxWidth: '40%',
+        minWidth: '30%'
+      });
+    }
   }
 
   onTableEvent($event: any) {

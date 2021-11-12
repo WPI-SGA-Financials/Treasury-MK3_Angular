@@ -2,6 +2,7 @@
  [tableData]='dataSource'
  [tableColumns]='displayedColumns'
  [isLoadingResults]='isLoading'
- (rowAction)='onClickedRow($event)'
+ [actionItems]='actionItems'
+ (rowAction)='onButtonClicked($event)'
  (tableEvent)='onTableEvent($event)'
 ></app-http-pageable-table>

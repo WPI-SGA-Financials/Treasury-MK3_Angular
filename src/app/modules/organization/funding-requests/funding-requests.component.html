@@ -5,6 +5,7 @@
   [paginationSizes]='[6]'
   [defaultPageSize]='6'
   [isSortable]='true'
-  (rowAction)='onClickedRow($event)'
+  [actionItems]='actionItems'
+  (rowAction)='onButtonClicked($event)'
 ></app-reusable-table>
 

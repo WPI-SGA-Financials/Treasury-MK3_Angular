@@ -5,14 +5,12 @@
   & table {
     width: 100%;
 
-    & .mat-row .mat-cell {
-      border-bottom: 1px solid transparent;
-      border-top: 1px solid transparent;
-      cursor: pointer;
-    }
+    & .actions-cell {
+      text-align: right;
 
-    & .mat-row:hover .mat-cell {
-      border-color: currentColor;
+      & button:first-of-type {
+        margin-right: 1rem;
+      }
     }
   }
 }

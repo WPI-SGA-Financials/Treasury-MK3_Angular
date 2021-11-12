@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ColumnTypes, ITableColumn } from '../../../types/itable-column.interface';
 import { OrgDataService } from '../../../services/org-data.service';
 import { FundingRequest } from '../../../types/funding-request.model';
 import { FundingRequestPopupComponent } from '../../../components/popups/funding-request-popup/funding-request-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FundingRequestService } from '../../../services/api-services/funding-request.service';
 import { ResponseModel } from '../../../types/response.model';
+import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
+import { Budget } from '../../../types/budget.model';
 
 @Component({
   selector: 'app-org-funding-requests',
@@ -16,6 +18,12 @@ export class FundingRequestsComponent implements OnInit {
   displayedColumns: ITableColumn[] = [];
   dataSource: FundingRequest[] = [];
   private _clubName: string = '';
+  actionItems: IActions[] = [
+    {
+      displayName: 'View',
+      actionType: ActionButtonType.VIEW
+    }
+  ];
 
   constructor(private frService: FundingRequestService, private orgDataService: OrgDataService, private dialog: MatDialog) {
     this._clubName = this.orgDataService.getOrgName();
@@ -72,14 +80,16 @@ export class FundingRequestsComponent implements OnInit {
     ];
   }
 
-  onClickedRow(row: any) {
-    this.dialog.open(FundingRequestPopupComponent, {
-      data: {
-        id: row.id,
-        fromOrgView: true
-      },
-      maxWidth: '40%',
-      minWidth: '30%'
-    });
+  onButtonClicked($event: IActionEvent<FundingRequest>) {
+    if ($event.type === ActionButtonType.VIEW) {
+      this.dialog.open(FundingRequestPopupComponent, {
+        data: {
+          id: $event.data.id,
+          fromOrgView: true
+        },
+        maxWidth: '40%',
+        minWidth: '30%'
+      });
+    }
   }
 }
