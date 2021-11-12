@@ -5,8 +5,9 @@ import { ReallocationRequestPopupComponent } from '../../../components/popups/re
 import { MatDialog } from '@angular/material/dialog';
 import { ReallocationRequestService } from '../../../services/api-services/reallocation-request.service';
 import { ResponseModel } from '../../../types/response.model';
-import { IActiveSort, ITableColumn } from '../../../components/tables/types/table-interfaces';
-import { ColumnTypes } from '../../../components/tables/types/table-enums';
+import { IActionEvent, IActions, IActiveSort, ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
+import { Budget } from '../../../types/budget.model';
 
 @Component({
   selector: 'app-org-reallocations',
@@ -22,6 +23,12 @@ export class ReallocationsComponent implements OnInit {
     dataKey: 'hearingDate',
     direction: 'desc'
   };
+  actionItems: IActions[] = [
+    {
+      displayName: 'View',
+      actionType: ActionButtonType.VIEW
+    }
+  ];
 
   constructor(private reallocService: ReallocationRequestService, private orgDataService: OrgDataService, private dialog: MatDialog) {
     this._clubName = this.orgDataService.getOrgName();
@@ -78,14 +85,16 @@ export class ReallocationsComponent implements OnInit {
     ];
   }
 
-  onClickedRow(row: any) {
-    this.dialog.open(ReallocationRequestPopupComponent, {
-      data: {
-        id: row.id,
-        fromOrgView: true
-      },
-      maxWidth: '40%',
-      minWidth: '30%'
-    });
+  onButtonClicked($event: IActionEvent<Reallocation>) {
+    if ($event.type === ActionButtonType.VIEW) {
+      this.dialog.open(ReallocationRequestPopupComponent, {
+        data: {
+          id: $event.data.id,
+          fromOrgView: true
+        },
+        maxWidth: '40%',
+        minWidth: '30%'
+      });
+    }
   }
 }

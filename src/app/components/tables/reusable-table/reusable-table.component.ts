@@ -2,8 +2,8 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChil
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IActiveSort, ITableColumn } from '../types/table-interfaces';
-import { ColumnTypes } from '../types/table-enums';
+import { IActions, IActiveSort, ITableColumn } from '../types/table-interfaces';
+import { ActionButtonType, ColumnTypes } from '../types/table-enums';
 
 @Component({
   selector: 'app-reusable-table',
@@ -24,6 +24,7 @@ export class ReusableTableComponent implements OnInit, AfterViewInit {
   @Input() paginationSizes: number[] = [10];
   @Input() defaultPageSize = 10;
   @Input() activeSort: IActiveSort = { dataKey: '', direction: 'desc' };
+  @Input() actionItems: IActions[] = [];
 
   @Output() rowAction: EventEmitter<any> = new EventEmitter<any>();
 
@@ -33,21 +34,31 @@ export class ReusableTableComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  DATE = ColumnTypes.DATE;
-  CURRENCY = ColumnTypes.CURRENCY;
-  INACTIVE = ColumnTypes.INACTIVE;
+  DATE: ColumnTypes = ColumnTypes.DATE;
+  CURRENCY: ColumnTypes = ColumnTypes.CURRENCY;
+  INACTIVE: ColumnTypes = ColumnTypes.INACTIVE;
+
+  ATYPES_VIEW: ActionButtonType = ActionButtonType.VIEW;
 
   constructor() {}
 
   ngOnInit(): void {
     this.displayedColumns = this.tableColumns.map((tableColumn: ITableColumn) => tableColumn.name);
+
+    if (this.actionItems != null && this.actionItems.length > 0) {
+      this.displayedColumns = [...this.displayedColumns, 'actionItems'];
+    }
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
-  emitRowAction(row: any) {
-    this.rowAction.emit(row);
+  emitButtonClick($event: MouseEvent, element: any, actionType: ActionButtonType) {
+    $event.stopPropagation();
+    this.rowAction.emit({
+      type: actionType,
+      data: element,
+    });
   }
 }

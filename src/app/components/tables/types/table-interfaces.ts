@@ -5,9 +5,9 @@ export interface IActions {
   actionType: ActionButtonType;
 }
 
-export interface IActionEvent {
+export interface IActionEvent<T> {
   type: ActionButtonType;
-  data: any;
+  data: T;
 }
 
 export interface ITableColumn {

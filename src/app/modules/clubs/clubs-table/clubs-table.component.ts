@@ -4,8 +4,8 @@ import { Path_Api } from '../../../types/path.enum';
 import { Organization } from '../../../types/organization.model';
 import { Router } from '@angular/router';
 import { PagedResponseModel } from '../../../types/paged-response.model';
-import { ITableColumn } from '../../../components/tables/types/table-interfaces';
-import { ColumnTypes } from '../../../components/tables/types/table-enums';
+import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
 
 @Component({
   selector: 'app-clubs-table',
@@ -44,6 +44,12 @@ export class ClubsTableComponent implements OnInit {
   ];
   dataSource: PagedResponseModel<Organization> = {} as PagedResponseModel<Organization>;
   isLoading: boolean = false;
+  actionItems: IActions[] = [
+    {
+      displayName: 'View',
+      actionType: ActionButtonType.VIEW
+    }
+  ];
 
   constructor(private router: Router, private orgService: OrganizationService) {}
 
@@ -57,8 +63,10 @@ export class ClubsTableComponent implements OnInit {
     })
   }
 
-  onClickedRow(row: Organization) {
-    this.router.navigate([`${Path_Api.ORGANIZATION}/${row.nameOfClub}`]);
+  onButtonClicked($event: IActionEvent<Organization>) {
+    if($event.type === ActionButtonType.VIEW) {
+      this.router.navigate([`${Path_Api.ORGANIZATION}/${$event.data.nameOfClub}`]);
+    }
   }
 
   onTableEvent($event: any) {

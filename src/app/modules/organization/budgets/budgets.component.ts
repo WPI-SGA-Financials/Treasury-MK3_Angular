@@ -5,8 +5,8 @@ import { BudgetPopupComponent } from '../../../components/popups/budget-popup/bu
 import { MatDialog } from '@angular/material/dialog';
 import { BudgetService } from '../../../services/api-services/budget.service';
 import { ResponseModel } from '../../../types/response.model';
-import { IActiveSort, ITableColumn } from '../../../components/tables/types/table-interfaces';
-import { ColumnTypes } from '../../../components/tables/types/table-enums';
+import { IActionEvent, IActions, IActiveSort, ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
 
 @Component({
   selector: 'app-org-budgets',
@@ -22,6 +22,12 @@ export class BudgetsComponent implements OnInit {
     dataKey: 'fiscalYear',
     direction: 'desc'
   };
+  actionItems: IActions[] = [
+    {
+      displayName: 'View',
+      actionType: ActionButtonType.VIEW
+    }
+  ];
 
   constructor(private budgetService: BudgetService, private orgDataService: OrgDataService, private dialog: MatDialog) {
     this._clubName = this.orgDataService.getOrgName();
@@ -71,14 +77,16 @@ export class BudgetsComponent implements OnInit {
     ];
   }
 
-  onClickedRow(row: any) {
-    this.dialog.open(BudgetPopupComponent, {
-      data: {
-        id: row.id,
-        fromOrgView: true
-      },
-      maxWidth: '40%',
-      minWidth: '30%'
-    });
+  onButtonClicked($event: IActionEvent<Budget>) {
+    if ($event.type === ActionButtonType.VIEW) {
+      this.dialog.open(BudgetPopupComponent, {
+        data: {
+          id: $event.data.id,
+          fromOrgView: true
+        },
+        maxWidth: '40%',
+        minWidth: '30%'
+      });
+    }
   }
 }

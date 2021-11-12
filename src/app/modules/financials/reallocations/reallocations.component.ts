@@ -4,8 +4,9 @@ import { ReallocationRequestPopupComponent } from '../../../components/popups/re
 import { MatDialog } from '@angular/material/dialog';
 import { ReallocationRequestService } from '../../../services/api-services/reallocation-request.service';
 import { PagedResponseModel } from '../../../types/paged-response.model';
-import { ITableColumn } from '../../../components/tables/types/table-interfaces';
-import { ColumnTypes } from '../../../components/tables/types/table-enums';
+import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
+import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
+import { Budget } from '../../../types/budget.model';
 
 @Component({
   selector: 'app-reallocations',
@@ -46,6 +47,12 @@ export class ReallocationsComponent implements OnInit {
   ];
   dataSource: PagedResponseModel<Reallocation> = {} as PagedResponseModel<Reallocation>
   isLoading: boolean = false;
+  actionItems: IActions[] = [
+    {
+      displayName: 'View',
+      actionType: ActionButtonType.VIEW
+    }
+  ];
 
   constructor(private reallocService: ReallocationRequestService, private dialog: MatDialog) {}
 
@@ -59,15 +66,17 @@ export class ReallocationsComponent implements OnInit {
     })
   }
 
-  onClickedRow(row: any) {
-    this.dialog.open(ReallocationRequestPopupComponent, {
-      data: {
-        id: row.id,
-        fromOrgView: false
-      },
-      maxWidth: '40%',
-      minWidth: '30%'
-    });
+  onButtonClicked($event: IActionEvent<Reallocation>) {
+    if($event.type === ActionButtonType.VIEW) {
+      this.dialog.open(ReallocationRequestPopupComponent, {
+        data: {
+          id: $event.data.id,
+          fromOrgView: false
+        },
+        maxWidth: '40%',
+        minWidth: '30%'
+      });
+    }
   }
 
   onTableEvent($event: any) {
