@@ -1,1 +1,14 @@
-<p>club-name works!</p>
+<form [formGroup]='formGroup' (ngSubmit)='onSubmit($event)' (click)='$event.stopPropagation()'>
+  <mat-form-field appearance='outline' floatLabel='always'>
+    <mat-label>Club Name</mat-label>
+    <input
+      matInput
+      type='text'
+      formControlName='clubName'
+      placeholder='ex: Cheese Club'
+    >
+    <mat-icon matSuffix (click)='onSubmit($event)'>search</mat-icon>
+  </mat-form-field>
+</form>
+
+

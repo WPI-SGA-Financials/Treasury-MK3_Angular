@@ -36,11 +36,11 @@ export class ClubsTableComponent implements OnInit {
       dataKey: 'inactive',
       type: ColumnTypes.INACTIVE
     },
-    {
-      name: 'Last Modified',
-      dataKey: 'timestamp',
-      type: ColumnTypes.DATE
-    }
+    // {
+    //   name: 'Last Modified',
+    //   dataKey: 'timestamp',
+    //   type: ColumnTypes.DATE
+    // }
   ];
   dataSource: PagedResponseModel<Organization> = {} as PagedResponseModel<Organization>;
   isLoading: boolean = false;
@@ -58,7 +58,9 @@ export class ClubsTableComponent implements OnInit {
   }
 
   private initializeData() {
+    this.isLoading = true;
     this.orgService.getOrganizations().subscribe((response: PagedResponseModel<Organization>) => {
+      this.isLoading = false;
       this.dataSource = response;
     })
   }

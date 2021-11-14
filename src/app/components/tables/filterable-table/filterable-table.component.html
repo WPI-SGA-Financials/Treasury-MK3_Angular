@@ -1,0 +1,38 @@
+<div class="parent">
+  <div class='filter-menu'>
+    <!--TODO: Add in Filter Menu (maybe use ng-content for passed in filters)-->
+    <div class='filter-menu-content'>
+      <ng-content>
+
+      </ng-content>
+    </div>
+
+  </div>
+  <div class='filter-bar'>
+    <!--TODO: Create chip-bar for storing all of our filters-->
+    <mat-chip-list>
+      <app-chip></app-chip>
+      <app-chip></app-chip>
+      <app-chip></app-chip>
+      <app-chip></app-chip>
+      <app-chip></app-chip>
+
+    </mat-chip-list>
+  </div>
+  <div class='table-container'>
+    <app-http-pageable-table
+    [isLoadingResults]='isLoadingResults'
+    [isSortable]='isSortable'
+    [tableColumns]='tableColumns'
+    [paginationSizes]='paginationSizes'
+    [defaultPageSize]='defaultPageSize'
+    [activeSort]='activeSort'
+    [tableData]='tableData'
+    [actionItems]='actionItems'
+    (rowAction)='emitButtonClick($event)'
+    (tableEvent)='emitTableEvent($event)'
+    ></app-http-pageable-table>
+  </div>
+</div>
+
+

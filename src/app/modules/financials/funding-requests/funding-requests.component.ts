@@ -64,7 +64,9 @@ export class FundingRequestsComponent implements OnInit {
   }
 
   private initializeData() {
+    this.isLoading = true;
     this.frService.getFundingRequests().subscribe((response: PagedResponseModel<FundingRequest>) => {
+      this.isLoading = false;
       this.dataSource = response;
     })
   }

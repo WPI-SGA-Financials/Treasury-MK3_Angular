@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClubInactiveComponent } from './club-inactive.component';
+import { ClubInactiveFilterComponent } from './club-inactive.component';
 
 describe('ClubInactiveComponent', () => {
-  let component: ClubInactiveComponent;
-  let fixture: ComponentFixture<ClubInactiveComponent>;
+  let component: ClubInactiveFilterComponent;
+  let fixture: ComponentFixture<ClubInactiveFilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ClubInactiveComponent]
+      declarations: [ClubInactiveFilterComponent]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClubInactiveComponent);
+    fixture = TestBed.createComponent(ClubInactiveFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

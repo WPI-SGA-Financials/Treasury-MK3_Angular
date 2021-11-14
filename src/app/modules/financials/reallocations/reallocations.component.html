@@ -1,8 +1,25 @@
-<app-http-pageable-table
+<!--<app-http-pageable-table
   [tableData]='dataSource'
   [tableColumns]='displayedColumns'
   [isLoadingResults]='isLoading'
   [actionItems]='actionItems'
   (rowAction)='onButtonClicked($event)'
   (tableEvent)='onTableEvent($event)'
-></app-http-pageable-table>
+></app-http-pageable-table>-->
+
+<app-filterable-table
+  [tableData]='dataSource'
+  [tableColumns]='displayedColumns'
+  [isLoadingResults]='isLoading'
+  [actionItems]='actionItems'
+  [paginationSizes]='[9]'
+  [defaultPageSize]='9'
+  (rowAction)='onButtonClicked($event)'
+  (tableEvent)='onTableEvent($event)'
+>
+  <h3>Table Filters</h3>
+  <hr />
+  <div class='filters'>
+    <app-club-name></app-club-name>
+  </div>
+</app-filterable-table>

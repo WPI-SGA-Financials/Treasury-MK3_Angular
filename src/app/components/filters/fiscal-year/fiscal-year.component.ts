@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './fiscal-year.component.html',
   styleUrls: ['./fiscal-year.component.scss']
 })
-export class FiscalYearComponent implements OnInit {
+export class FiscalYearFilterComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

@@ -61,7 +61,9 @@ export class ReallocationsComponent implements OnInit {
   }
 
   private initializeData() {
-    this.reallocService.getReallocations().subscribe((response: PagedResponseModel<Reallocation>) => {
+    this.isLoading = true;
+    this.reallocService.getReallocations({page: 1, rpp: 9}).subscribe((response: PagedResponseModel<Reallocation>) => {
+      this.isLoading = false;
       this.dataSource = response;
     })
   }
@@ -82,7 +84,7 @@ export class ReallocationsComponent implements OnInit {
   onTableEvent($event: any) {
     if($event.type === 'PageChange') {
       this.isLoading = true;
-      this.reallocService.getReallocations({page: $event.data.pageIndex + 1, rpp: 10}).subscribe((response: PagedResponseModel<Reallocation>) => {
+      this.reallocService.getReallocations({page: $event.data.pageIndex + 1, rpp: 9}).subscribe((response: PagedResponseModel<Reallocation>) => {
         this.isLoading = false;
         this.dataSource = response;
       })

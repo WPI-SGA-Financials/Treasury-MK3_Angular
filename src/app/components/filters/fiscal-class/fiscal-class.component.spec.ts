@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FiscalClassComponent } from './fiscal-class.component';
+import { FiscalClassFilterComponent } from './fiscal-class.component';
 
 describe('FiscalClassComponent', () => {
-  let component: FiscalClassComponent;
-  let fixture: ComponentFixture<FiscalClassComponent>;
+  let component: FiscalClassFilterComponent;
+  let fixture: ComponentFixture<FiscalClassFilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FiscalClassComponent]
+      declarations: [FiscalClassFilterComponent]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FiscalClassComponent);
+    fixture = TestBed.createComponent(FiscalClassFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

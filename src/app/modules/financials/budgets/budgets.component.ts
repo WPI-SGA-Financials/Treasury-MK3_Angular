@@ -58,7 +58,9 @@ export class BudgetsComponent implements OnInit {
   }
 
   private initializeData() {
+    this.isLoading = true;
     this.budgetService.getBudgets().subscribe((response: PagedResponseModel<Budget>) => {
+      this.isLoading = false;
       this.dataSource = response
     })
   }

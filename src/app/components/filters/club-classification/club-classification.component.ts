@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './club-classification.component.html',
   styleUrls: ['./club-classification.component.scss']
 })
-export class ClubClassificationComponent implements OnInit {
+export class ClubClassificationFilterComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
