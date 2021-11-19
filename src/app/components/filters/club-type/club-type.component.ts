@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-club-type',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./club-type.component.scss']
 })
 export class ClubTypeFilterComponent implements OnInit {
+  @Output()
+  search: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() {}
 
   ngOnInit(): void {}

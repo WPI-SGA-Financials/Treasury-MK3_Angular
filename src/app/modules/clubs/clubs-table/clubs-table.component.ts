@@ -101,8 +101,6 @@ export class ClubsTableComponent implements OnInit {
 
     let value = this.pagedRequest[$event.filterName].find((element: string) => element === $event.filterValue);
 
-    console.log(value);
-
     if(value === undefined) {
       this.filters.push($event)
       this.pagedRequest[$event.filterName].push($event.filterValue);

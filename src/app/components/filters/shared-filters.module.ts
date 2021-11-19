@@ -9,6 +9,7 @@ import { FiscalYearFilterComponent } from './fiscal-year/fiscal-year.component';
 import { SharedMaterialComponentsModule } from '../shared-material-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChipComponent } from './chip/chip.component';
+import { ClubAcronymFilterComponent } from './club-acronym/club-acronym.component';
 
 let filters = [
   ClubClassificationFilterComponent,
@@ -17,7 +18,8 @@ let filters = [
   ClubTypeFilterComponent,
   FiscalClassFilterComponent,
   FiscalYearFilterComponent,
-  ChipComponent
+  ChipComponent,
+  ClubAcronymFilterComponent,
 ];
 
 @NgModule({

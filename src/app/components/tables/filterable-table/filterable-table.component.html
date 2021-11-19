@@ -1,15 +1,11 @@
 <div class="parent">
   <div class='filter-menu'>
-    <!--TODO: Add in Filter Menu (maybe use ng-content for passed in filters)-->
     <div class='filter-menu-content'>
       <ng-content>
-
       </ng-content>
     </div>
-
   </div>
   <div class='filter-bar'>
-    <!--TODO: Create chip-bar for storing all of our filters-->
     <mat-chip-list>
       <app-chip *ngFor='let filter of filters' [filter]='filter'></app-chip>
     </mat-chip-list>

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://localhost:5001/api/v1/'
+  // apiURL: 'https://localhost:5001/api/v1/'
+  apiURL: 'https://treasurydevapi.duckdns.org/api/v1/'
 };
 
 /*
