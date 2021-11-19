@@ -19,3 +19,9 @@ export const FILTER_DISPLAY_NAME = {
   [FILTER.FISCAL_YEAR]: 'Fiscal Year',
   [FILTER.REQUESTED_AMOUNT]: 'Requested Amount'
 };
+
+export interface IFilter {
+  filterName: string,
+  filterDisplayName: string,
+  filterValue: any;
+}

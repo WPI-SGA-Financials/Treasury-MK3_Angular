@@ -6,7 +6,7 @@ import { ReallocationRequestService } from '../../../services/api-services/reall
 import { PagedResponseModel } from '../../../types/paged-response.model';
 import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
 import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
-import { Budget } from '../../../types/budget.model';
+import { IFilter } from '../../../components/filters/types/filter';
 
 @Component({
   selector: 'app-reallocations',
@@ -89,5 +89,11 @@ export class ReallocationsComponent implements OnInit {
         this.dataSource = response;
       })
     }
+  }
+
+  onSearch($event: IFilter) {
+    // TODO Do something with search
+
+    console.log($event);
   }
 }

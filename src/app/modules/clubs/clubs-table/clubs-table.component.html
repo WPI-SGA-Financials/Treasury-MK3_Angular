@@ -1,8 +1,19 @@
-<app-http-pageable-table
+<app-filterable-table
  [tableData]='dataSource'
  [tableColumns]='displayedColumns'
  [isLoadingResults]='isLoading'
  [actionItems]='actionItems'
+ [paginationSizes]='[9]'
+ [defaultPageSize]='9'
+ [filters]='filters'
  (rowAction)='onButtonClicked($event)'
  (tableEvent)='onTableEvent($event)'
-></app-http-pageable-table>
+>
+  <h3>Table Filters</h3>
+  <hr />
+  <div class='filters'>
+    <app-club-name
+      (search)='onSearch($event)'
+    ></app-club-name>
+  </div>
+</app-filterable-table>

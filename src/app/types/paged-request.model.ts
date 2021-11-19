@@ -13,4 +13,6 @@ export interface PagedRequestModel {
   fiscalClass?: string;
   fiscalYear?: number;
   requestedAmount?: number;
+
+  [key: string]: any
 }

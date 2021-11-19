@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { PagedResponseModel } from '../../../types/paged-response.model';
 import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
 import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
+import { FILTER, IFilter } from '../../../components/filters/types/filter';
+import { PagedRequestModel } from '../../../types/paged-request.model';
 
 @Component({
   selector: 'app-clubs-table',
@@ -50,6 +52,17 @@ export class ClubsTableComponent implements OnInit {
       actionType: ActionButtonType.VIEW
     }
   ];
+  filters: IFilter[] = [];
+
+  pagedRequest: PagedRequestModel = {
+    acronym: [],
+    classification: [],
+    includeInactive: false,
+    name: [],
+    page: 1,
+    rpp: 9,
+    type: []
+  }
 
   constructor(private router: Router, private orgService: OrganizationService) {}
 
@@ -59,7 +72,7 @@ export class ClubsTableComponent implements OnInit {
 
   private initializeData() {
     this.isLoading = true;
-    this.orgService.getOrganizations().subscribe((response: PagedResponseModel<Organization>) => {
+    this.orgService.getOrganizations(this.pagedRequest).subscribe((response: PagedResponseModel<Organization>) => {
       this.isLoading = false;
       this.dataSource = response;
     })
@@ -73,11 +86,36 @@ export class ClubsTableComponent implements OnInit {
 
   onTableEvent($event: any) {
     if($event.type === 'PageChange') {
-      this.isLoading = true;
-      this.orgService.getOrganizations({page: $event.data.pageIndex + 1, rpp: 10}).subscribe((response: PagedResponseModel<Organization>) => {
-        this.isLoading = false;
-        this.dataSource = response;
-      })
+      this.pagedRequest.page = $event.data.pageIndex + 1;
+
+      this.updateTableData();
     }
+  }
+
+  onSearch($event: IFilter) {
+    if($event.filterName === FILTER.INCLUDE_INACTIVE) {
+      this.pagedRequest.includeInactive = $event.filterValue as boolean;
+
+      this.updateTableData();
+    }
+
+    let value = this.pagedRequest[$event.filterName].find((element: string) => element === $event.filterValue);
+
+    console.log(value);
+
+    if(value === undefined) {
+      this.filters.push($event)
+      this.pagedRequest[$event.filterName].push($event.filterValue);
+
+      this.updateTableData();
+    }
+  }
+
+  private updateTableData() {
+    this.isLoading = true;
+    this.orgService.getOrganizations(this.pagedRequest).subscribe((response: PagedResponseModel<Organization>) => {
+      this.isLoading = false;
+      this.dataSource = response;
+    });
   }
 }

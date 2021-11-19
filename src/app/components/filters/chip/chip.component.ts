@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IFilter } from '../types/filter';
 
 @Component({
   selector: 'app-chip',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chip.component.scss']
 })
 export class ChipComponent implements OnInit {
+
+  @Input() filter: IFilter = {} as IFilter
 
   constructor() { }
 

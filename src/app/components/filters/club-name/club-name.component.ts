@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FILTER, FILTER_DISPLAY_NAME, IFilter } from '../types/filter';
 
 @Component({
   selector: 'app-club-name',
@@ -27,6 +28,15 @@ export class ClubNameFilterComponent implements OnInit {
   onSubmit($event: any) {
     $event.preventDefault();
 
-    window.alert(this.clubName?.value)
+    if (this.formGroup.valid && (this.clubName.value as string).trim()) {
+      let filter: IFilter = {
+        filterDisplayName: FILTER_DISPLAY_NAME[FILTER.NAME_OF_CLUB],
+        filterName: FILTER.NAME_OF_CLUB,
+        filterValue: this.clubName.value as string
+      };
+
+      this.search.emit(filter);
+      this.clubName.setValue('');
+    }
   }
 }

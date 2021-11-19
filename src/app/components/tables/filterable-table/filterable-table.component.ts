@@ -1,10 +1,7 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { IActions, IActiveSort, ITableColumn } from '../types/table-interfaces';
 import { PagedResponseModel } from '../../../types/paged-response.model';
-import { ActionButtonType, ColumnTypes } from '../types/table-enums';
+import { IFilter } from '../../filters/types/filter';
 
 @Component({
   selector: 'app-filterable-table',
@@ -21,6 +18,7 @@ export class FilterableTableComponent {
   // Pass down pageable response and handle setting index and such
   @Input() tableData: PagedResponseModel<any> = {} as PagedResponseModel<any>;
   @Input() actionItems: IActions[] = [];
+  @Input() filters: IFilter[] = [];
 
   @Output() rowAction: EventEmitter<any> = new EventEmitter<any>();
 

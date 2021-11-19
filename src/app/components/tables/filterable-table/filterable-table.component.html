@@ -11,12 +11,7 @@
   <div class='filter-bar'>
     <!--TODO: Create chip-bar for storing all of our filters-->
     <mat-chip-list>
-      <app-chip></app-chip>
-      <app-chip></app-chip>
-      <app-chip></app-chip>
-      <app-chip></app-chip>
-      <app-chip></app-chip>
-
+      <app-chip *ngFor='let filter of filters' [filter]='filter'></app-chip>
     </mat-chip-list>
   </div>
   <div class='table-container'>
