@@ -1,5 +1,10 @@
 <mat-chip>
-  {{filter.filterDisplayName + ': ' + filter.filterValue}}
+  <ng-container *ngIf='(filter.filterValue | typeof) !== "boolean"; else renderBoolean'>
+    {{filter.filterDisplayName + ': ' + filter.filterValue}}
+  </ng-container>
+  <ng-template #renderBoolean>
+    {{filter.filterDisplayName }}
+  </ng-template>
   <button matChipRemove>
     <mat-icon>cancel</mat-icon>
   </button>

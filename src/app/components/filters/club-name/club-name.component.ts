@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FILTER, FILTER_DISPLAY_NAME, IFilter } from '../types/filter';
 
@@ -7,7 +7,7 @@ import { FILTER, FILTER_DISPLAY_NAME, IFilter } from '../types/filter';
   templateUrl: './club-name.component.html',
   styleUrls: ['./club-name.component.scss']
 })
-export class ClubNameFilterComponent implements OnInit {
+export class ClubNameFilterComponent {
   formGroup: FormGroup;
   clubName: AbstractControl;
 
@@ -21,9 +21,6 @@ export class ClubNameFilterComponent implements OnInit {
 
     this.clubName = <AbstractControl>this.formGroup.get('clubName');
   }
-
-  ngOnInit(): void {}
-
 
   onSubmit($event: any) {
     $event.preventDefault();

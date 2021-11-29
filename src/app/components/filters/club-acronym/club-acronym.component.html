@@ -1,1 +1,12 @@
-<p>club-acronym works!</p>
+<form [formGroup]='formGroup' (ngSubmit)='onSubmit($event)' (click)='$event.stopPropagation()'>
+  <mat-form-field appearance='outline' floatLabel='always'>
+    <mat-label>Club Acronym</mat-label>
+    <input
+      matInput
+      type='text'
+      formControlName='clubAcronym'
+      placeholder='ex: SGA'
+    >
+    <mat-icon matSuffix (click)='onSubmit($event)'>search</mat-icon>
+  </mat-form-field>
+</form>

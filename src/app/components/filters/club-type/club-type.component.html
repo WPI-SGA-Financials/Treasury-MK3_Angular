@@ -1,1 +1,9 @@
-<p>club-type works!</p>
+<form [formGroup]='formGroup' (ngSubmit)='onSubmit($event)' (click)='$event.stopPropagation()'>
+  <mat-form-field appearance='outline' floatLabel='always'>
+    <mat-label>Club Type</mat-label>
+    <mat-select formControlName='clubType' placeholder="ex: Campus Wide"  (selectionChange)='onSubmit($event)'>
+      <mat-option *ngFor='let type of clubTypes' [value]='type.type'>{{type.type}}</mat-option>
+    </mat-select>
+    <mat-icon matSuffix (click)='onSubmit($event)'>search</mat-icon>
+  </mat-form-field>
+</form>

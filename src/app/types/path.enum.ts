@@ -16,4 +16,5 @@ export enum Path_Api {
   SPECIFIC_FR = 'financials/fr',
   SPECIFIC_REALLOC = 'financials/realloc',
   STUDENT_LIFE_FEE = 'financials/slf',
+  ALL_METADATA = 'metadata/all'
 }

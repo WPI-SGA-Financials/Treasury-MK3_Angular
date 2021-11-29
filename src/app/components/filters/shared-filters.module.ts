@@ -10,6 +10,9 @@ import { SharedMaterialComponentsModule } from '../shared-material-components.mo
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChipComponent } from './chip/chip.component';
 import { ClubAcronymFilterComponent } from './club-acronym/club-acronym.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { SharedPipesModule } from '../../pipes/shared-pipes.module';
 
 let filters = [
   ClubClassificationFilterComponent,
@@ -19,17 +22,12 @@ let filters = [
   FiscalClassFilterComponent,
   FiscalYearFilterComponent,
   ChipComponent,
-  ClubAcronymFilterComponent,
+  ClubAcronymFilterComponent
 ];
 
 @NgModule({
   declarations: filters,
-  imports: [
-    CommonModule,
-    SharedMaterialComponentsModule,
-    ReactiveFormsModule
-  ],
+  imports: [CommonModule, SharedMaterialComponentsModule, ReactiveFormsModule, MatSelectModule, MatSlideToggleModule, SharedPipesModule],
   exports: filters
 })
-export class SharedFiltersModule {
-}
+export class SharedFiltersModule {}

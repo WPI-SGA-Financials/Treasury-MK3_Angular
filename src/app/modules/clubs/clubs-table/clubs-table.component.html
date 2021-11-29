@@ -20,9 +20,11 @@
     ></app-club-acronym>
     <app-club-classification
       (search)='onSearch($event)'
+      [classifications]='metadata.clubClassifications'
     ></app-club-classification>
     <app-club-type
       (search)='onSearch($event)'
+      [clubTypes]='metadata.clubTypes'
     ></app-club-type>
     <app-club-inactive
       (search)='onSearch($event)'

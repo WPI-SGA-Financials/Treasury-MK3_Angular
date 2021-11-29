@@ -1,1 +1,9 @@
-<p>club-classification works!</p>
+<form [formGroup]='formGroup' (ngSubmit)='onSubmit($event)' (click)='$event.stopPropagation()'>
+  <mat-form-field appearance='outline' floatLabel='always'>
+    <mat-label>Club Classification</mat-label>
+    <mat-select formControlName='clubClassification' placeholder="ex: Classless" (selectionChange)='onSubmit($event)'>
+      <mat-option *ngFor='let classification of classifications' [value]='classification.classification'>{{classification.classification}}</mat-option>
+    </mat-select>
+    <mat-icon matSuffix (click)='onSubmit($event)'>search</mat-icon>
+  </mat-form-field>
+</form>
