@@ -6,9 +6,14 @@
     </div>
   </div>
   <div class='filter-bar'>
-    <mat-chip-list>
-      <app-chip *ngFor='let filter of filters' [filter]='filter'></app-chip>
-    </mat-chip-list>
+    <ng-container *ngIf='filters.length > 0; else noFilters'>
+      <mat-chip-list>
+        <app-chip *ngFor='let filter of filters' [filter]='filter'></app-chip>
+      </mat-chip-list>
+    </ng-container>
+    <ng-template #noFilters >
+      <p class='no-filters'>Currently no filters exist!</p>
+    </ng-template>
   </div>
   <div class='table-container'>
     <app-http-pageable-table

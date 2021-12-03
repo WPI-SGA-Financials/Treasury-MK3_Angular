@@ -1,13 +1,14 @@
 <app-filterable-table
- [tableData]='dataSource'
- [tableColumns]='displayedColumns'
- [isLoadingResults]='isLoading'
- [actionItems]='actionItems'
- [paginationSizes]='[9]'
- [defaultPageSize]='9'
- [filters]='filters'
- (rowAction)='onButtonClicked($event)'
- (tableEvent)='onTableEvent($event)'
+  *ngIf='dataSource != null && metadata != null'
+  [tableData]='dataSource'
+  [tableColumns]='displayedColumns'
+  [isLoadingResults]='isLoading'
+  [actionItems]='actionItems'
+  [paginationSizes]='[9]'
+  [defaultPageSize]='9'
+  [filters]='filters'
+  (rowAction)='onButtonClicked($event)'
+  (tableEvent)='onTableEvent($event)'
 >
   <h3>Table Filters</h3>
   <hr />
