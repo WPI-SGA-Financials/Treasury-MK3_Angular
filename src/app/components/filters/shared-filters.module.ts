@@ -13,6 +13,7 @@ import { ClubAcronymFilterComponent } from './club-acronym/club-acronym.componen
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SharedPipesModule } from '../../pipes/shared-pipes.module';
+import { DescriptionComponent } from './description/description.component';
 
 let filters = [
   ClubClassificationFilterComponent,
@@ -22,7 +23,8 @@ let filters = [
   FiscalClassFilterComponent,
   FiscalYearFilterComponent,
   ChipComponent,
-  ClubAcronymFilterComponent
+  ClubAcronymFilterComponent,
+  DescriptionComponent
 ];
 
 @NgModule({

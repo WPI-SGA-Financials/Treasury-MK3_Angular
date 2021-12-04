@@ -1,5 +1,4 @@
 <app-filterable-table
-  *ngIf='dataSource != null && metadata != null'
   [tableData]='dataSource'
   [tableColumns]='displayedColumns'
   [isLoadingResults]='isLoading'
@@ -13,6 +12,10 @@
   <h3>Table Filters</h3>
   <hr />
   <div class='filters'>
+    <app-club-inactive
+      (search)='onSearch($event)'
+    ></app-club-inactive>
+    <br/>
     <app-club-name
       (search)='onSearch($event)'
     ></app-club-name>
@@ -27,8 +30,5 @@
       (search)='onSearch($event)'
       [clubTypes]='metadata.clubTypes'
     ></app-club-type>
-    <app-club-inactive
-      (search)='onSearch($event)'
-    ></app-club-inactive>
   </div>
 </app-filterable-table>

@@ -6,7 +6,8 @@ export const FILTER = {
   INCLUDE_INACTIVE: 'includeInactive',
   FISCAL_CLASS: 'fiscalClass',
   FISCAL_YEAR: 'fiscalYear',
-  REQUESTED_AMOUNT: 'requestedAmount'
+  DESCRIPTION: 'description',
+  MINIMUM_REQUESTED_AMOUNT: 'minimumRequestedAmount'
 };
 
 export const FILTER_DISPLAY_NAME = {
@@ -17,11 +18,12 @@ export const FILTER_DISPLAY_NAME = {
   [FILTER.INCLUDE_INACTIVE]: 'Include Inactive',
   [FILTER.FISCAL_CLASS]: 'Fiscal Class',
   [FILTER.FISCAL_YEAR]: 'Fiscal Year',
-  [FILTER.REQUESTED_AMOUNT]: 'Requested Amount'
+  [FILTER.DESCRIPTION]: 'Description',
+  [FILTER.MINIMUM_REQUESTED_AMOUNT]: 'Minimum Requested Amount'
 };
 
 export interface IFilter {
-  filterName: string,
-  filterDisplayName: string,
+  filterName: string;
+  filterDisplayName: string;
   filterValue: any;
 }

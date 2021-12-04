@@ -6,7 +6,12 @@ import { FundingRequestService } from '../../../services/api-services/funding-re
 import { PagedResponseModel } from '../../../types/paged-response.model';
 import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
 import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
-import { Budget } from '../../../types/budget.model';
+import { IFilter } from '../../../components/filters/types/filter';
+import { AllMetadata } from '../../../types/metadata.model';
+import { MetadataService } from '../../../services/api-services/metadata.service';
+import { PagedRequestModel } from '../../../types/paged-request.model';
+import { ProcessFilterSearchService } from '../../../services/process-filter-search.service';
+import { ResponseModel } from '../../../types/response.model';
 
 @Component({
   selector: 'app-funding-requests',
@@ -57,7 +62,33 @@ export class FundingRequestsComponent implements OnInit {
     }
   ];
 
-  constructor(private frService: FundingRequestService, private dialog: MatDialog) {}
+  filters: IFilter[] = [];
+
+  pagedRequest: PagedRequestModel = {
+    acronym: [],
+    classification: [],
+    includeInactive: false,
+    name: [],
+    page: 1,
+    rpp: 9,
+    type: [],
+    fiscalYear: -1,
+    minimumRequestedAmount: -1,
+    maximumRequestedAmount: -1,
+    description: []
+  };
+
+  metadata: AllMetadata = {
+    clubClassifications: [],
+    clubTypes: []
+  };
+
+  constructor(
+    private frService: FundingRequestService,
+    private dialog: MatDialog,
+    private metadataService: MetadataService,
+    private filterService: ProcessFilterSearchService
+  ) {}
 
   ngOnInit(): void {
     this.initializeData();
@@ -65,14 +96,18 @@ export class FundingRequestsComponent implements OnInit {
 
   private initializeData() {
     this.isLoading = true;
-    this.frService.getFundingRequests().subscribe((response: PagedResponseModel<FundingRequest>) => {
-      this.isLoading = false;
-      this.dataSource = response;
-    })
+
+    this.metadataService.getAllMetadata().subscribe((response: ResponseModel<AllMetadata>) => {
+      this.metadata = response.data;
+      this.frService.getFundingRequests(this.pagedRequest).subscribe((response: PagedResponseModel<FundingRequest>) => {
+        this.dataSource = response;
+        this.isLoading = false;
+      });
+    });
   }
 
   onButtonClicked($event: IActionEvent<FundingRequest>) {
-    if($event.type === ActionButtonType.VIEW) {
+    if ($event.type === ActionButtonType.VIEW) {
       this.dialog.open(FundingRequestPopupComponent, {
         data: {
           id: $event.data.id,
@@ -85,12 +120,31 @@ export class FundingRequestsComponent implements OnInit {
   }
 
   onTableEvent($event: any) {
-    if($event.type === 'PageChange') {
-      this.isLoading = true;
-      this.frService.getFundingRequests({page: $event.data.pageIndex + 1, rpp: 10}).subscribe((response: PagedResponseModel<FundingRequest>) => {
-        this.isLoading = false;
-        this.dataSource = response;
-      })
+    if ($event.type === 'PageChange') {
+      this.pagedRequest.page = $event.data.pageIndex + 1;
+
+      this.updateTableData();
     }
+  }
+
+  onSearch($event: IFilter) {
+    let updateData;
+
+    ({
+      pagedRequest: this.pagedRequest,
+      filters: this.filters,
+      updateData: updateData
+    } = this.filterService.addFilters($event, this.pagedRequest, this.filters));
+    if (updateData) {
+      this.updateTableData();
+    }
+  }
+
+  private updateTableData() {
+    this.isLoading = true;
+    this.frService.getFundingRequests(this.pagedRequest).subscribe((response: PagedResponseModel<FundingRequest>) => {
+      this.isLoading = false;
+      this.dataSource = response;
+    });
   }
 }

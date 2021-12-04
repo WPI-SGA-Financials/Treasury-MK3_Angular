@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { OrganizationService } from '../../../services/api-services/organization.service';
 import { Path_Api } from '../../../types/path.enum';
 import { Organization } from '../../../types/organization.model';
@@ -6,16 +6,18 @@ import { Router } from '@angular/router';
 import { PagedResponseModel } from '../../../types/paged-response.model';
 import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
 import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
-import { FILTER, IFilter } from '../../../components/filters/types/filter';
+import { IFilter } from '../../../components/filters/types/filter';
 import { PagedRequestModel } from '../../../types/paged-request.model';
 import { MetadataService } from '../../../services/api-services/metadata.service';
 import { ResponseModel } from '../../../types/response.model';
 import { AllMetadata } from '../../../types/metadata.model';
+import { ProcessFilterSearchService } from '../../../services/process-filter-search.service';
 
 @Component({
   selector: 'app-clubs-table',
   templateUrl: './clubs-table.component.html',
-  styleUrls: ['./clubs-table.component.scss']
+  styleUrls: ['./clubs-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class ClubsTableComponent implements OnInit {
   displayedColumns: ITableColumn[] = [
@@ -48,7 +50,7 @@ export class ClubsTableComponent implements OnInit {
     // }
   ];
   dataSource: PagedResponseModel<Organization> = {} as PagedResponseModel<Organization>;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   actionItems: IActions[] = [
     {
       displayName: 'View',
@@ -67,9 +69,17 @@ export class ClubsTableComponent implements OnInit {
     type: []
   };
 
-  metadata!: AllMetadata;
+  metadata: AllMetadata = {
+    clubClassifications: [],
+    clubTypes: []
+  };
 
-  constructor(private router: Router, private orgService: OrganizationService, private metadataService: MetadataService) {}
+  constructor(
+    private router: Router,
+    private orgService: OrganizationService,
+    private metadataService: MetadataService,
+    private filterService: ProcessFilterSearchService
+  ) {}
 
   ngOnInit(): void {
     this.initializeData();
@@ -77,11 +87,11 @@ export class ClubsTableComponent implements OnInit {
 
   private initializeData() {
     this.isLoading = true;
-    this.orgService.getOrganizations(this.pagedRequest).subscribe((response: PagedResponseModel<Organization>) => {
-      this.dataSource = response;
 
-      this.metadataService.getAllMetadata().subscribe((response: ResponseModel<AllMetadata>) => {
-        this.metadata = response.data;
+    this.metadataService.getAllMetadata().subscribe((response: ResponseModel<AllMetadata>) => {
+      this.metadata = response.data;
+      this.orgService.getOrganizations(this.pagedRequest).subscribe((response: PagedResponseModel<Organization>) => {
+        this.dataSource = response;
         this.isLoading = false;
       });
     });
@@ -102,28 +112,14 @@ export class ClubsTableComponent implements OnInit {
   }
 
   onSearch($event: IFilter) {
-    if ($event.filterName === FILTER.INCLUDE_INACTIVE) {
-      if ($event.filterValue === true) {
-        this.filters.push($event);
-      } else {
-        this.filters = this.filters.filter((value) => value.filterName !== FILTER.INCLUDE_INACTIVE);
-      }
-      this.pagedRequest.includeInactive = $event.filterValue as boolean;
+    let updateData;
 
-      this.pagedRequest.page = 1;
-
-      this.updateTableData();
-      return;
-    }
-
-    let value = this.pagedRequest[$event.filterName].find((element: string) => element === $event.filterValue);
-
-    if (value === undefined) {
-      this.filters.push($event);
-      this.pagedRequest[$event.filterName].push($event.filterValue);
-
-      this.pagedRequest.page = 1;
-
+    ({
+      pagedRequest: this.pagedRequest,
+      filters: this.filters,
+      updateData: updateData
+    } = this.filterService.addFilters($event, this.pagedRequest, this.filters));
+    if (updateData) {
       this.updateTableData();
     }
   }
