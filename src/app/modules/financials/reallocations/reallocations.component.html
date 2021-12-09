@@ -1,12 +1,3 @@
-<!--<app-http-pageable-table
-  [tableData]='dataSource'
-  [tableColumns]='displayedColumns'
-  [isLoadingResults]='isLoading'
-  [actionItems]='actionItems'
-  (rowAction)='onButtonClicked($event)'
-  (tableEvent)='onTableEvent($event)'
-></app-http-pageable-table>-->
-
 <app-filterable-table
   [tableData]='dataSource'
   [tableColumns]='displayedColumns'
@@ -14,14 +5,36 @@
   [actionItems]='actionItems'
   [paginationSizes]='[9]'
   [defaultPageSize]='9'
+  [filters]='filters'
   (rowAction)='onButtonClicked($event)'
   (tableEvent)='onTableEvent($event)'
 >
-  <h3>Table Filters</h3>
-  <hr />
-  <div class='filters'>
-    <app-club-name
-      (search)='onSearch($event)'
-    ></app-club-name>
-  </div>
+  <app-club-inactive
+    (search)='onSearch($event)'
+  ></app-club-inactive>
+  <br/>
+  <app-club-name
+    (search)='onSearch($event)'
+  ></app-club-name>
+  <app-club-acronym
+    (search)='onSearch($event)'
+  ></app-club-acronym>
+  <app-club-classification
+    (search)='onSearch($event)'
+    [classifications]='metadata.clubClassifications'
+  ></app-club-classification>
+  <app-club-type
+    (search)='onSearch($event)'
+    [clubTypes]='metadata.clubTypes'
+  ></app-club-type>
+
+  <h4>Financial Based Filters</h4>
+
+  <app-fiscal-year
+    (search)='onSearch($event)'
+    [fiscalYears]='metadata.fiscalYears'
+  ></app-fiscal-year>
+  <app-description
+    (search)='onSearch($event)'
+  ></app-description>
 </app-filterable-table>

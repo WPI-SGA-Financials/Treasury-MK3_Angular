@@ -11,7 +11,7 @@ export interface PagedRequestModel {
 
   // Financial Filters
   fiscalClass?: string;
-  fiscalYear?: number;
+  fiscalYear?: string[]; // Need to change this to something else. Maybe number and then update db model
   minimumRequestedAmount?: number;
   maximumRequestedAmount?: number;
   description?: string[];

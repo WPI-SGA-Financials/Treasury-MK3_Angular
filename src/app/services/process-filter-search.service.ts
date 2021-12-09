@@ -51,10 +51,32 @@ export class ProcessFilterSearchService {
     return returnData;
   }
 
-  removeFilters($event: IFilter, pagedRequest: PagedRequestModel, filters: IFilter[]): FilterSearch {
-    // If boolean, set to false
-    // Anything else, just remove...
+  removeFilter($event: IFilter, pagedRequest: PagedRequestModel, filters: IFilter[]): FilterSearch {
+    let returnData: FilterSearch = {
+      pagedRequest: pagedRequest,
+      filters: filters,
+      updateData: false
+    };
 
-    return {} as FilterSearch;
+    if ($event.filterName === FILTER.INCLUDE_INACTIVE) {
+      returnData.filters = returnData.filters.filter((value) => value.filterName !== FILTER.INCLUDE_INACTIVE);
+
+      returnData.pagedRequest.includeInactive = false as boolean;
+      returnData.pagedRequest.page = 1;
+      returnData.updateData = true;
+
+      return returnData;
+    }
+
+    returnData.pagedRequest[$event.filterName] = returnData.pagedRequest[$event.filterName].filter(
+      (element: string) => element !== $event.filterValue
+    );
+
+    returnData.filters = returnData.filters.filter((value) => value !== $event);
+
+    returnData.pagedRequest.page = 1;
+    returnData.updateData = true;
+
+    return returnData;
   }
 }

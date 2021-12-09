@@ -9,26 +9,22 @@
   (rowAction)='onButtonClicked($event)'
   (tableEvent)='onTableEvent($event)'
 >
-  <h3>Table Filters</h3>
-  <hr />
-  <div class='filters'>
-    <app-club-inactive
-      (search)='onSearch($event)'
-    ></app-club-inactive>
-    <br/>
-    <app-club-name
-      (search)='onSearch($event)'
-    ></app-club-name>
-    <app-club-acronym
-      (search)='onSearch($event)'
-    ></app-club-acronym>
-    <app-club-classification
-      (search)='onSearch($event)'
-      [classifications]='metadata.clubClassifications'
-    ></app-club-classification>
-    <app-club-type
-      (search)='onSearch($event)'
-      [clubTypes]='metadata.clubTypes'
-    ></app-club-type>
-  </div>
+  <app-club-inactive
+    (search)='onSearch($event)'
+  ></app-club-inactive>
+  <br/>
+  <app-club-name
+    (search)='onSearch($event)'
+  ></app-club-name>
+  <app-club-acronym
+    (search)='onSearch($event)'
+  ></app-club-acronym>
+  <app-club-classification
+    (search)='onSearch($event)'
+    [classifications]='metadata.clubClassifications'
+  ></app-club-classification>
+  <app-club-type
+    (search)='onSearch($event)'
+    [clubTypes]='metadata.clubTypes'
+  ></app-club-type>
 </app-filterable-table>

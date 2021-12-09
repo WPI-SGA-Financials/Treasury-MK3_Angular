@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IFilter } from '../types/filter';
 
 @Component({
@@ -6,13 +6,14 @@ import { IFilter } from '../types/filter';
   templateUrl: './chip.component.html',
   styleUrls: ['./chip.component.scss']
 })
-export class ChipComponent implements OnInit {
+export class ChipComponent {
+  @Input() filter: IFilter = {} as IFilter;
 
-  @Input() filter: IFilter = {} as IFilter
+  @Output() removeFilter: EventEmitter<IFilter> = new EventEmitter<IFilter>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  handleRemove() {
+    this.removeFilter.emit(this.filter);
   }
-
 }

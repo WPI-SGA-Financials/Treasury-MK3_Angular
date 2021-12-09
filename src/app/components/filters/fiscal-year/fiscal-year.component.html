@@ -1,1 +1,9 @@
-<p>fiscal-year works!</p>
+<form [formGroup]='formGroup' (ngSubmit)='onSubmit($event)' (click)='$event.stopPropagation()'>
+  <mat-form-field appearance='outline' floatLabel='always'>
+    <mat-label>Fiscal Year</mat-label>
+    <mat-select formControlName='fiscalYear' placeholder="ex: FY 19" (selectionChange)='onSubmit($event)'>
+      <mat-option *ngFor='let fiscalYear of fiscalYears' [value]='fiscalYear.fy'>{{fiscalYear.fy}}</mat-option>
+    </mat-select>
+    <mat-icon matSuffix (click)='onSubmit($event)'>search</mat-icon>
+  </mat-form-field>
+</form>

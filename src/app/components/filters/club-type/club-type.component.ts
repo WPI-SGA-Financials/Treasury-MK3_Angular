@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ClubType } from '../../../types/metadata.model';
+import { ClubType } from '../types/metadata.model';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FILTER, FILTER_DISPLAY_NAME, IFilter } from '../types/filter';
 

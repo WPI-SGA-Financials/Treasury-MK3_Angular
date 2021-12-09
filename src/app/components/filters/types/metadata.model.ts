@@ -1,6 +1,7 @@
 export interface AllMetadata {
   clubClassifications: ClubClassification[];
   clubTypes: ClubType[];
+  fiscalYears: FiscalYear[];
 }
 
 export interface ClubClassification {
@@ -11,4 +12,9 @@ export interface ClubClassification {
 export interface ClubType {
   id: number;
   type: string;
+}
+
+export interface FiscalYear {
+  id: number;
+  fy: string;
 }

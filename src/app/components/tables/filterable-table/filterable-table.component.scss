@@ -16,8 +16,21 @@
   grid-area: 1 / 1 / 3 / 2;
   height: 100%;
 
+  & .filter-title {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0;
+  }
+
   & .filter-menu-content {
+    overflow-y: auto;
+    max-height: 80%;
     padding: 10px 20px 10px 10px;
+  }
+
+  & .bottom-padding {
+    height: 5%;
   }
 }
 

@@ -1,4 +1,4 @@
-<mat-chip>
+<mat-chip removable (removed)='handleRemove()'>
   <ng-container *ngIf='(filter.filterValue | typeof) !== "boolean"; else renderBoolean'>
     {{filter.filterDisplayName + ': ' + filter.filterValue}}
   </ng-container>

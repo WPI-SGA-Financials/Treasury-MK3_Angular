@@ -10,7 +10,7 @@ import { IFilter } from '../../../components/filters/types/filter';
 import { PagedRequestModel } from '../../../types/paged-request.model';
 import { MetadataService } from '../../../services/api-services/metadata.service';
 import { ResponseModel } from '../../../types/response.model';
-import { AllMetadata } from '../../../types/metadata.model';
+import { AllMetadata } from '../../../components/filters/types/metadata.model';
 import { ProcessFilterSearchService } from '../../../services/process-filter-search.service';
 
 @Component({
@@ -70,6 +70,7 @@ export class ClubsTableComponent implements OnInit {
   };
 
   metadata: AllMetadata = {
+    fiscalYears: [],
     clubClassifications: [],
     clubTypes: []
   };

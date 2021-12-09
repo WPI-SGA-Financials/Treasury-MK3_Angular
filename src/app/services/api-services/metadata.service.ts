@@ -3,7 +3,7 @@ import { HttpService } from '../http.service';
 import { Path_Api } from '../../types/path.enum';
 import { Observable } from 'rxjs';
 import { ResponseModel } from '../../types/response.model';
-import { AllMetadata } from '../../types/metadata.model';
+import { AllMetadata } from '../../components/filters/types/metadata.model';
 
 @Injectable({
   providedIn: 'root'

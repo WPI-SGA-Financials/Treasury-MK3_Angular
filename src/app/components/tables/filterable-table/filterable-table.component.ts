@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IActions, IActiveSort, ITableColumn } from '../types/table-interfaces';
 import { PagedResponseModel } from '../../../types/paged-response.model';
 import { IFilter } from '../../filters/types/filter';
@@ -24,6 +24,7 @@ export class FilterableTableComponent {
 
   @Output() tableEvent: EventEmitter<any> = new EventEmitter<any>();
 
+  @Output() removeFilter: EventEmitter<IFilter> = new EventEmitter<IFilter>();
 
   constructor() {}
 
@@ -35,4 +36,7 @@ export class FilterableTableComponent {
     this.tableEvent.emit($event);
   }
 
+  handleRemove($event: IFilter) {
+    this.removeFilter.emit($event);
+  }
 }

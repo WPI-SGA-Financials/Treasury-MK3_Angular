@@ -7,7 +7,7 @@ import { PagedResponseModel } from '../../../types/paged-response.model';
 import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
 import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
 import { IFilter } from '../../../components/filters/types/filter';
-import { AllMetadata } from '../../../types/metadata.model';
+import { AllMetadata } from '../../../components/filters/types/metadata.model';
 import { MetadataService } from '../../../services/api-services/metadata.service';
 import { PagedRequestModel } from '../../../types/paged-request.model';
 import { ProcessFilterSearchService } from '../../../services/process-filter-search.service';
@@ -72,7 +72,7 @@ export class FundingRequestsComponent implements OnInit {
     page: 1,
     rpp: 9,
     type: [],
-    fiscalYear: -1,
+    fiscalYear: [],
     minimumRequestedAmount: -1,
     maximumRequestedAmount: -1,
     description: []
@@ -80,7 +80,8 @@ export class FundingRequestsComponent implements OnInit {
 
   metadata: AllMetadata = {
     clubClassifications: [],
-    clubTypes: []
+    clubTypes: [],
+    fiscalYears: []
   };
 
   constructor(
@@ -146,5 +147,18 @@ export class FundingRequestsComponent implements OnInit {
       this.isLoading = false;
       this.dataSource = response;
     });
+  }
+
+  handleRemove($event: IFilter) {
+    let updateData;
+
+    ({
+      pagedRequest: this.pagedRequest,
+      filters: this.filters,
+      updateData: updateData
+    } = this.filterService.removeFilter($event, this.pagedRequest, this.filters));
+    if (updateData) {
+      this.updateTableData();
+    }
   }
 }

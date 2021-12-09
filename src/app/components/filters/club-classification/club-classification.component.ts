@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FILTER, FILTER_DISPLAY_NAME, IFilter } from '../types/filter';
-import { ClubClassification } from '../../../types/metadata.model';
+import { ClubClassification } from '../types/metadata.model';
 
 @Component({
   selector: 'app-club-classification',
