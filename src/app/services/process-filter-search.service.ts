@@ -58,16 +58,6 @@ export class ProcessFilterSearchService {
       updateData: false
     };
 
-    if ($event.filterName === FILTER.INCLUDE_INACTIVE) {
-      returnData.filters = returnData.filters.filter((value) => value.filterName !== FILTER.INCLUDE_INACTIVE);
-
-      returnData.pagedRequest.includeInactive = false as boolean;
-      returnData.pagedRequest.page = 1;
-      returnData.updateData = true;
-
-      return returnData;
-    }
-
     returnData.pagedRequest[$event.filterName] = returnData.pagedRequest[$event.filterName].filter(
       (element: string) => element !== $event.filterValue
     );

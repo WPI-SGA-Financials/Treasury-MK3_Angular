@@ -5,7 +5,7 @@
   <ng-template #renderBoolean>
     {{filter.filterDisplayName }}
   </ng-template>
-  <button matChipRemove>
+  <button matChipRemove *ngIf='(filter.filterValue | typeof) !== "boolean"'>
     <mat-icon>cancel</mat-icon>
   </button>
 </mat-chip>
