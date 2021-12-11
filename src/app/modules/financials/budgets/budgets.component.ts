@@ -94,7 +94,7 @@ export class BudgetsComponent implements OnInit {
     this.isLoading = true;
     this.metadataService.getAllMetadata().subscribe((response: ResponseModel<AllMetadata>) => {
       this.metadata = response.data;
-      this.budgetService.getBudgets().subscribe((response: PagedResponseModel<Budget>) => {
+      this.budgetService.getBudgets(this.pagedRequest).subscribe((response: PagedResponseModel<Budget>) => {
         this.dataSource = response;
         this.isLoading = false;
       });
