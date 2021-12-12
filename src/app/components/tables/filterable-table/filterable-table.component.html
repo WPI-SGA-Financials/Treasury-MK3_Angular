@@ -1,0 +1,44 @@
+<div class="parent">
+  <div class='filter-menu'>
+    <div class='filter-title'>
+      <h3>Table Filters</h3>
+      <hr />
+    </div>
+    <div class='filter-menu-content'>
+      <ng-content>
+      </ng-content>
+    </div>
+    <div class='bottom-padding'>
+
+    </div>
+  </div>
+  <div class='filter-bar'>
+    <ng-container *ngIf='filters.length > 0; else noFilters'>
+      <mat-chip-list>
+        <app-chip
+          *ngFor='let filter of filters' [filter]='filter'
+          (removeFilter)='handleRemove($event)'
+        ></app-chip>
+      </mat-chip-list>
+    </ng-container>
+    <ng-template #noFilters >
+      <p class='no-filters'>Currently no filters exist!</p>
+    </ng-template>
+  </div>
+  <div class='table-container'>
+    <app-http-pageable-table
+    [isLoadingResults]='isLoadingResults'
+    [isSortable]='isSortable'
+    [tableColumns]='tableColumns'
+    [paginationSizes]='paginationSizes'
+    [defaultPageSize]='defaultPageSize'
+    [activeSort]='activeSort'
+    [tableData]='tableData'
+    [actionItems]='actionItems'
+    (rowAction)='emitButtonClick($event)'
+    (tableEvent)='emitTableEvent($event)'
+    ></app-http-pageable-table>
+  </div>
+</div>
+
+

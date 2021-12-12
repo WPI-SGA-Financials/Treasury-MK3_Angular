@@ -28,7 +28,6 @@ export class HttpPageableTableComponent implements OnInit, AfterViewInit {
   @Input() tableData: PagedResponseModel<any> = {} as PagedResponseModel<any>;
   @Input() actionItems: IActions[] = [];
 
-  // TODO: Make one emitter for everything (Row Action, Sort Change, Page Change)
   @Output() rowAction: EventEmitter<any> = new EventEmitter<any>();
 
   @Output() tableEvent: EventEmitter<any> = new EventEmitter<any>();

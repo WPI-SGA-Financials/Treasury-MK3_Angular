@@ -1,1 +1,4 @@
-<p>club-inactive works!</p>
+<form [formGroup]='formGroup' (click)='$event.stopPropagation()'>
+  <mat-slide-toggle color='primary' formControlName='includeInactive' (change)='onSubmit($event)'>Include Inactive Clubs</mat-slide-toggle>
+</form>
+

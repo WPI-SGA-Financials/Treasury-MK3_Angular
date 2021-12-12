@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FiscalYearComponent } from './fiscal-year.component';
+import { FiscalYearFilterComponent } from './fiscal-year.component';
 
 describe('FiscalYearComponent', () => {
-  let component: FiscalYearComponent;
-  let fixture: ComponentFixture<FiscalYearComponent>;
+  let component: FiscalYearFilterComponent;
+  let fixture: ComponentFixture<FiscalYearFilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FiscalYearComponent]
+      declarations: [FiscalYearFilterComponent]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FiscalYearComponent);
+    fixture = TestBed.createComponent(FiscalYearFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

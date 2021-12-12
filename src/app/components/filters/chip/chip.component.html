@@ -1,0 +1,11 @@
+<mat-chip removable (removed)='handleRemove()'>
+  <ng-container *ngIf='(filter.filterValue | typeof) !== "boolean"; else renderBoolean'>
+    {{filter.filterDisplayName + ': ' + filter.filterValue}}
+  </ng-container>
+  <ng-template #renderBoolean>
+    {{filter.filterDisplayName }}
+  </ng-template>
+  <button matChipRemove *ngIf='(filter.filterValue | typeof) !== "boolean"'>
+    <mat-icon>cancel</mat-icon>
+  </button>
+</mat-chip>

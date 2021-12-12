@@ -7,31 +7,20 @@ import { BudgetsComponent } from './budgets/budgets.component';
 import { FundingRequestsComponent } from './funding-requests/funding-requests.component';
 import { ReallocationsComponent } from './reallocations/reallocations.component';
 import { SharedMaterialComponentsModule } from '../../components/shared-material-components.module';
-import { FilterMenuComponent } from './filter-menu/filter-menu.component';
-import { ClubNameModule } from '../../components/filters/club-name/club-name.module';
-import { FiscalClassModule } from '../../components/filters/fiscal-class/fiscal-class.module';
-import { FiscalYearModule } from '../../components/filters/fiscal-year/fiscal-year.module';
 import { ReusableTableModule } from '../../components/tables/reusable-table.module';
 import { SharedAngularComponentsModule } from '../../components/shared-angular-components.module';
+import { SharedFiltersModule } from '../../components/filters/shared-filters.module';
 
 @NgModule({
-  declarations: [
-    FinancialsComponent,
-    BudgetsComponent,
-    FundingRequestsComponent,
-    ReallocationsComponent,
-    FilterMenuComponent
-  ],
+  declarations: [FinancialsComponent, BudgetsComponent, FundingRequestsComponent, ReallocationsComponent],
   imports: [
     CommonModule,
     FinancialsRoutingModule,
     CatNavModule,
     SharedMaterialComponentsModule,
-    ClubNameModule,
-    FiscalClassModule,
-    FiscalYearModule,
     ReusableTableModule,
-    SharedAngularComponentsModule
+    SharedAngularComponentsModule,
+    SharedFiltersModule
   ]
 })
 export class FinancialsModule {}

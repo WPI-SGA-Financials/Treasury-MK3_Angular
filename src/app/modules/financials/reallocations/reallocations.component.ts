@@ -6,7 +6,12 @@ import { ReallocationRequestService } from '../../../services/api-services/reall
 import { PagedResponseModel } from '../../../types/paged-response.model';
 import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
 import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
-import { Budget } from '../../../types/budget.model';
+import { IFilter } from '../../../components/filters/types/filter';
+import { MetadataService } from '../../../services/api-services/metadata.service';
+import { ProcessFilterSearchService } from '../../../services/process-filter-search.service';
+import { ResponseModel } from '../../../types/response.model';
+import { AllMetadata } from '../../../components/filters/types/metadata.model';
+import { PagedRequestModel } from '../../../types/paged-request.model';
 
 @Component({
   selector: 'app-reallocations',
@@ -45,7 +50,7 @@ export class ReallocationsComponent implements OnInit {
       type: ColumnTypes.CURRENCY
     }
   ];
-  dataSource: PagedResponseModel<Reallocation> = {} as PagedResponseModel<Reallocation>
+  dataSource: PagedResponseModel<Reallocation> = {} as PagedResponseModel<Reallocation>;
   isLoading: boolean = false;
   actionItems: IActions[] = [
     {
@@ -54,20 +59,54 @@ export class ReallocationsComponent implements OnInit {
     }
   ];
 
-  constructor(private reallocService: ReallocationRequestService, private dialog: MatDialog) {}
+  filters: IFilter[] = [];
+
+  pagedRequest: PagedRequestModel = {
+    acronym: [],
+    classification: [],
+    includeInactive: false,
+    name: [],
+    page: 1,
+    rpp: 9,
+    type: [],
+    fiscalYear: [],
+    minimumRequestedAmount: -1,
+    maximumRequestedAmount: -1,
+    description: []
+  };
+
+  metadata: AllMetadata = {
+    fiscalClasses: [],
+    clubClassifications: [],
+    clubTypes: [],
+    fiscalYears: []
+  };
+
+  constructor(
+    private reallocService: ReallocationRequestService,
+    private dialog: MatDialog,
+    private metadataService: MetadataService,
+    private filterService: ProcessFilterSearchService
+  ) {}
 
   ngOnInit(): void {
     this.initializeData();
   }
 
   private initializeData() {
-    this.reallocService.getReallocations().subscribe((response: PagedResponseModel<Reallocation>) => {
-      this.dataSource = response;
-    })
+    this.isLoading = true;
+
+    this.metadataService.getAllMetadata().subscribe((response: ResponseModel<AllMetadata>) => {
+      this.metadata = response.data;
+      this.reallocService.getReallocations(this.pagedRequest).subscribe((response: PagedResponseModel<Reallocation>) => {
+        this.dataSource = response;
+        this.isLoading = false;
+      });
+    });
   }
 
   onButtonClicked($event: IActionEvent<Reallocation>) {
-    if($event.type === ActionButtonType.VIEW) {
+    if ($event.type === ActionButtonType.VIEW) {
       this.dialog.open(ReallocationRequestPopupComponent, {
         data: {
           id: $event.data.id,
@@ -80,12 +119,44 @@ export class ReallocationsComponent implements OnInit {
   }
 
   onTableEvent($event: any) {
-    if($event.type === 'PageChange') {
-      this.isLoading = true;
-      this.reallocService.getReallocations({page: $event.data.pageIndex + 1, rpp: 10}).subscribe((response: PagedResponseModel<Reallocation>) => {
-        this.isLoading = false;
-        this.dataSource = response;
-      })
+    if ($event.type === 'PageChange') {
+      this.pagedRequest.page = $event.data.pageIndex + 1;
+
+      this.updateTableData();
+    }
+  }
+
+  onSearch($event: IFilter) {
+    let updateData;
+
+    ({
+      pagedRequest: this.pagedRequest,
+      filters: this.filters,
+      updateData: updateData
+    } = this.filterService.addFilters($event, this.pagedRequest, this.filters));
+    if (updateData) {
+      this.updateTableData();
+    }
+  }
+
+  private updateTableData() {
+    this.isLoading = true;
+    this.reallocService.getReallocations(this.pagedRequest).subscribe((response: PagedResponseModel<Reallocation>) => {
+      this.isLoading = false;
+      this.dataSource = response;
+    });
+  }
+
+  handleRemove($event: IFilter) {
+    let updateData;
+
+    ({
+      pagedRequest: this.pagedRequest,
+      filters: this.filters,
+      updateData: updateData
+    } = this.filterService.removeFilter($event, this.pagedRequest, this.filters));
+    if (updateData) {
+      this.updateTableData();
     }
   }
 }

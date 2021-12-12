@@ -1,1 +1,9 @@
-<p>fiscal-class works!</p>
+<form [formGroup]='formGroup' (ngSubmit)='onSubmit($event)' (click)='$event.stopPropagation()'>
+  <mat-form-field appearance='outline' floatLabel='always'>
+    <mat-label>Fiscal Class</mat-label>
+    <mat-select formControlName='fiscalClass' placeholder="ex: Class A" (selectionChange)='onSubmit($event)'>
+      <mat-option *ngFor='let fiscalClass of fiscalClasses' [value]='fiscalClass'>{{fiscalClass}}</mat-option>
+    </mat-select>
+    <mat-icon matSuffix (click)='onSubmit($event)'>search</mat-icon>
+  </mat-form-field>
+</form>
