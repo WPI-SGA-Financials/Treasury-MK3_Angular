@@ -68,12 +68,14 @@ export class BudgetsComponent implements OnInit {
     rpp: 9,
     type: [],
     fiscalYear: [],
+    fiscalClass: [],
     minimumRequestedAmount: -1,
     maximumRequestedAmount: -1,
     description: []
   };
 
   metadata: AllMetadata = {
+    fiscalClasses: [],
     clubClassifications: [],
     clubTypes: [],
     fiscalYears: []

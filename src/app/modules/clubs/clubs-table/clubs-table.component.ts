@@ -70,6 +70,7 @@ export class ClubsTableComponent implements OnInit {
   };
 
   metadata: AllMetadata = {
+    fiscalClasses: [],
     fiscalYears: [],
     clubClassifications: [],
     clubTypes: []

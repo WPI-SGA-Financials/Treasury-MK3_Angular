@@ -79,6 +79,7 @@ export class FundingRequestsComponent implements OnInit {
   };
 
   metadata: AllMetadata = {
+    fiscalClasses: [],
     clubClassifications: [],
     clubTypes: [],
     fiscalYears: []

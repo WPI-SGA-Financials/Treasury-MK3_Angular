@@ -12,7 +12,6 @@ import { ProcessFilterSearchService } from '../../../services/process-filter-sea
 import { ResponseModel } from '../../../types/response.model';
 import { AllMetadata } from '../../../components/filters/types/metadata.model';
 import { PagedRequestModel } from '../../../types/paged-request.model';
-import { FundingRequest } from '../../../types/funding-request.model';
 
 @Component({
   selector: 'app-reallocations',
@@ -77,6 +76,7 @@ export class ReallocationsComponent implements OnInit {
   };
 
   metadata: AllMetadata = {
+    fiscalClasses: [],
     clubClassifications: [],
     clubTypes: [],
     fiscalYears: []
