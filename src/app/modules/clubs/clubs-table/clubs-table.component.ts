@@ -133,4 +133,17 @@ export class ClubsTableComponent implements OnInit {
       this.dataSource = response;
     });
   }
+
+  handleRemove($event: IFilter) {
+    let updateData;
+
+    ({
+      pagedRequest: this.pagedRequest,
+      filters: this.filters,
+      updateData: updateData
+    } = this.filterService.removeFilter($event, this.pagedRequest, this.filters));
+    if (updateData) {
+      this.updateTableData();
+    }
+  }
 }
