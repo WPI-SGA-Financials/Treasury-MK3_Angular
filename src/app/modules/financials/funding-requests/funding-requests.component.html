@@ -31,6 +31,9 @@
 
   <h4>Financial Based Filters</h4>
 
+  <app-dot-number
+    (search)='onSearch($event)'
+  ></app-dot-number>
   <app-fiscal-year
     (search)='onSearch($event)'
     [fiscalYears]='metadata.fiscalYears'
