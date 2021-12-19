@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SharedPipesModule } from '../../pipes/shared-pipes.module';
 import { DescriptionComponent } from './description/description.component';
+import { DotNumberComponent } from './dot-number/dot-number.component';
 
 let filters = [
   ClubClassificationFilterComponent,
@@ -24,7 +25,8 @@ let filters = [
   FiscalYearFilterComponent,
   ChipComponent,
   ClubAcronymFilterComponent,
-  DescriptionComponent
+  DescriptionComponent,
+  DotNumberComponent
 ];
 
 @NgModule({

@@ -15,6 +15,7 @@ export interface PagedRequestModel {
   minimumRequestedAmount?: number;
   maximumRequestedAmount?: number;
   description?: string[];
+  dotNumber?: string[];
 
   [key: string]: any;
 }

@@ -72,7 +72,8 @@ export class ReallocationsComponent implements OnInit {
     fiscalYear: [],
     minimumRequestedAmount: -1,
     maximumRequestedAmount: -1,
-    description: []
+    description: [],
+    dotNumber: []
   };
 
   metadata: AllMetadata = {
