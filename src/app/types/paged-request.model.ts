@@ -1,6 +1,6 @@
 export interface PagedRequestModel {
   page: number;
-  rpp: number;
+  resultsPerPage: number;
 
   // Organization Filters
   name?: string[];

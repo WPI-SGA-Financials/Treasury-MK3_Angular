@@ -18,7 +18,7 @@ export class OrganizationService {
    *
    * @param pagedRequest
    */
-  getOrganizations(pagedRequest: PagedRequestModel = {rpp: 10, page: 1}): Observable<PagedResponseModel<Organization>> {
+  getOrganizations(pagedRequest: PagedRequestModel = {resultsPerPage: 10, page: 1}): Observable<PagedResponseModel<Organization>> {
     return this.httpService.postRequest(`${Path_Api.ORGANIZATIONS}`, pagedRequest);
   }
 

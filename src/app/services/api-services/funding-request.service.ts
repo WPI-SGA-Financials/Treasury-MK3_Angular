@@ -21,7 +21,7 @@ export class FundingRequestService {
    *
    * @param pagedRequest
    */
-  getFundingRequests(pagedRequest: PagedRequestModel = { rpp: 10, page: 1 }): Observable<PagedResponseModel<FundingRequest>> {
+  getFundingRequests(pagedRequest: PagedRequestModel = { resultsPerPage: 10, page: 1 }): Observable<PagedResponseModel<FundingRequest>> {
     return this.httpService.postRequest(`${Path_Api.FUNDINGREQUESTS}`, pagedRequest);
   }
 

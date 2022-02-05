@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +11,11 @@ export class HttpService {
   }
 
   getRequest(path: string): Observable<any> {
-    return this.http.get(environment.apiURL + path).pipe(catchError(this.handleError));
+    return this.http.get(`/api/v1/${path}`).pipe(catchError(this.handleError));
   }
 
   postRequest(path: string, body: object): Observable<any> {
-    return this.http.post<any>(environment.apiURL + path, body).pipe(catchError(this.handleError));
+    return this.http.post<any>(`/api/v1/${path}`, body).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

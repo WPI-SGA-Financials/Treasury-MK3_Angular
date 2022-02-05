@@ -18,7 +18,7 @@ export interface ExtendedBudget extends Budget {
 
 export interface BudgetSection {
   id: number;
-  name: string;
+  sectionName: string;
   numOfItems: number;
   amountRequested: number;
   amountProposed: number;
