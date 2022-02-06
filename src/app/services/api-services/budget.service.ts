@@ -20,7 +20,7 @@ export class BudgetService {
    *
    * @param pagedRequest
    */
-  getBudgets(pagedRequest: PagedRequestModel = { rpp: 10, page: 1 }): Observable<PagedResponseModel<Budget>> {
+  getBudgets(pagedRequest: PagedRequestModel = { resultsPerPage: 10, page: 1 }): Observable<PagedResponseModel<Budget>> {
     return this.httpService.postRequest(`${Path_Api.BUDGETS}`, pagedRequest);
   }
 

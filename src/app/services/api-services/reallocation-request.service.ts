@@ -19,7 +19,7 @@ export class ReallocationRequestService {
    *
    * @param pagedRequest
    */
-  getReallocations(pagedRequest: PagedRequestModel = {rpp: 10, page: 1}): Observable<PagedResponseModel<Reallocation>> {
+  getReallocations(pagedRequest: PagedRequestModel = {resultsPerPage: 10, page: 1}): Observable<PagedResponseModel<Reallocation>> {
     return this.httpService.postRequest(`${Path_Api.REALLOCATIONS}`, pagedRequest);
   }
 

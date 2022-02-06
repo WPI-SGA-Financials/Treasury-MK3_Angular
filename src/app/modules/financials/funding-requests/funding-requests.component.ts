@@ -70,7 +70,7 @@ export class FundingRequestsComponent implements OnInit {
     includeInactive: false,
     name: [],
     page: 1,
-    rpp: 9,
+    resultsPerPage: 9,
     type: [],
     fiscalYear: [],
     minimumRequestedAmount: -1,
