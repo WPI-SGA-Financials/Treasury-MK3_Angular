@@ -12,6 +12,7 @@ import { ProcessFilterSearchService } from '@treasury-services/process-filter-se
 import { ResponseModel } from '@treasury-types/response.model';
 import { AllMetadata } from '@treasury-components/filters/types/metadata.model';
 import { PagedRequestModel } from '@treasury-types/paged-request.model';
+import { IButton } from '@treasury-components/button-group/button-group.component';
 
 @Component({
   selector: 'app-reallocations-list',
@@ -82,6 +83,21 @@ export class ReallocationsListComponent implements OnInit {
     clubTypes: [],
     fiscalYears: []
   };
+
+  buttons: IButton[] = [
+    {
+      name: 'Budgets',
+      routerLink: '/financials/budgets'
+    },
+    {
+      name: 'Funding Requests',
+      routerLink: '/financials/funding-requests'
+    },
+    {
+      name: 'Reallocations',
+      routerLink: '/financials/reallocations'
+    }
+  ];
 
   constructor(
     private reallocService: ReallocationRequestService,

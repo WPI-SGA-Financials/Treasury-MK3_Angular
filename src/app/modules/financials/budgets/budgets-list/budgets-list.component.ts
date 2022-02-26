@@ -13,6 +13,7 @@ import { IFilter } from '@treasury-components/filters/types/filter';
 import { ResponseModel } from '@treasury-types/response.model';
 import { PagedResponseModel } from '@treasury-types/paged-response.model';
 import { Budget } from '@treasury-types/budget.model';
+import { IButton } from '@treasury-components/button-group/button-group.component';
 
 @Component({
   selector: 'app-budgets-list',
@@ -81,6 +82,20 @@ export class BudgetsListComponent implements OnInit {
     clubTypes: [],
     fiscalYears: []
   };
+  buttons: IButton[] = [
+    {
+      name: 'Budgets',
+      routerLink: '/financials/budgets'
+    },
+    {
+      name: 'Funding Requests',
+      routerLink: '/financials/funding-requests'
+    },
+    {
+      name: 'Reallocations',
+      routerLink: '/financials/reallocations'
+    }
+  ];
 
   constructor(
     private budgetService: BudgetService,

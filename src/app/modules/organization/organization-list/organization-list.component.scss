@@ -1,27 +1,9 @@
 :host {
   display: flex;
   flex-direction: column;
-  color: white;
-  background-color: #424242;
   text-align: center;
-
-  & .clubs {
-    display: flex;
-    flex-direction: row;
-    padding: 24px 24px 24px 0;
-
-    /*    & app-clubs-table {
-          padding: 24px 24px 24px 0;
-          flex: 1;
-        }
-
-        & app-club-filter-menu {
-          padding: 24px 0 24px 0;
-        }*/
-  }
 }
 
-//:host {
-//  padding: 24px 24px 24px 0;
-//  flex: 1;
-//}
+.container {
+  padding: 0 24px 24px 0;
+}

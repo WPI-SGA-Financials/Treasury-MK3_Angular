@@ -1,5 +1,8 @@
-<app-cat-nav></app-cat-nav>
-<div class='clubs'>
+<div class='container'>
+  <div class='button-nav'>
+    <app-cat-nav></app-cat-nav>
+  </div>
+
   <app-filterable-table
     [tableData]='dataSource'
     [tableColumns]='displayedColumns'
@@ -15,7 +18,7 @@
     <app-club-inactive
       (search)='onSearch($event)'
     ></app-club-inactive>
-    <br/>
+    <br />
     <app-club-name
       (search)='onSearch($event)'
     ></app-club-name>
@@ -31,5 +34,6 @@
       [clubTypes]='metadata.clubTypes'
     ></app-club-type>
   </app-filterable-table>
+
 </div>
 

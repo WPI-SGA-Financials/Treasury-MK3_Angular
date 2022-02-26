@@ -1,44 +1,51 @@
-<app-filterable-table
-  [tableData]='dataSource'
-  [tableColumns]='displayedColumns'
-  [isLoadingResults]='isLoading'
-  [actionItems]='actionItems'
-  [paginationSizes]='[9]'
-  [defaultPageSize]='9'
-  [filters]='filters'
-  (rowAction)='onButtonClicked($event)'
-  (tableEvent)='onTableEvent($event)'
-  (removeFilter)='handleRemove($event)'
->
-  <app-club-inactive
-    (search)='onSearch($event)'
-  ></app-club-inactive>
-  <br/>
-  <app-club-name
-    (search)='onSearch($event)'
-  ></app-club-name>
-  <app-club-acronym
-    (search)='onSearch($event)'
-  ></app-club-acronym>
-  <app-club-classification
-    (search)='onSearch($event)'
-    [classifications]='metadata.clubClassifications'
-  ></app-club-classification>
-  <app-club-type
-    (search)='onSearch($event)'
-    [clubTypes]='metadata.clubTypes'
-  ></app-club-type>
+<div class='container'>
+  <div class='button-nav'>
+    <app-cat-nav></app-cat-nav>
+    <app-button-group [buttons]='buttons'></app-button-group>
+  </div>
 
-  <h4>Financial Based Filters</h4>
+  <app-filterable-table
+    [tableData]='dataSource'
+    [tableColumns]='displayedColumns'
+    [isLoadingResults]='isLoading'
+    [actionItems]='actionItems'
+    [paginationSizes]='[9]'
+    [defaultPageSize]='9'
+    [filters]='filters'
+    (rowAction)='onButtonClicked($event)'
+    (tableEvent)='onTableEvent($event)'
+    (removeFilter)='handleRemove($event)'
+  >
+    <app-club-inactive
+      (search)='onSearch($event)'
+    ></app-club-inactive>
+    <br />
+    <app-club-name
+      (search)='onSearch($event)'
+    ></app-club-name>
+    <app-club-acronym
+      (search)='onSearch($event)'
+    ></app-club-acronym>
+    <app-club-classification
+      (search)='onSearch($event)'
+      [classifications]='metadata.clubClassifications'
+    ></app-club-classification>
+    <app-club-type
+      (search)='onSearch($event)'
+      [clubTypes]='metadata.clubTypes'
+    ></app-club-type>
 
-  <app-dot-number
-    (search)='onSearch($event)'
-  ></app-dot-number>
-  <app-fiscal-year
-    (search)='onSearch($event)'
-    [fiscalYears]='metadata.fiscalYears'
-  ></app-fiscal-year>
-  <app-description
-    (search)='onSearch($event)'
-  ></app-description>
-</app-filterable-table>
+    <h4>Financial Based Filters</h4>
+
+    <app-dot-number
+      (search)='onSearch($event)'
+    ></app-dot-number>
+    <app-fiscal-year
+      (search)='onSearch($event)'
+      [fiscalYears]='metadata.fiscalYears'
+    ></app-fiscal-year>
+    <app-description
+      (search)='onSearch($event)'
+    ></app-description>
+  </app-filterable-table>
+</div>

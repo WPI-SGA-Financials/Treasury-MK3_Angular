@@ -115,3 +115,16 @@ body {
 .primary-darker {
   background-color: mat.get-color-from-palette($TreasuryMK3-angular-primary, 'darker');
 }
+
+.container {
+  background-color: #424242;
+}
+
+.button-nav {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+
+  padding-bottom: 10px;
+}

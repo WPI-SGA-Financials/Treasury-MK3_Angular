@@ -5,9 +5,12 @@ import { BudgetsRoutingModule } from './budgets-routing.module';
 import { BudgetsListComponent } from './budgets-list/budgets-list.component';
 import { ReusableTableModule } from '@treasury-components/tables/reusable-table.module';
 import { SharedFiltersModule } from '@treasury-components/filters/shared-filters.module';
+import { BudgetDetailedComponent } from './budget-detailed/budget-detailed.component';
+import { CatNavModule } from '@treasury-components/cat-nav/cat-nav.module';
+import { SharedAngularComponentsModule } from '@treasury-components/shared-angular-components.module';
 
 @NgModule({
-  declarations: [BudgetsListComponent],
-  imports: [CommonModule, BudgetsRoutingModule, ReusableTableModule, SharedFiltersModule]
+  declarations: [BudgetsListComponent, BudgetDetailedComponent],
+  imports: [CommonModule, BudgetsRoutingModule, ReusableTableModule, SharedFiltersModule, CatNavModule, SharedAngularComponentsModule]
 })
 export class BudgetsModule {}
