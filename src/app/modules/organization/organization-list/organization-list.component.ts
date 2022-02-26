@@ -14,7 +14,7 @@ import { AllMetadata } from '../../../components/filters/types/metadata.model';
 import { ProcessFilterSearchService } from '../../../services/process-filter-search.service';
 
 @Component({
-  selector: 'app-clubs-table',
+  selector: 'app-organization-list',
   templateUrl: './organization-list.component.html',
   styleUrls: ['./organization-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
