@@ -28,8 +28,8 @@ export class FundingRequestPopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.frService.getFundingRequest(this.injectedData.id).subscribe((response: ResponseModel<ExtendedFundingRequest>) => {
-      this.extendedFundingRequest = response.data
-      this.routerPath = `${Path.ORGANIZATION}/${this.extendedFundingRequest?.nameOfClub}/funding-requests`
-    })
+      this.extendedFundingRequest = response.data;
+      this.routerPath = `${Path.ORGANIZATIONS}/${this.extendedFundingRequest?.nameOfClub}/funding-requests`;
+    });
   }
 }

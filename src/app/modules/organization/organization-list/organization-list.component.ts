@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { OrganizationService } from '../../../services/api-services/organization.service';
-import { Path_Api } from '../../../types/path.enum';
+import { Path, Path_Api } from '../../../types/path.enum';
 import { Organization } from '../../../types/organization.model';
 import { Router } from '@angular/router';
 import { PagedResponseModel } from '../../../types/paged-response.model';
@@ -15,11 +15,11 @@ import { ProcessFilterSearchService } from '../../../services/process-filter-sea
 
 @Component({
   selector: 'app-clubs-table',
-  templateUrl: './clubs-table.component.html',
-  styleUrls: ['./clubs-table.component.scss'],
+  templateUrl: './organization-list.component.html',
+  styleUrls: ['./organization-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class ClubsTableComponent implements OnInit {
+export class OrganizationListComponent implements OnInit {
   displayedColumns: ITableColumn[] = [
     {
       name: 'Name of Club',
@@ -43,11 +43,6 @@ export class ClubsTableComponent implements OnInit {
       dataKey: 'inactive',
       type: ColumnTypes.INACTIVE
     }
-    // {
-    //   name: 'Last Modified',
-    //   dataKey: 'timestamp',
-    //   type: ColumnTypes.DATE
-    // }
   ];
   dataSource: PagedResponseModel<Organization> = {} as PagedResponseModel<Organization>;
   isLoading: boolean = true;
@@ -101,7 +96,7 @@ export class ClubsTableComponent implements OnInit {
 
   onButtonClicked($event: IActionEvent<Organization>) {
     if ($event.type === ActionButtonType.VIEW) {
-      this.router.navigate([`${Path_Api.ORGANIZATION}/${$event.data.nameOfClub}`]);
+      this.router.navigate([`${Path.ORGANIZATIONS}/${$event.data.nameOfClub}`]);
     }
   }
 

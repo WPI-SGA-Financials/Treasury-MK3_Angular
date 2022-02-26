@@ -24,7 +24,7 @@ export class SidebarMenuComponent implements OnInit {
   standardNavItems: INavigationItem[] = [
     {
       title: 'Organization Data',
-      path: Path.CLUBS,
+      path: Path.ORGANIZATIONS,
       icon: 'group_work'
     },
     {

@@ -1,9 +1,8 @@
 export enum Path {
-  CLUBS = 'clubs',
   FIVIZ = 'fiviz',
   FINANCIALS = 'financials',
   LOGIN = 'login',
-  ORGANIZATION = 'organization'
+  ORGANIZATIONS = 'organizations'
 }
 
 export enum Path_Api {

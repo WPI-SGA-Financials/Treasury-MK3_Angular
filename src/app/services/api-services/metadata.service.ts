@@ -10,8 +10,7 @@ import { map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MetadataService {
-  constructor(private httpService: HttpService) {
-  }
+  constructor(private httpService: HttpService) {}
 
   getAllMetadata(): Observable<ResponseModel<AllMetadata>> {
     return this.httpService.getRequest(Path_Api.ALL_METADATA).pipe(
@@ -23,12 +22,9 @@ export class MetadataService {
         return response;
       }),
       tap((allMetadata: ResponseModel<AllMetadata>) => {
-        allMetadata.data.clubClassifications.sort((a, b) => a.id > b.id ? 1 : -1);
-        allMetadata.data.clubTypes.sort((a, b) => a.id > b.id ? 1 : -1);
-        allMetadata.data.fiscalYears.sort((a, b) => a.fy < b.fy ? 1 : -1);
-      }),
-      tap((data: ResponseModel<AllMetadata>) => {
-        console.log(data);
+        allMetadata.data.clubClassifications.sort((a, b) => (a.id > b.id ? 1 : -1));
+        allMetadata.data.clubTypes.sort((a, b) => (a.id > b.id ? 1 : -1));
+        allMetadata.data.fiscalYears.sort((a, b) => (a.fy < b.fy ? 1 : -1));
       })
     );
   }

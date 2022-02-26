@@ -24,13 +24,12 @@ export class ReallocationRequestPopupComponent implements OnInit {
       id: number;
       fromOrgView: boolean;
     }
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.reallocService.getReallocationRequest(this.injectedData.id).subscribe((res: ResponseModel<ExtendedReallocation>) => {
       this.extendedReallocation = res.data;
-      this.routerPath = `${Path.ORGANIZATION}/${this.extendedReallocation?.nameOfClub}/reallocations`;
+      this.routerPath = `${Path.ORGANIZATIONS}/${this.extendedReallocation?.nameOfClub}/reallocations`;
     });
   }
 }

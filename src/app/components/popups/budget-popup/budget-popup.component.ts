@@ -29,7 +29,7 @@ export class BudgetPopupComponent implements OnInit {
   ngOnInit(): void {
     this.budgetService.getBudget(this.injectedData.id).subscribe((response: ResponseModel<ExtendedBudget>) => {
       this.extendedBudget = response.data;
-      this.routerPath = `${Path.ORGANIZATION}/${this.extendedBudget?.nameOfClub}/budgets`
-    })
+      this.routerPath = `${Path.ORGANIZATIONS}/${this.extendedBudget?.nameOfClub}/budgets`;
+    });
   }
 }
