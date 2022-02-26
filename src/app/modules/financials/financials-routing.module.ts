@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { FinancialsComponent } from './financials.component';
 import { BudgetsComponent } from './budgets/budgets.component';
 import { FundingRequestsComponent } from './funding-requests/funding-requests.component';
-import { ReallocationsComponent } from './reallocations/reallocations.component';
 
 const routes: Routes = [
   {
@@ -20,7 +19,7 @@ const routes: Routes = [
       },
       {
         path: 'reallocations',
-        component: ReallocationsComponent
+        loadChildren: () => import('./reallocations/reallocations.module').then((m) => m.ReallocationsModule)
       },
       {
         path: '**',

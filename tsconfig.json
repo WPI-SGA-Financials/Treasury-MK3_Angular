@@ -19,7 +19,27 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@treasury-modules/*": [
+        "src/app/modules/*"
+      ],
+      "@treasury-components/*": [
+        "src/app/components/*"
+      ],
+      "@treasury-services/*": [
+        "src/app/services/*"
+      ],
+      "@treasury-pipes/*": [
+        "src/app/pipes/*"
+      ],
+      "@treasury-types/*": [
+        "src/app/types/*"
+      ],
+      "@treasury-environments/*": [
+        "src/environments/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

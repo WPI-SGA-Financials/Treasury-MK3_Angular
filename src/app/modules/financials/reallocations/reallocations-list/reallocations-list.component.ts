@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Reallocation } from '../../../types/reallocation.model';
-import { ReallocationRequestPopupComponent } from '../../../components/popups/reallocation-request-popup/reallocation-request-popup.component';
+import { Reallocation } from '@treasury-types/reallocation.model';
+import { ReallocationRequestPopupComponent } from '@treasury-components/popups/reallocation-request-popup/reallocation-request-popup.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ReallocationRequestService } from '../../../services/api-services/reallocation-request.service';
-import { PagedResponseModel } from '../../../types/paged-response.model';
-import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
-import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
-import { IFilter } from '../../../components/filters/types/filter';
-import { MetadataService } from '../../../services/api-services/metadata.service';
-import { ProcessFilterSearchService } from '../../../services/process-filter-search.service';
-import { ResponseModel } from '../../../types/response.model';
-import { AllMetadata } from '../../../components/filters/types/metadata.model';
-import { PagedRequestModel } from '../../../types/paged-request.model';
+import { ReallocationRequestService } from '@treasury-services/api-services/reallocation-request.service';
+import { PagedResponseModel } from '@treasury-types/paged-response.model';
+import { IActionEvent, IActions, ITableColumn } from '@treasury-components/tables/types/table-interfaces';
+import { ActionButtonType, ColumnTypes } from '@treasury-components/tables/types/table-enums';
+import { IFilter } from '@treasury-components/filters/types/filter';
+import { MetadataService } from '@treasury-services/api-services/metadata.service';
+import { ProcessFilterSearchService } from '@treasury-services/process-filter-search.service';
+import { ResponseModel } from '@treasury-types/response.model';
+import { AllMetadata } from '@treasury-components/filters/types/metadata.model';
+import { PagedRequestModel } from '@treasury-types/paged-request.model';
 
 @Component({
-  selector: 'app-reallocations',
-  templateUrl: './reallocations.component.html',
-  styleUrls: ['./reallocations.component.scss']
+  selector: 'app-reallocations-list',
+  templateUrl: './reallocations-list.component.html',
+  styleUrls: ['./reallocations-list.component.scss']
 })
-export class ReallocationsComponent implements OnInit {
+export class ReallocationsListComponent implements OnInit {
   displayedColumns: ITableColumn[] = [
     {
       name: 'Name of Club',

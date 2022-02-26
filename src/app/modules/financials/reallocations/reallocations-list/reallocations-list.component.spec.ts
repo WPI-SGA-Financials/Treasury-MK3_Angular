@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReallocationsComponent } from './reallocations.component';
+import { ReallocationsListComponent } from './reallocations-list.component';
 
 describe('ReallocationsComponent', () => {
-  let component: ReallocationsComponent;
-  let fixture: ComponentFixture<ReallocationsComponent>;
+  let component: ReallocationsListComponent;
+  let fixture: ComponentFixture<ReallocationsListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ReallocationsComponent]
+      declarations: [ReallocationsListComponent]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReallocationsComponent);
+    fixture = TestBed.createComponent(ReallocationsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
