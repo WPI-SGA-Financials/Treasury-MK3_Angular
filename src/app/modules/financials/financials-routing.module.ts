@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FinancialsComponent } from './financials.component';
-import { BudgetsComponent } from './budgets/budgets.component';
-import { FundingRequestsComponent } from './funding-requests/funding-requests.component';
 
 const routes: Routes = [
   {
@@ -11,11 +9,11 @@ const routes: Routes = [
     children: [
       {
         path: 'budgets',
-        component: BudgetsComponent
+        loadChildren: () => import('./budgets/budgets.module').then((m) => m.BudgetsModule)
       },
       {
         path: 'funding-requests',
-        component: FundingRequestsComponent
+        loadChildren: () => import('./funding-requests/funding-requests.module').then((m) => m.FundingRequestsModule)
       },
       {
         path: 'reallocations',

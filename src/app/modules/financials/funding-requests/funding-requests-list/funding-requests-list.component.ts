@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FundingRequest } from '../../../types/funding-request.model';
 import { MatDialog } from '@angular/material/dialog';
-import { FundingRequestPopupComponent } from '../../../components/popups/funding-request-popup/funding-request-popup.component';
-import { FundingRequestService } from '../../../services/api-services/funding-request.service';
-import { PagedResponseModel } from '../../../types/paged-response.model';
-import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
-import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
-import { IFilter } from '../../../components/filters/types/filter';
-import { AllMetadata } from '../../../components/filters/types/metadata.model';
-import { MetadataService } from '../../../services/api-services/metadata.service';
-import { PagedRequestModel } from '../../../types/paged-request.model';
-import { ProcessFilterSearchService } from '../../../services/process-filter-search.service';
-import { ResponseModel } from '../../../types/response.model';
+import { AllMetadata } from '@treasury-components/filters/types/metadata.model';
+import { PagedRequestModel } from '@treasury-types/paged-request.model';
+import { FundingRequestPopupComponent } from '@treasury-components/popups/funding-request-popup/funding-request-popup.component';
+import { FundingRequestService } from '@treasury-services/api-services/funding-request.service';
+import { IActionEvent, IActions, ITableColumn } from '@treasury-components/tables/types/table-interfaces';
+import { FundingRequest } from '@treasury-types/funding-request.model';
+import { ActionButtonType, ColumnTypes } from '@treasury-components/tables/types/table-enums';
+import { MetadataService } from '@treasury-services/api-services/metadata.service';
+import { ProcessFilterSearchService } from '@treasury-services/process-filter-search.service';
+import { IFilter } from '@treasury-components/filters/types/filter';
+import { ResponseModel } from '@treasury-types/response.model';
+import { PagedResponseModel } from '@treasury-types/paged-response.model';
 
 @Component({
-  selector: 'app-funding-requests',
-  templateUrl: './funding-requests.component.html',
-  styleUrls: ['./funding-requests.component.scss']
+  selector: 'app-funding-requests-list',
+  templateUrl: './funding-requests-list.component.html',
+  styleUrls: ['./funding-requests-list.component.scss']
 })
-export class FundingRequestsComponent implements OnInit {
+export class FundingRequestsListComponent implements OnInit {
   displayedColumns: ITableColumn[] = [
     {
       name: 'Name of Club',

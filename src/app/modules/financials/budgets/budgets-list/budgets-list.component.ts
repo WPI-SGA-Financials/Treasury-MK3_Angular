@@ -1,24 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Budget } from '../../../types/budget.model';
+
 import { MatDialog } from '@angular/material/dialog';
-import { BudgetPopupComponent } from '../../../components/popups/budget-popup/budget-popup.component';
-import { BudgetService } from '../../../services/api-services/budget.service';
-import { PagedResponseModel } from '../../../types/paged-response.model';
-import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';
-import { ActionButtonType, ColumnTypes } from '../../../components/tables/types/table-enums';
-import { IFilter } from '../../../components/filters/types/filter';
-import { MetadataService } from '../../../services/api-services/metadata.service';
-import { ProcessFilterSearchService } from '../../../services/process-filter-search.service';
-import { PagedRequestModel } from '../../../types/paged-request.model';
-import { AllMetadata } from '../../../components/filters/types/metadata.model';
-import { ResponseModel } from '../../../types/response.model';
+import { AllMetadata } from '@treasury-components/filters/types/metadata.model';
+import { PagedRequestModel } from '@treasury-types/paged-request.model';
+import { IActionEvent, IActions, ITableColumn } from '@treasury-components/tables/types/table-interfaces';
+import { ActionButtonType, ColumnTypes } from '@treasury-components/tables/types/table-enums';
+import { MetadataService } from '@treasury-services/api-services/metadata.service';
+import { BudgetService } from '@treasury-services/api-services/budget.service';
+import { BudgetPopupComponent } from '@treasury-components/popups/budget-popup/budget-popup.component';
+import { ProcessFilterSearchService } from '@treasury-services/process-filter-search.service';
+import { IFilter } from '@treasury-components/filters/types/filter';
+import { ResponseModel } from '@treasury-types/response.model';
+import { PagedResponseModel } from '@treasury-types/paged-response.model';
+import { Budget } from '@treasury-types/budget.model';
 
 @Component({
-  selector: 'app-budgets',
-  templateUrl: './budgets.component.html',
-  styleUrls: ['./budgets.component.scss']
+  selector: 'app-budgets-list',
+  templateUrl: './budgets-list.component.html',
+  styleUrls: ['./budgets-list.component.scss']
 })
-export class BudgetsComponent implements OnInit {
+export class BudgetsListComponent implements OnInit {
   displayedColumns: ITableColumn[] = [
     {
       name: 'Name of Club',
