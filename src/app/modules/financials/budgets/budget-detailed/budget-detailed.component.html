@@ -1,3 +1,38 @@
 <div class='container'>
-  <p>budget-detailed works!</p>
+  <div class='header'>
+
+    <div class='button-nav'>
+      <app-button-group
+        [buttons]='buttons'
+      ></app-button-group>
+    </div>
+
+    <h1>{{budgetDetailed.nameOfClub}}</h1>
+
+  </div>
+
+  <p><span class='label'>Fiscal Year:</span> {{budgetDetailed.fiscalYear}}</p>
+  <p><span class='label'>Total Amount Approved:</span> {{budgetDetailed.amountApproved | currency}}</p>
+
+  <hr />
+
+  <h3>Detailed</h3>
+  <p><span class='label'>Amount Requested:</span> {{budgetDetailed.amountRequested | currency}}</p>
+  <p><span class='label'>Amount Proposed:</span> {{budgetDetailed.amountProposed | currency}}</p>
+  <p><span class='label'>Appealed?:</span> {{budgetDetailed.appealed ? 'Yes' : 'No'}}</p>
+  <ng-template [ngIf]='budgetDetailed.appealed'>
+    <p><span class='label'>Requested Appeal:</span> {{budgetDetailed.appealAmount | currency}}</p>
+    <p><span class='label'>Approved Appeal:</span> {{budgetDetailed.approvedAppeal | currency}}</p>
+  </ng-template>
+
+  <ng-template [ngIf]='budgetDetailed.sections'>
+    <hr />
+    <h3>Sections</h3>
+
+    <app-reusable-table
+      [tableData]='budgetDetailed.sections'
+      [tableColumns]='tableColumns'
+      [activeSort]='activeSort'
+    ></app-reusable-table>
+  </ng-template>
 </div>

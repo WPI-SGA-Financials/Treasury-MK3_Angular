@@ -52,13 +52,14 @@ export class ReusableTableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   emitButtonClick($event: MouseEvent, element: any, actionType: ActionButtonType) {
     $event.stopPropagation();
     this.rowAction.emit({
       type: actionType,
-      data: element,
+      data: element
     });
   }
 }

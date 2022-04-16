@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { PagedResponseModel } from '../../../types/paged-response.model';
 import { IActions, IActiveSort, ITableColumn } from '../types/table-interfaces';
 import { ActionButtonType, ColumnTypes } from '../types/table-enums';
@@ -15,8 +15,8 @@ export class HttpPageableTableComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<any>([]);
   displayedColumns: string[] = [];
 
-  @ViewChild(MatPaginator) paginator: any;
-  @ViewChild(MatSort) sort: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   @Input() isLoadingResults: boolean = false;
   @Input() isSortable = false;
@@ -49,21 +49,22 @@ export class HttpPageableTableComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.sort.sortChange.subscribe(() => {
-      this.paginator.pageIndex = 0
-      this.tableEvent.emit({type: 'SortChange', data: {sortColumn: '', direction: ''}})
+    this.sort.sortChange.subscribe((value: Sort) => {
+      this.paginator.pageIndex = 0;
+      this.tableEvent.emit({ type: 'SortChange', data: { sortColumn: '', direction: '' } });
     });
 
-    this.paginator.page.subscribe(() => {
-      this.tableEvent.emit({type: 'PageChange', data: {pageIndex: this.paginator.pageIndex}})
-    })
+    this.paginator.page.subscribe((page: PageEvent) => {
+      console.log(page);
+      this.tableEvent.emit({ type: 'PageChange', data: { pageIndex: this.paginator.pageIndex } });
+    });
   }
 
   emitButtonClick($event: MouseEvent, element: any, actionType: ActionButtonType) {
     $event.stopPropagation();
     this.rowAction.emit({
       type: actionType,
-      data: element,
+      data: element
     });
   }
 }

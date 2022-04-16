@@ -8,9 +8,18 @@ import { SharedFiltersModule } from '@treasury-components/filters/shared-filters
 import { BudgetDetailedComponent } from './budget-detailed/budget-detailed.component';
 import { CatNavModule } from '@treasury-components/cat-nav/cat-nav.module';
 import { SharedAngularComponentsModule } from '@treasury-components/shared-angular-components.module';
+import { SharedMaterialComponentsModule } from '@treasury-components/shared-material-components.module';
 
 @NgModule({
   declarations: [BudgetsListComponent, BudgetDetailedComponent],
-  imports: [CommonModule, BudgetsRoutingModule, ReusableTableModule, SharedFiltersModule, CatNavModule, SharedAngularComponentsModule]
+  imports: [
+    CommonModule,
+    BudgetsRoutingModule,
+    ReusableTableModule,
+    SharedFiltersModule,
+    CatNavModule,
+    SharedAngularComponentsModule,
+    SharedMaterialComponentsModule
+  ]
 })
 export class BudgetsModule {}
