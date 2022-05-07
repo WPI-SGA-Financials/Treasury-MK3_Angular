@@ -1,28 +1,16 @@
-<div class='organization'>
+<div class="organization">
+    <div class="content">
+        <button mat-raised-button color="primary" routerLink="/organizations">
+            <mat-icon>arrow_back</mat-icon>
+            Back to Organizations
+        </button>
 
-  <div class='content'>
-    <button mat-raised-button color='primary' routerLink='/clubs'>
-      <mat-icon>arrow_back</mat-icon>
-      Back to Organizations
-    </button>
+        <app-org-info [orgData]="club"></app-org-info>
 
-    <app-org-info
-      [orgData]='club'
-    ></app-org-info>
+        <app-button-group [buttons]="buttons"></app-button-group>
 
-    <app-button-group [buttons]='buttons'></app-button-group>
-
-    <div class='router-outlet'>
-      <router-outlet></router-outlet>
+        <div class="router-outlet">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-
-  </div>
-
 </div>
-
-
-
-
-
-
-

@@ -1,6 +1,6 @@
-<ng-container *ngFor='let btn of buttons'>
-  <button mat-raised-button color='primary' [routerLink]='btn.routerLink'>
-    <mat-icon *ngIf='btn.matIcon != undefined'>{{btn.matIcon}}</mat-icon>
-    {{btn.name}}
-  </button>
+<ng-container *ngFor="let btn of buttons">
+    <button mat-raised-button color="primary" [routerLink]="btn.routerLink">
+        <mat-icon *ngIf="btn.matIcon != undefined">{{ btn.matIcon }}</mat-icon>
+        {{ btn.name }}
+    </button>
 </ng-container>

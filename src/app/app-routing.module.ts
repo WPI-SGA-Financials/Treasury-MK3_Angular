@@ -15,11 +15,6 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: Path.CLUBS,
-    loadChildren: () => import('./modules/clubs/clubs.module').then((m) => m.ClubsModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: Path.FINANCIALS,
     loadChildren: () => import('./modules/financials/financials.module').then((m) => m.FinancialsModule),
     canActivate: [AuthGuard]
@@ -30,13 +25,13 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: Path.ORGANIZATION + '/:id',
+    path: Path.ORGANIZATIONS,
     loadChildren: () => import('./modules/organization/organization.module').then((m) => m.OrganizationModule),
     canActivate: [AuthGuard]
   },
   {
     path: '**',
-    redirectTo: Path.CLUBS
+    redirectTo: Path.ORGANIZATIONS
   }
 ];
 

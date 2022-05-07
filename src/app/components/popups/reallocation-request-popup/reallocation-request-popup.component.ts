@@ -7,30 +7,33 @@ import { ReallocationRequestService } from '../../../services/api-services/reall
 import { ResponseModel } from '../../../types/response.model';
 
 @Component({
-  selector: 'app-reallocation-request-popup',
-  templateUrl: './reallocation-request-popup.component.html',
-  styleUrls: ['./reallocation-request-popup.component.scss']
+    selector: 'app-reallocation-request-popup',
+    templateUrl: './reallocation-request-popup.component.html',
+    styleUrls: ['./reallocation-request-popup.component.scss'],
 })
 export class ReallocationRequestPopupComponent implements OnInit {
-  extendedReallocation: ExtendedReallocation | null = null;
-  @ViewChild(MatAccordion) accordion: any;
-  public routerPath: string = '';
+    extendedReallocation: ExtendedReallocation | null = null;
 
-  constructor(
-    private reallocService: ReallocationRequestService,
-    public dialogRef: MatDialogRef<ReallocationRequestPopupComponent>,
-    @Inject(MAT_DIALOG_DATA)
-    public injectedData: {
-      id: number;
-      fromOrgView: boolean;
+    @ViewChild(MatAccordion) accordion: any;
+
+    public routerPath: string = '';
+
+    constructor(
+        private reallocService: ReallocationRequestService,
+        public dialogRef: MatDialogRef<ReallocationRequestPopupComponent>,
+        @Inject(MAT_DIALOG_DATA)
+        public injectedData: {
+            id: number;
+            fromOrgView: boolean;
+        },
+    ) {}
+
+    ngOnInit(): void {
+        this.reallocService
+            .getReallocationRequest(this.injectedData.id)
+            .subscribe((res: ResponseModel<ExtendedReallocation>) => {
+                this.extendedReallocation = res.data;
+                this.routerPath = `${Path.ORGANIZATIONS}/${this.extendedReallocation?.nameOfClub}/reallocations`;
+            });
     }
-  ) {
-  }
-
-  ngOnInit(): void {
-    this.reallocService.getReallocationRequest(this.injectedData.id).subscribe((res: ResponseModel<ExtendedReallocation>) => {
-      this.extendedReallocation = res.data;
-      this.routerPath = `${Path.ORGANIZATION}/${this.extendedReallocation?.nameOfClub}/reallocations`;
-    });
-  }
 }

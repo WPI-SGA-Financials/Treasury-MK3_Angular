@@ -1,12 +1,11 @@
 <app-reusable-table
-  [tableData]='dataSource'
-  [tableColumns]='displayedColumns'
-  [isPageable]='true'
-  [paginationSizes]='[6]'
-  [defaultPageSize]='6'
-  [isSortable]='true'
-  [activeSort]='activeSort'
-  [actionItems]='actionItems'
-  (rowAction)='onButtonClicked($event)'
+    [tableData]="dataSource"
+    [tableColumns]="displayedColumns"
+    [isPageable]="true"
+    [paginationSizes]="[6]"
+    [defaultPageSize]="6"
+    [isSortable]="true"
+    [activeSort]="activeSort"
+    [actionItems]="actionItems"
+    (rowAction)="onButtonClicked($event)"
 ></app-reusable-table>
-

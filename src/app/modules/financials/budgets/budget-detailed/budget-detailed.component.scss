@@ -1,0 +1,25 @@
+:host {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 50%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.label {
+  font-weight: 550;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & .button-nav {
+    padding-bottom: 5px;
+  }
+}

@@ -1,21 +1,19 @@
 <mat-sidenav-container>
-  <mat-sidenav class='primary-darker' [(opened)]="opened" opened mode="over" [fixedInViewport]="true">
-    <app-sidebar-menu
-      (toggleNav)='toggleSidenav($event)'
-    ></app-sidebar-menu>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button mat-icon-button (click)="toggleSidenav(true)">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span class="spacing"></span>
-      <div>Treasury</div>
-      <span class="spacing"></span>
-      <img src="assets/images/wpi-logo.png" />
-    </mat-toolbar>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
+    <mat-sidenav class="primary-darker" [(opened)]="opened" opened mode="over" [fixedInViewport]="true">
+        <app-sidebar-menu (toggleNav)="toggleSidenav($event)"></app-sidebar-menu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button mat-icon-button (click)="toggleSidenav(true)">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span class="spacing"></span>
+            <div>Treasury</div>
+            <span class="spacing"></span>
+            <img src="assets/images/wpi-logo.png" />
+        </mat-toolbar>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
 </mat-sidenav-container>

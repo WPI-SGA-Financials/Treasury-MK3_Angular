@@ -1,43 +1,48 @@
 <app-reusable-header
-  [dialogRef]='dialogRef'
-  [headerTitle]="'Funding Request Detailed View'"
-  [routerPath]='routerPath'
-  [fromOrgView]='injectedData.fromOrgView'
+    [dialogRef]="dialogRef"
+    [headerTitle]="'Funding Request Detailed View'"
+    [routerPath]="routerPath"
+    [fromOrgView]="injectedData.fromOrgView"
 ></app-reusable-header>
-<mat-dialog-content class='mat-typography'>
-  <h3>Overview</h3>
-  <p><span class='label'>Name:</span> {{extendedFundingRequest?.nameOfClub}}</p>
-  <p><span class='label'>Hearing Date:</span> {{extendedFundingRequest?.hearingDate | date}}</p>
-  <p><span class='label'>Dot Number:</span> {{extendedFundingRequest?.dotNumber}}</p>
+<mat-dialog-content class="mat-typography">
+    <h3>Overview</h3>
+    <p><span class="label">Name:</span> {{ extendedFundingRequest?.nameOfClub }}</p>
+    <p><span class="label">Hearing Date:</span> {{ extendedFundingRequest?.hearingDate | date }}</p>
+    <p><span class="label">Dot Number:</span> {{ extendedFundingRequest?.dotNumber }}</p>
 
-  <hr />
-
-  <h3>Detailed</h3>
-  <p><span class='label'>Request Description:</span> {{extendedFundingRequest?.description}}</p>
-  <ng-container *ngIf='extendedFundingRequest?.dateOfEvent !== "" && extendedFundingRequest?.dateOfEvent !== null'>
-    <p><span class='label'>Event Date:</span> {{extendedFundingRequest?.dateOfEvent | date}}</p>
-  </ng-container>
-  <p><span class='label'>Amount Requested:</span> {{extendedFundingRequest?.amountRequested | currency}}</p>
-  <p><span class='label'>Decision:</span> {{extendedFundingRequest?.decision}}</p>
-  <p><span class='label'>Amount Approved:</span> {{extendedFundingRequest?.amountApproved | currency}}</p>
-  <p><span class='label'>Appealed?:</span> {{extendedFundingRequest?.frAppeal !== null ? 'Yes' : 'No'}}</p>
-
-  <ng-container *ngIf='extendedFundingRequest?.frAppeal'>
-    <p><span class='label'>Requested Appeal:</span> {{extendedFundingRequest?.frAppeal?.appealAmount | currency}}</p>
-    <p><span class='label'>Appeal Decision:</span> {{extendedFundingRequest?.frAppeal?.decision }}</p>
-    <p><span class='label'>Approved Appeal:</span> {{extendedFundingRequest?.frAppeal?.approvedAppeal | currency}}</p>
-    <p><span class='label'>Appeals Minutes: </span> <a href="{{extendedFundingRequest?.frAppeal?.minutesLink }}" target="_blank">Link to Minutes</a></p>
-  </ng-container>
-
-  <ng-container *ngIf='true'>
     <hr />
 
-    <app-meeting-details
-      [extendedFundingRequest]='extendedFundingRequest'
-    ></app-meeting-details>
+    <h3>Detailed</h3>
+    <p><span class="label">Request Description:</span> {{ extendedFundingRequest?.description }}</p>
+    <ng-container *ngIf="extendedFundingRequest?.dateOfEvent !== '' && extendedFundingRequest?.dateOfEvent !== null">
+        <p><span class="label">Event Date:</span> {{ extendedFundingRequest?.dateOfEvent | date }}</p>
+    </ng-container>
+    <p><span class="label">Amount Requested:</span> {{ extendedFundingRequest?.amountRequested | currency }}</p>
+    <p><span class="label">Decision:</span> {{ extendedFundingRequest?.decision }}</p>
+    <p><span class="label">Amount Approved:</span> {{ extendedFundingRequest?.amountApproved | currency }}</p>
+    <p><span class="label">Appealed?:</span> {{ extendedFundingRequest?.frAppeal !== null ? 'Yes' : 'No' }}</p>
 
-  </ng-container>
+    <ng-container *ngIf="extendedFundingRequest?.frAppeal">
+        <p>
+            <span class="label">Requested Appeal:</span> {{ extendedFundingRequest?.frAppeal?.appealAmount | currency }}
+        </p>
+        <p><span class="label">Appeal Decision:</span> {{ extendedFundingRequest?.frAppeal?.decision }}</p>
+        <p>
+            <span class="label">Approved Appeal:</span>
+            {{ extendedFundingRequest?.frAppeal?.approvedAppeal | currency }}
+        </p>
+        <p>
+            <span class="label">Appeals Minutes: </span>
+            <a href="{{ extendedFundingRequest?.frAppeal?.minutesLink }}" target="_blank">Link to Minutes</a>
+        </p>
+    </ng-container>
+
+    <ng-container *ngIf="true">
+        <hr />
+
+        <app-meeting-details [extendedFundingRequest]="extendedFundingRequest"></app-meeting-details>
+    </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+    <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>

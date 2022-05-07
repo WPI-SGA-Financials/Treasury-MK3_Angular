@@ -17,25 +17,25 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
 
 const material = [
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatTableModule,
-  MatToolbarModule,
-  MatSidenavModule,
-  MatIconModule,
-  MatListModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatFormFieldModule,
-  MatDialogModule,
-  MatExpansionModule,
-  MatInputModule,
-  MatProgressSpinnerModule,
-  MatChipsModule
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatTableModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
 ];
 
 @NgModule({
-  imports: material,
-  exports: material
+    imports: material,
+    exports: material,
 })
 export class SharedMaterialComponentsModule {}

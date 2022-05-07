@@ -4,39 +4,47 @@ import { PagedResponseModel } from '../../../types/paged-response.model';
 import { IFilter } from '../../filters/types/filter';
 
 @Component({
-  selector: 'app-filterable-table',
-  templateUrl: './filterable-table.component.html',
-  styleUrls: ['./filterable-table.component.scss']
+    selector: 'app-filterable-table',
+    templateUrl: './filterable-table.component.html',
+    styleUrls: ['./filterable-table.component.scss'],
 })
 export class FilterableTableComponent {
-  @Input() isLoadingResults: boolean = false;
-  @Input() isSortable = false;
-  @Input() tableColumns: ITableColumn[] = [];
-  @Input() paginationSizes: number[] = [10];
-  @Input() defaultPageSize = 10;
-  @Input() activeSort: IActiveSort = { dataKey: '', direction: 'desc' };
-  // Pass down pageable response and handle setting index and such
-  @Input() tableData: PagedResponseModel<any> = {} as PagedResponseModel<any>;
-  @Input() actionItems: IActions[] = [];
-  @Input() filters: IFilter[] = [];
+    @Input() isLoadingResults: boolean = false;
 
-  @Output() rowAction: EventEmitter<any> = new EventEmitter<any>();
+    @Input() isSortable = false;
 
-  @Output() tableEvent: EventEmitter<any> = new EventEmitter<any>();
+    @Input() tableColumns: ITableColumn[] = [];
 
-  @Output() removeFilter: EventEmitter<IFilter> = new EventEmitter<IFilter>();
+    @Input() paginationSizes: number[] = [10];
 
-  constructor() {}
+    @Input() defaultPageSize = 10;
 
-  emitButtonClick($event: any) {
-    this.rowAction.emit($event);
-  }
+    @Input() activeSort: IActiveSort = { dataKey: '', direction: 'desc' };
 
-  emitTableEvent($event: any) {
-    this.tableEvent.emit($event);
-  }
+    // Pass down pageable response and handle setting index and such
+    @Input() tableData: PagedResponseModel<any> = {} as PagedResponseModel<any>;
 
-  handleRemove($event: IFilter) {
-    this.removeFilter.emit($event);
-  }
+    @Input() actionItems: IActions[] = [];
+
+    @Input() filters: IFilter[] = [];
+
+    @Output() rowAction: EventEmitter<any> = new EventEmitter<any>();
+
+    @Output() tableEvent: EventEmitter<any> = new EventEmitter<any>();
+
+    @Output() removeFilter: EventEmitter<IFilter> = new EventEmitter<IFilter>();
+
+    constructor() {}
+
+    emitButtonClick($event: any) {
+        this.rowAction.emit($event);
+    }
+
+    emitTableEvent($event: any) {
+        this.tableEvent.emit($event);
+    }
+
+    handleRemove($event: IFilter) {
+        this.removeFilter.emit($event);
+    }
 }

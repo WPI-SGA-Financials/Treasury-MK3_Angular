@@ -3,34 +3,35 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { FILTER, FILTER_DISPLAY_NAME, IFilter } from '../types/filter';
 
 @Component({
-  selector: 'app-club-inactive',
-  templateUrl: './club-inactive.component.html',
-  styleUrls: ['./club-inactive.component.scss']
+    selector: 'app-club-inactive',
+    templateUrl: './club-inactive.component.html',
+    styleUrls: ['./club-inactive.component.scss'],
 })
 export class ClubInactiveFilterComponent {
-  formGroup: FormGroup;
-  includeInactive: AbstractControl;
+    formGroup: FormGroup;
 
-  @Output()
-  search: EventEmitter<any> = new EventEmitter<any>();
+    includeInactive: AbstractControl;
 
-  constructor(private readonly fb: FormBuilder) {
-    this.formGroup = this.fb.group({
-      includeInactive: ['', [Validators.minLength(1)]]
-    });
+    @Output()
+    search: EventEmitter<any> = new EventEmitter<any>();
 
-    this.includeInactive = <AbstractControl>this.formGroup.get('includeInactive');
-  }
+    constructor(private readonly fb: FormBuilder) {
+        this.formGroup = this.fb.group({
+            includeInactive: ['', [Validators.minLength(1)]],
+        });
 
-  onSubmit($event: any) {
-    console.log($event);
+        this.includeInactive = <AbstractControl>this.formGroup.get('includeInactive');
+    }
 
-    let filter: IFilter = {
-      filterDisplayName: FILTER_DISPLAY_NAME[FILTER.INCLUDE_INACTIVE],
-      filterName: FILTER.INCLUDE_INACTIVE,
-      filterValue: $event.checked as boolean
-    };
+    onSubmit($event: any) {
+        console.log($event);
 
-    this.search.emit(filter);
-  }
+        const filter: IFilter = {
+            filterDisplayName: FILTER_DISPLAY_NAME[FILTER.INCLUDE_INACTIVE],
+            filterName: FILTER.INCLUDE_INACTIVE,
+            filterValue: $event.checked as boolean,
+        };
+
+        this.search.emit(filter);
+    }
 }

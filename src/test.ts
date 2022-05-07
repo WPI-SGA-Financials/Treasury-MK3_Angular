@@ -1,24 +1,17 @@
-// This file is required by karma.conf.js and loads recursively all the .spec and framework files
+import 'jest-preset-angular/setup-jest';
+import '@testing-library/jest-dom';
 
-import 'zone.js/testing';
-import { getTestBed } from '@angular/core/testing';
-import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
+Object.defineProperty(window, 'CSS', { value: null });
 
-declare const require: {
-  context(
-    path: string,
-    deep?: boolean,
-    filter?: RegExp
-  ): {
-    keys(): string[];
-    <T>(id: string): T;
-  };
-};
+Object.defineProperty(document, 'doctype', {
+  value: '<!DOCTYPE html>'
+});
 
-// First, initialize the Angular testing environment.
-getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting(), { teardown: { destroyAfterEach: true } });
-
-// Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);
+Object.defineProperty(document.body.style, 'transform', {
+  value: () => {
+    return {
+      enumerable: true,
+      configurable: true
+    };
+  }
+});

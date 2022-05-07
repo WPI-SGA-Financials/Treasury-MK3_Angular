@@ -5,7 +5,7 @@ import { CatNavModule } from '../../components/cat-nav/cat-nav.module';
 import { FivizRoutingModule } from './fiviz-routing.module';
 
 @NgModule({
-  declarations: [FivizComponent],
-  imports: [CommonModule, FivizRoutingModule, CatNavModule]
+    declarations: [FivizComponent],
+    imports: [CommonModule, FivizRoutingModule, CatNavModule],
 })
 export class FivizModule {}

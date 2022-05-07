@@ -4,37 +4,38 @@ import { FILTER, FILTER_DISPLAY_NAME, IFilter } from '../types/filter';
 import { ClubClassification } from '../types/metadata.model';
 
 @Component({
-  selector: 'app-club-classification',
-  templateUrl: './club-classification.component.html',
-  styleUrls: ['./club-classification.component.scss']
+    selector: 'app-club-classification',
+    templateUrl: './club-classification.component.html',
+    styleUrls: ['./club-classification.component.scss'],
 })
 export class ClubClassificationFilterComponent {
-  formGroup: FormGroup;
-  clubClassification: AbstractControl;
+    formGroup: FormGroup;
 
-  @Input() classifications: ClubClassification[] = [];
+    clubClassification: AbstractControl;
 
-  @Output()
-  search: EventEmitter<any> = new EventEmitter<any>();
+    @Input() classifications: ClubClassification[] = [];
 
-  constructor(private readonly fb: FormBuilder) {
-    this.formGroup = this.fb.group({
-      clubClassification: ['', [Validators.minLength(1)]]
-    });
+    @Output()
+    search: EventEmitter<any> = new EventEmitter<any>();
 
-    this.clubClassification = <AbstractControl>this.formGroup.get('clubClassification');
-  }
+    constructor(private readonly fb: FormBuilder) {
+        this.formGroup = this.fb.group({
+            clubClassification: ['', [Validators.minLength(1)]],
+        });
 
-  onSubmit($event: any) {
-    if (this.formGroup.valid && ($event.value as string).trim()) {
-      let filter: IFilter = {
-        filterDisplayName: FILTER_DISPLAY_NAME[FILTER.CLASSIFICATION],
-        filterName: FILTER.CLASSIFICATION,
-        filterValue: $event.value as string
-      };
-
-      this.search.emit(filter);
+        this.clubClassification = <AbstractControl>this.formGroup.get('clubClassification');
     }
-    this.formGroup.reset();
-  }
+
+    onSubmit($event: any) {
+        if (this.formGroup.valid && ($event.value as string).trim()) {
+            const filter: IFilter = {
+                filterDisplayName: FILTER_DISPLAY_NAME[FILTER.CLASSIFICATION],
+                filterName: FILTER.CLASSIFICATION,
+                filterValue: $event.value as string,
+            };
+
+            this.search.emit(filter);
+        }
+        this.formGroup.reset();
+    }
 }

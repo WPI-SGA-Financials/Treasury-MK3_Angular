@@ -8,13 +8,13 @@ import { MeetingDetailsComponent } from './meeting-details/meeting-details.compo
 import { ReallocationRequestPopupComponent } from './reallocation-request-popup/reallocation-request-popup.component';
 
 @NgModule({
-  declarations: [
-    BudgetPopupComponent,
-    FundingRequestPopupComponent,
-    ReusableHeaderComponent,
-    MeetingDetailsComponent,
-    ReallocationRequestPopupComponent
-  ],
-  imports: [CommonModule, SharedMaterialComponentsModule]
+    declarations: [
+        BudgetPopupComponent,
+        FundingRequestPopupComponent,
+        ReusableHeaderComponent,
+        MeetingDetailsComponent,
+        ReallocationRequestPopupComponent,
+    ],
+    imports: [CommonModule, SharedMaterialComponentsModule],
 })
 export class PopupsModule {}
