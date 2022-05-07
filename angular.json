@@ -89,9 +89,22 @@
           "options": {
             "browserTarget": "TreasuryMK3-angular:build"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "TreasuryMK3-angular"
+  "defaultProject": "TreasuryMK3-angular",
+  "cli": {
+    "analytics": false,
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
