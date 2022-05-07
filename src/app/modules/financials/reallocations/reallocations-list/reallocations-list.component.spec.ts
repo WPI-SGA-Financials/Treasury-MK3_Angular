@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReallocationsListComponent } from './reallocations-list.component';
 import { MockComponent, MockProvider, MockProviders } from 'ng-mocks';
 import { ReallocationRequestService } from '@treasury-services/api-services/reallocation-request.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,34 +12,39 @@ import { EMPTY } from 'rxjs';
 import { CatNavComponent } from '@treasury-components/cat-nav/cat-nav.component';
 import { ButtonGroupComponent } from '@treasury-components/button-group/button-group.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ReallocationsListComponent } from './reallocations-list.component';
 
 describe('ReallocationsComponent', () => {
-  let component: ReallocationsListComponent;
-  let fixture: ComponentFixture<ReallocationsListComponent>;
+    let component: ReallocationsListComponent;
+    let fixture: ComponentFixture<ReallocationsListComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ReallocationsListComponent, MockComponent(CatNavComponent), MockComponent(ButtonGroupComponent)],
-      imports: [SharedFiltersModule, SharedMaterialComponentsModule, ReusableTableModule, NoopAnimationsModule],
-      providers: [
-        MockProvider(MetadataService, {
-          getAllMetadata: () => EMPTY
-        }),
-        MockProvider(ReallocationRequestService, {
-          getReallocations: () => EMPTY
-        }),
-        MockProviders(MatDialog, ProcessFilterSearchService)
-      ]
-    }).compileComponents();
-  });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [
+                ReallocationsListComponent,
+                MockComponent(CatNavComponent),
+                MockComponent(ButtonGroupComponent),
+            ],
+            imports: [SharedFiltersModule, SharedMaterialComponentsModule, ReusableTableModule, NoopAnimationsModule],
+            providers: [
+                MockProvider(MetadataService, {
+                    getAllMetadata: () => EMPTY,
+                }),
+                MockProvider(ReallocationRequestService, {
+                    getReallocations: () => EMPTY,
+                }),
+                MockProviders(MatDialog, ProcessFilterSearchService),
+            ],
+        }).compileComponents();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ReallocationsListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ReallocationsListComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

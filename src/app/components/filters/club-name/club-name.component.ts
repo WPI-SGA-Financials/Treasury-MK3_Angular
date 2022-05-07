@@ -3,37 +3,38 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { FILTER, FILTER_DISPLAY_NAME, IFilter } from '../types/filter';
 
 @Component({
-  selector: 'app-club-name',
-  templateUrl: './club-name.component.html',
-  styleUrls: ['./club-name.component.scss']
+    selector: 'app-club-name',
+    templateUrl: './club-name.component.html',
+    styleUrls: ['./club-name.component.scss'],
 })
 export class ClubNameFilterComponent {
-  formGroup: FormGroup;
-  clubName: AbstractControl;
+    formGroup: FormGroup;
 
-  @Output()
-  search: EventEmitter<any> = new EventEmitter<any>();
+    clubName: AbstractControl;
 
-  constructor(private readonly fb: FormBuilder) {
-    this.formGroup = this.fb.group({
-      clubName: ['', [Validators.minLength(1)]]
-    });
+    @Output()
+    search: EventEmitter<any> = new EventEmitter<any>();
 
-    this.clubName = <AbstractControl>this.formGroup.get('clubName');
-  }
+    constructor(private readonly fb: FormBuilder) {
+        this.formGroup = this.fb.group({
+            clubName: ['', [Validators.minLength(1)]],
+        });
 
-  onSubmit($event: any) {
-    $event.preventDefault();
-
-    if (this.formGroup.valid && (this.clubName.value as string).trim()) {
-      let filter: IFilter = {
-        filterDisplayName: FILTER_DISPLAY_NAME[FILTER.NAME_OF_CLUB],
-        filterName: FILTER.NAME_OF_CLUB,
-        filterValue: this.clubName.value as string
-      };
-
-      this.search.emit(filter);
-      this.clubName.setValue('');
+        this.clubName = <AbstractControl>this.formGroup.get('clubName');
     }
-  }
+
+    onSubmit($event: any) {
+        $event.preventDefault();
+
+        if (this.formGroup.valid && (this.clubName.value as string).trim()) {
+            const filter: IFilter = {
+                filterDisplayName: FILTER_DISPLAY_NAME[FILTER.NAME_OF_CLUB],
+                filterName: FILTER.NAME_OF_CLUB,
+                filterValue: this.clubName.value as string,
+            };
+
+            this.search.emit(filter);
+            this.clubName.setValue('');
+        }
+    }
 }

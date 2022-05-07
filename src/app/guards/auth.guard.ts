@@ -5,15 +5,15 @@ import { AuthService } from '../services/auth.service';
 import { Path } from '../types/path.enum';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+    constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authService.isLoggedIn || this.router.createUrlTree(['/', Path.LOGIN]);
-  }
+    canActivate(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot,
+    ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+        return this.authService.isLoggedIn || this.router.createUrlTree(['/', Path.LOGIN]);
+    }
 }

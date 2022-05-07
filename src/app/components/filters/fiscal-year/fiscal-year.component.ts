@@ -4,38 +4,39 @@ import { FILTER, FILTER_DISPLAY_NAME, IFilter } from '../types/filter';
 import { FiscalYear } from '../types/metadata.model';
 
 @Component({
-  selector: 'app-fiscal-year',
-  templateUrl: './fiscal-year.component.html',
-  styleUrls: ['./fiscal-year.component.scss']
+    selector: 'app-fiscal-year',
+    templateUrl: './fiscal-year.component.html',
+    styleUrls: ['./fiscal-year.component.scss'],
 })
 export class FiscalYearFilterComponent {
-  formGroup: FormGroup;
-  fiscalYear: AbstractControl;
+    formGroup: FormGroup;
 
-  @Input()
-  fiscalYears: FiscalYear[] = [];
+    fiscalYear: AbstractControl;
 
-  @Output()
-  search: EventEmitter<any> = new EventEmitter<any>();
+    @Input()
+    fiscalYears: FiscalYear[] = [];
 
-  constructor(private readonly fb: FormBuilder) {
-    this.formGroup = this.fb.group({
-      fiscalYear: ['', [Validators.minLength(1)]]
-    });
+    @Output()
+    search: EventEmitter<any> = new EventEmitter<any>();
 
-    this.fiscalYear = <AbstractControl>this.formGroup.get('fiscalYear');
-  }
+    constructor(private readonly fb: FormBuilder) {
+        this.formGroup = this.fb.group({
+            fiscalYear: ['', [Validators.minLength(1)]],
+        });
 
-  onSubmit($event: any) {
-    if (this.formGroup.valid && ($event.value as string).trim()) {
-      let filter: IFilter = {
-        filterDisplayName: FILTER_DISPLAY_NAME[FILTER.FISCAL_YEAR],
-        filterName: FILTER.FISCAL_YEAR,
-        filterValue: $event.value as string
-      };
-
-      this.search.emit(filter);
+        this.fiscalYear = <AbstractControl>this.formGroup.get('fiscalYear');
     }
-    this.formGroup.reset();
-  }
+
+    onSubmit($event: any) {
+        if (this.formGroup.valid && ($event.value as string).trim()) {
+            const filter: IFilter = {
+                filterDisplayName: FILTER_DISPLAY_NAME[FILTER.FISCAL_YEAR],
+                filterName: FILTER.FISCAL_YEAR,
+                filterValue: $event.value as string,
+            };
+
+            this.search.emit(filter);
+        }
+        this.formGroup.reset();
+    }
 }

@@ -15,23 +15,23 @@ import { CatNavModule } from '../../components/cat-nav/cat-nav.module';
 import { SharedFiltersModule } from '../../components/filters/shared-filters.module';
 
 @NgModule({
-  declarations: [
-    OrganizationListComponent,
-    OrganizationComponent,
-    InfoComponent,
-    BudgetsComponent,
-    FundingRequestsComponent,
-    ReallocationsComponent
-  ],
-  exports: [OrganizationComponent],
-  imports: [
-    CommonModule,
-    OrganizationRoutingModule,
-    SharedMaterialComponentsModule,
-    ReusableTableModule,
-    SharedAngularComponentsModule,
-    CatNavModule,
-    SharedFiltersModule
-  ]
+    declarations: [
+        OrganizationListComponent,
+        OrganizationComponent,
+        InfoComponent,
+        BudgetsComponent,
+        FundingRequestsComponent,
+        ReallocationsComponent,
+    ],
+    exports: [OrganizationComponent],
+    imports: [
+        CommonModule,
+        OrganizationRoutingModule,
+        SharedMaterialComponentsModule,
+        ReusableTableModule,
+        SharedAngularComponentsModule,
+        CatNavModule,
+        SharedFiltersModule,
+    ],
 })
 export class OrganizationModule {}

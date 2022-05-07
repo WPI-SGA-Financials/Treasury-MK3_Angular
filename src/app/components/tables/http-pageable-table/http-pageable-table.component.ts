@@ -7,64 +7,75 @@ import { IActions, IActiveSort, ITableColumn } from '../types/table-interfaces';
 import { ActionButtonType, ColumnTypes } from '../types/table-enums';
 
 @Component({
-  selector: 'app-http-pageable-table',
-  templateUrl: './http-pageable-table.component.html',
-  styleUrls: ['./http-pageable-table.component.scss']
+    selector: 'app-http-pageable-table',
+    templateUrl: './http-pageable-table.component.html',
+    styleUrls: ['./http-pageable-table.component.scss'],
 })
 export class HttpPageableTableComponent implements OnInit, AfterViewInit {
-  dataSource = new MatTableDataSource<any>([]);
-  displayedColumns: string[] = [];
+    dataSource = new MatTableDataSource<any>([]);
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+    displayedColumns: string[] = [];
 
-  @Input() isLoadingResults: boolean = false;
-  @Input() isSortable = false;
-  @Input() tableColumns: ITableColumn[] = [];
-  @Input() paginationSizes: number[] = [10];
-  @Input() defaultPageSize = 10;
-  @Input() activeSort: IActiveSort = { dataKey: '', direction: 'desc' };
-  // Pass down pageable response and handle setting index and such
-  @Input() tableData: PagedResponseModel<any> = {} as PagedResponseModel<any>;
-  @Input() actionItems: IActions[] = [];
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  @Output() rowAction: EventEmitter<any> = new EventEmitter<any>();
+    @ViewChild(MatSort) sort: MatSort;
 
-  @Output() tableEvent: EventEmitter<any> = new EventEmitter<any>();
+    @Input() isLoadingResults: boolean = false;
 
-  DATE: ColumnTypes = ColumnTypes.DATE;
-  CURRENCY: ColumnTypes = ColumnTypes.CURRENCY;
-  INACTIVE: ColumnTypes = ColumnTypes.INACTIVE;
+    @Input() isSortable = false;
 
-  ATYPES_VIEW: ActionButtonType = ActionButtonType.VIEW;
+    @Input() tableColumns: ITableColumn[] = [];
 
-  constructor() {}
+    @Input() paginationSizes: number[] = [10];
 
-  ngOnInit(): void {
-    this.displayedColumns = this.tableColumns.map((tableColumn: ITableColumn) => tableColumn.name);
+    @Input() defaultPageSize = 10;
 
-    if (this.actionItems != null && this.actionItems.length > 0) {
-      this.displayedColumns = [...this.displayedColumns, 'actionItems'];
+    @Input() activeSort: IActiveSort = { dataKey: '', direction: 'desc' };
+
+    // Pass down pageable response and handle setting index and such
+    @Input() tableData: PagedResponseModel<any> = {} as PagedResponseModel<any>;
+
+    @Input() actionItems: IActions[] = [];
+
+    @Output() rowAction: EventEmitter<any> = new EventEmitter<any>();
+
+    @Output() tableEvent: EventEmitter<any> = new EventEmitter<any>();
+
+    DATE: ColumnTypes = ColumnTypes.DATE;
+
+    CURRENCY: ColumnTypes = ColumnTypes.CURRENCY;
+
+    INACTIVE: ColumnTypes = ColumnTypes.INACTIVE;
+
+    ATYPES_VIEW: ActionButtonType = ActionButtonType.VIEW;
+
+    constructor() {}
+
+    ngOnInit(): void {
+        this.displayedColumns = this.tableColumns.map((tableColumn: ITableColumn) => tableColumn.name);
+
+        if (this.actionItems != null && this.actionItems.length > 0) {
+            this.displayedColumns = [...this.displayedColumns, 'actionItems'];
+        }
     }
-  }
 
-  ngAfterViewInit(): void {
-    this.sort.sortChange.subscribe((value: Sort) => {
-      this.paginator.pageIndex = 0;
-      this.tableEvent.emit({ type: 'SortChange', data: { sortColumn: '', direction: '' } });
-    });
+    ngAfterViewInit(): void {
+        this.sort.sortChange.subscribe((value: Sort) => {
+            this.paginator.pageIndex = 0;
+            this.tableEvent.emit({ type: 'SortChange', data: { sortColumn: '', direction: '' } });
+        });
 
-    this.paginator.page.subscribe((page: PageEvent) => {
-      console.log(page);
-      this.tableEvent.emit({ type: 'PageChange', data: { pageIndex: this.paginator.pageIndex } });
-    });
-  }
+        this.paginator.page.subscribe((page: PageEvent) => {
+            console.log(page);
+            this.tableEvent.emit({ type: 'PageChange', data: { pageIndex: this.paginator.pageIndex } });
+        });
+    }
 
-  emitButtonClick($event: MouseEvent, element: any, actionType: ActionButtonType) {
-    $event.stopPropagation();
-    this.rowAction.emit({
-      type: actionType,
-      data: element
-    });
-  }
+    emitButtonClick($event: MouseEvent, element: any, actionType: ActionButtonType) {
+        $event.stopPropagation();
+        this.rowAction.emit({
+            type: actionType,
+            data: element,
+        });
+    }
 }

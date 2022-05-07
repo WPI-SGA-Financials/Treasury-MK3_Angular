@@ -3,37 +3,38 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { FILTER, FILTER_DISPLAY_NAME, IFilter } from '../types/filter';
 
 @Component({
-  selector: 'app-description',
-  templateUrl: './description.component.html',
-  styleUrls: ['./description.component.scss']
+    selector: 'app-description',
+    templateUrl: './description.component.html',
+    styleUrls: ['./description.component.scss'],
 })
 export class DescriptionComponent {
-  formGroup: FormGroup;
-  description: AbstractControl;
+    formGroup: FormGroup;
 
-  @Output()
-  search: EventEmitter<any> = new EventEmitter<any>();
+    description: AbstractControl;
 
-  constructor(private readonly fb: FormBuilder) {
-    this.formGroup = this.fb.group({
-      description: ['', [Validators.minLength(1)]]
-    });
+    @Output()
+    search: EventEmitter<any> = new EventEmitter<any>();
 
-    this.description = <AbstractControl>this.formGroup.get('description');
-  }
+    constructor(private readonly fb: FormBuilder) {
+        this.formGroup = this.fb.group({
+            description: ['', [Validators.minLength(1)]],
+        });
 
-  onSubmit($event: any) {
-    $event.preventDefault();
-
-    if (this.formGroup.valid && (this.description.value as string).trim()) {
-      let filter: IFilter = {
-        filterDisplayName: FILTER_DISPLAY_NAME[FILTER.DESCRIPTION],
-        filterName: FILTER.DESCRIPTION,
-        filterValue: this.description.value as string
-      };
-
-      this.search.emit(filter);
-      this.description.setValue('');
+        this.description = <AbstractControl>this.formGroup.get('description');
     }
-  }
+
+    onSubmit($event: any) {
+        $event.preventDefault();
+
+        if (this.formGroup.valid && (this.description.value as string).trim()) {
+            const filter: IFilter = {
+                filterDisplayName: FILTER_DISPLAY_NAME[FILTER.DESCRIPTION],
+                filterName: FILTER.DESCRIPTION,
+                filterValue: this.description.value as string,
+            };
+
+            this.search.emit(filter);
+            this.description.setValue('');
+        }
+    }
 }

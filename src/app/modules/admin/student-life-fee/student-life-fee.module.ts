@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { StudentLifeFeeRoutingModule } from './student-life-fee-routing.module';
 
-
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    StudentLifeFeeRoutingModule
-  ]
+    declarations: [],
+    imports: [CommonModule, StudentLifeFeeRoutingModule],
 })
-export class StudentLifeFeeModule { }
+export class StudentLifeFeeModule {}

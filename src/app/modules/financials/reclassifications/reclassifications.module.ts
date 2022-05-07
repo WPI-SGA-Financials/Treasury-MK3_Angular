@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ReclassificationsRoutingModule } from './reclassifications-routing.module';
 
-
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    ReclassificationsRoutingModule
-  ]
+    declarations: [],
+    imports: [CommonModule, ReclassificationsRoutingModule],
 })
-export class ReclassificationsModule { }
+export class ReclassificationsModule {}

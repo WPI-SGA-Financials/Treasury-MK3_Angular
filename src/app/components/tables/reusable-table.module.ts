@@ -8,8 +8,8 @@ import { FilterableTableComponent } from './filterable-table/filterable-table.co
 import { SharedFiltersModule } from '../filters/shared-filters.module';
 
 @NgModule({
-  declarations: [ReusableTableComponent, HttpPageableTableComponent, FilterableTableComponent],
-  exports: [ReusableTableComponent, HttpPageableTableComponent, FilterableTableComponent],
-  imports: [CommonModule, SharedMaterialComponentsModule, SharedPipesModule, SharedFiltersModule]
+    declarations: [ReusableTableComponent, HttpPageableTableComponent, FilterableTableComponent],
+    exports: [ReusableTableComponent, HttpPageableTableComponent, FilterableTableComponent],
+    imports: [CommonModule, SharedMaterialComponentsModule, SharedPipesModule, SharedFiltersModule],
 })
 export class ReusableTableModule {}

@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss']
+    selector: 'app-sidenav',
+    templateUrl: './sidenav.component.html',
+    styleUrls: ['./sidenav.component.scss'],
 })
 export class SidenavComponent implements OnInit {
-  opened = false;
+    opened = false;
 
-  constructor() {}
+    constructor() {}
 
-  ngOnInit(): void {}
+    ngOnInit(): void {}
 
-  toggleSidenav(status: boolean) {
-    this.opened = status;
-  }
+    toggleSidenav(status: boolean) {
+        this.opened = status;
+    }
 }

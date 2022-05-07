@@ -1,13 +1,7 @@
-<form [formGroup]='formGroup' (ngSubmit)='onSubmit($event)' (click)='$event.stopPropagation()'>
-  <mat-form-field appearance='outline' floatLabel='always'>
-    <mat-label>Description</mat-label>
-    <input
-      matInput
-      type='text'
-      formControlName='description'
-      placeholder='ex: Shirt'
-    >
-    <mat-icon matSuffix (click)='onSubmit($event)'>search</mat-icon>
-  </mat-form-field>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit($event)" (click)="$event.stopPropagation()">
+    <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Description</mat-label>
+        <input matInput type="text" formControlName="description" placeholder="ex: Shirt" />
+        <mat-icon matSuffix (click)="onSubmit($event)">search</mat-icon>
+    </mat-form-field>
 </form>
-

@@ -10,71 +10,75 @@ import { Path } from '@treasury-types/path.enum';
 import { IButton } from '@treasury-components/button-group/button-group.component';
 
 @Component({
-  selector: 'app-budget-detailed',
-  templateUrl: './budget-detailed.component.html',
-  styleUrls: ['./budget-detailed.component.scss']
+    selector: 'app-budget-detailed',
+    templateUrl: './budget-detailed.component.html',
+    styleUrls: ['./budget-detailed.component.scss'],
 })
 export class BudgetDetailedComponent implements OnInit, OnDestroy {
-  private routeSub: Subscription;
-  budgetID: number;
-  budgetDetailed: ExtendedBudget;
-  routerPath: string = '';
+    private routeSub: Subscription;
 
-  tableColumns: ITableColumn[] = [
-    {
-      name: 'Section Name',
-      dataKey: 'sectionName'
-    },
-    {
-      name: 'Number of Items',
-      dataKey: 'numOfItems'
-    },
-    {
-      name: 'Amt. Requested',
-      dataKey: 'amountRequested',
-      type: ColumnTypes.CURRENCY
-    },
-    {
-      name: 'Amt. Proposed',
-      dataKey: 'amountProposed',
-      type: ColumnTypes.CURRENCY
-    },
-    {
-      name: 'Amt. Approved',
-      dataKey: 'amountApproved',
-      type: ColumnTypes.CURRENCY
+    budgetID: number;
+
+    budgetDetailed: ExtendedBudget;
+
+    routerPath: string = '';
+
+    tableColumns: ITableColumn[] = [
+        {
+            name: 'Section Name',
+            dataKey: 'sectionName',
+        },
+        {
+            name: 'Number of Items',
+            dataKey: 'numOfItems',
+        },
+        {
+            name: 'Amt. Requested',
+            dataKey: 'amountRequested',
+            type: ColumnTypes.CURRENCY,
+        },
+        {
+            name: 'Amt. Proposed',
+            dataKey: 'amountProposed',
+            type: ColumnTypes.CURRENCY,
+        },
+        {
+            name: 'Amt. Approved',
+            dataKey: 'amountApproved',
+            type: ColumnTypes.CURRENCY,
+        },
+    ];
+
+    activeSort: IActiveSort = {
+        dataKey: 'sectionName',
+        direction: 'asc',
+    };
+
+    buttons: IButton[] = [
+        {
+            name: 'View Org',
+            routerLink: this.routerPath,
+        },
+        {
+            name: 'View Budgets',
+            routerLink: '/financials/budgets',
+        },
+    ];
+
+    constructor(private budgetService: BudgetService, private route: ActivatedRoute) {}
+
+    ngOnInit(): void {
+        this.routeSub = this.route.params.subscribe((params: Params) => {
+            this.budgetID = params.id;
+
+            this.budgetService.getBudget(this.budgetID).subscribe((value: ResponseModel<ExtendedBudget>) => {
+                this.budgetDetailed = value.data;
+                this.routerPath = `/${Path.ORGANIZATIONS}/${this.budgetDetailed.nameOfClub}/budgets`;
+            });
+        });
     }
-  ];
-  activeSort: IActiveSort = {
-    dataKey: 'sectionName',
-    direction: 'asc'
-  };
 
-  buttons: IButton[] = [
-    {
-      name: 'View Org',
-      routerLink: this.routerPath
-    },
-    {
-      name: 'View Budgets',
-      routerLink: '/financials/budgets'
+    ngOnDestroy(): void {
+        this.routeSub.unsubscribe();
     }
-  ];
-
-  constructor(private budgetService: BudgetService, private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.routeSub = this.route.params.subscribe((params: Params) => {
-      this.budgetID = params['id'];
-
-      this.budgetService.getBudget(this.budgetID).subscribe((value: ResponseModel<ExtendedBudget>) => {
-        this.budgetDetailed = value.data;
-        this.routerPath = `/${Path.ORGANIZATIONS}/${this.budgetDetailed.nameOfClub}/budgets`;
-      });
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.routeSub.unsubscribe();
-  }
 }
