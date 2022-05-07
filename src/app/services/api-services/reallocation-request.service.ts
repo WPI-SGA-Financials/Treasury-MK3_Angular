@@ -4,7 +4,6 @@ import { HttpService } from '../http.service';
 import { PagedRequestModel } from '../../types/paged-request.model';
 import { PagedResponseModel } from '../../types/paged-response.model';
 import { ExtendedReallocation, Reallocation } from '../../types/reallocation.model';
-import { Path_Api } from '../../types/path.enum';
 import { ResponseModel } from '../../types/response.model';
 
 @Injectable({
@@ -21,7 +20,7 @@ export class ReallocationRequestService {
     getReallocations(
         pagedRequest: PagedRequestModel = { resultsPerPage: 10, page: 1 },
     ): Observable<PagedResponseModel<Reallocation>> {
-        return this.httpService.postRequest(`${Path_Api.REALLOCATIONS}`, pagedRequest);
+        return this.httpService.postRequest(`financials/reallocs`, pagedRequest);
     }
 
     /**
@@ -30,7 +29,7 @@ export class ReallocationRequestService {
      * @param name
      */
     getOrganizationReallocationRequests(name: string): Observable<ResponseModel<Reallocation[]>> {
-        return this.httpService.getRequest(`${Path_Api.ORGANIZATION}/${name}/reallocs`);
+        return this.httpService.getRequest(`organization/${name}/reallocs`);
     }
 
     /**
@@ -39,6 +38,6 @@ export class ReallocationRequestService {
      * @param id
      */
     getReallocationRequest(id: number): Observable<ResponseModel<ExtendedReallocation>> {
-        return this.httpService.getRequest(`${Path_Api.SPECIFIC_REALLOC}/${id}`);
+        return this.httpService.getRequest(`financials/realloc/${id}`);
     }
 }

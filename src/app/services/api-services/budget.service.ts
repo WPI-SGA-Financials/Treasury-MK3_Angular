@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpService } from '../http.service';
-import { Path_Api } from '../../types/path.enum';
-import { ResponseModel } from '../../types/response.model';
-import { Budget, ExtendedBudget } from '../../types/budget.model';
-import { PagedRequestModel } from '../../types/paged-request.model';
-import { PagedResponseModel } from '../../types/paged-response.model';
+import { HttpService } from '@treasury-services/http.service';
+import { ResponseModel } from '@treasury-types/response.model';
+import { Budget, ExtendedBudget } from '@treasury-types/budget.model';
+import { PagedRequestModel } from '@treasury-types/paged-request.model';
+import { PagedResponseModel } from '@treasury-types/paged-response.model';
 
 @Injectable({
     providedIn: 'root',
@@ -21,7 +20,7 @@ export class BudgetService {
     getBudgets(
         pagedRequest: PagedRequestModel = { resultsPerPage: 10, page: 1 },
     ): Observable<PagedResponseModel<Budget>> {
-        return this.httpService.postRequest(`${Path_Api.BUDGETS}`, pagedRequest);
+        return this.httpService.postRequest(`financials/budgets`, pagedRequest);
     }
 
     /**
@@ -30,7 +29,7 @@ export class BudgetService {
      * @param name
      */
     getOrganizationBudgets(name: string): Observable<ResponseModel<Budget[]>> {
-        return this.httpService.getRequest(`${Path_Api.ORGANIZATION}/${name}/budgets`);
+        return this.httpService.getRequest(`organization/${name}/budgets`);
     }
 
     /**
@@ -39,6 +38,6 @@ export class BudgetService {
      * @param id
      */
     getBudget(id: number): Observable<ResponseModel<ExtendedBudget>> {
-        return this.httpService.getRequest(`${Path_Api.SPECIFIC_BUDGET}/${id}`);
+        return this.httpService.getRequest(`financials/budget/${id}`);
     }
 }

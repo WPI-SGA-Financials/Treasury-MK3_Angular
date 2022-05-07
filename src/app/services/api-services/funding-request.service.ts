@@ -3,8 +3,6 @@ import { Observable } from 'rxjs';
 import { HttpService } from '../http.service';
 import { PagedRequestModel } from '../../types/paged-request.model';
 import { PagedResponseModel } from '../../types/paged-response.model';
-import { Budget, ExtendedBudget } from '../../types/budget.model';
-import { Path_Api } from '../../types/path.enum';
 import { ResponseModel } from '../../types/response.model';
 import { ExtendedFundingRequest, FundingRequest } from '../../types/funding-request.model';
 
@@ -22,7 +20,7 @@ export class FundingRequestService {
     getFundingRequests(
         pagedRequest: PagedRequestModel = { resultsPerPage: 10, page: 1 },
     ): Observable<PagedResponseModel<FundingRequest>> {
-        return this.httpService.postRequest(`${Path_Api.FUNDINGREQUESTS}`, pagedRequest);
+        return this.httpService.postRequest(`'financials/frs'`, pagedRequest);
     }
 
     /**
@@ -31,7 +29,7 @@ export class FundingRequestService {
      * @param name
      */
     getOrganizationFundingRequests(name: string): Observable<ResponseModel<FundingRequest[]>> {
-        return this.httpService.getRequest(`${Path_Api.ORGANIZATION}/${name}/frs`);
+        return this.httpService.getRequest(`organization/${name}/frs`);
     }
 
     /**
@@ -40,6 +38,6 @@ export class FundingRequestService {
      * @param id
      */
     getFundingRequest(id: number): Observable<ResponseModel<ExtendedFundingRequest>> {
-        return this.httpService.getRequest(`${Path_Api.SPECIFIC_FR}/${id}`);
+        return this.httpService.getRequest(`financials/fr/${id}`);
     }
 }

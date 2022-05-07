@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrganizationService } from '../../../services/api-services/organization.service';
-import { Path, Path_Api } from '../../../types/path.enum';
+import { Path } from '../../../types/path.enum';
 import { Organization } from '../../../types/organization.model';
 import { PagedResponseModel } from '../../../types/paged-response.model';
 import { IActionEvent, IActions, ITableColumn } from '../../../components/tables/types/table-interfaces';

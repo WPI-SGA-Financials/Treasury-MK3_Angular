@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { HttpService } from '../http.service';
-import { Path_Api } from '../../types/path.enum';
-import { ResponseModel } from '../../types/response.model';
-import { AllMetadata, ClubClassification, ClubType, FiscalYear } from '../../components/filters/types/metadata.model';
+import { HttpService } from '@treasury-services/http.service';
+import { ResponseModel } from '@treasury-types/response.model';
+import {
+    AllMetadata,
+    ClubClassification,
+    ClubType,
+    FiscalYear,
+} from '@treasury-components/filters/types/metadata.model';
 
 @Injectable({
     providedIn: 'root',
@@ -13,13 +17,15 @@ export class MetadataService {
     constructor(private httpService: HttpService) {}
 
     getAllMetadata(): Observable<ResponseModel<AllMetadata>> {
-        return this.httpService.getRequest(Path_Api.ALL_METADATA).pipe(
+        return this.httpService.getRequest('metadata/all').pipe(
             map((response) => {
-                response = this.formatClassifications(response);
-                response = this.formatClubTypes(response);
-                response = this.formatFiscalYears(response);
+                let formattedResponse = response;
 
-                return response;
+                formattedResponse = this.formatClassifications(formattedResponse);
+                formattedResponse = this.formatClubTypes(formattedResponse);
+                formattedResponse = this.formatFiscalYears(formattedResponse);
+
+                return formattedResponse;
             }),
             tap((allMetadata: ResponseModel<AllMetadata>) => {
                 allMetadata.data.clubClassifications.sort((a, b) => (a.id > b.id ? 1 : -1));
@@ -35,7 +41,7 @@ export class MetadataService {
         const formattedClassifications: ClubClassification[] = [];
 
         Object.keys(clubClassifications).forEach((key) => {
-            formattedClassifications.push({ id: parseInt(key), classification: clubClassifications[key] });
+            formattedClassifications.push({ id: parseInt(key, 10), classification: clubClassifications[key] });
         });
 
         response.data = { ...response.data, ...{ clubClassifications: formattedClassifications } };
@@ -49,7 +55,7 @@ export class MetadataService {
         const formattedClubTypes: ClubType[] = [];
 
         Object.keys(clubTypes).forEach((key) => {
-            formattedClubTypes.push({ id: parseInt(key), type: clubTypes[key] });
+            formattedClubTypes.push({ id: parseInt(key, 10), type: clubTypes[key] });
         });
 
         response.data = { ...response.data, ...{ clubTypes: formattedClubTypes } };
@@ -63,7 +69,7 @@ export class MetadataService {
         const formattedFiscalYears: FiscalYear[] = [];
 
         Object.keys(fiscalYears).forEach((key) => {
-            formattedFiscalYears.push({ id: parseInt(key), fy: fiscalYears[key] });
+            formattedFiscalYears.push({ id: parseInt(key, 10), fy: fiscalYears[key] });
         });
 
         response.data = { ...response.data, ...{ fiscalYears: formattedFiscalYears } };

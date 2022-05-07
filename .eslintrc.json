@@ -52,21 +52,7 @@
                 "no-underscore-dangle": "off",
                 "class-methods-use-this": "off",
                 "no-plusplus": "off",
-                "prettier/prettier": [
-                    "error",
-                    {
-                        "bracketSpacing": true,
-                        "endOfLine": "auto",
-                        "printWidth": 120,
-                        "semi": true,
-                        "singleQuote": true,
-                        "tabWidth": 4,
-                        "trailingComma": "all"
-                    },
-                    {
-                        "usePrettierrc": false
-                    }
-                ]
+                "prettier/prettier": ["error"]
             }
         },
         {
@@ -93,17 +79,7 @@
                 "prettier/prettier": [
                     "error",
                     {
-                        "bracketSpacing": true,
-                        "endOfLine": "auto",
-                        "parser": "angular",
-                        "printWidth": 120,
-                        "semi": true,
-                        "singleQuote": true,
-                        "tabWidth": 4,
-                        "trailingComma": "all"
-                    },
-                    {
-                        "usePrettierrc": false
+                        "parser": "angular"
                     }
                 ]
             }

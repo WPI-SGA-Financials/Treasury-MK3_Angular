@@ -5,7 +5,6 @@ import { PagedRequestModel } from '../../types/paged-request.model';
 import { Organization, ExtendedOrganization } from '../../types/organization.model';
 import { PagedResponseModel } from '../../types/paged-response.model';
 import { ResponseModel } from '../../types/response.model';
-import { Path_Api } from '../../types/path.enum';
 
 @Injectable({
     providedIn: 'root',
@@ -21,7 +20,7 @@ export class OrganizationService {
     getOrganizations(
         pagedRequest: PagedRequestModel = { resultsPerPage: 10, page: 1 },
     ): Observable<PagedResponseModel<Organization>> {
-        return this.httpService.postRequest(`${Path_Api.ORGANIZATIONS}`, pagedRequest);
+        return this.httpService.postRequest(`organizations`, pagedRequest);
     }
 
     /** *
@@ -30,6 +29,6 @@ export class OrganizationService {
      * @param name
      */
     getOrganization(name: string): Observable<ResponseModel<ExtendedOrganization>> {
-        return this.httpService.getRequest(`${Path_Api.ORGANIZATION}/${name}`);
+        return this.httpService.getRequest(`organization/${name}`);
     }
 }
